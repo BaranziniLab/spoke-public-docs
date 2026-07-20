@@ -4,7 +4,7 @@ Public, human- and machine-readable documentation for the node and edge **types*
 in the public [SPOKE](https://spoke.ucsf.edu/) biomedical knowledge graph.
 
 This repo is the **canonical fetch source** for the "?" type-documentation popups in
-the SPOKEtest Explorer, and is designed to double as compact, structured schema/meaning
+the [SPOKEtest Explorer](https://github.com/BaranziniLab/spoketest-explorer), and is designed to double as compact, structured schema/meaning
 documentation for any external tool or LLM integrating with the public SPOKE graph.
 
 ## Layout
