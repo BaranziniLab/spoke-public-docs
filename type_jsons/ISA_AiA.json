@@ -1,0 +1,21 @@
+{
+  "type": "ISA_AiA",
+  "kind": "edge",
+  "reviewed": true,
+  "endpoints": { "from": "Anatomy", "to": "Anatomy", "direction": "directed" },
+  "description": "A subtype relationship between two anatomical terms: an assertion that one Anatomy term is a kind of (a subtype of) another, encoding the Uberon ontology's class hierarchy. The edge is directed from the more specific term (the child) to the more general term (the parent); a single anatomical term may have several parents. Both endpoints are Anatomy nodes.",
+  "sources": ["Uberon"],
+  "common_properties": [
+    { "name": "sources", "type": "list of strings", "description": "The data sources that assert this edge. Always [\"uberon\"], since this relationship is sourced exclusively from Uberon.", "provenance": "extracted" },
+    { "name": "last_updated", "type": "datetime", "description": "When this edge was last created or updated.", "provenance": "extracted" }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Uberon",
+      "scope": "`is_a` (subtype) relationships between non-obsolete anatomical terms in the Uberon basic anatomy ontology. An edge exists only where both the child and parent terms are present in SPOKE as Anatomy nodes; relationships pointing at an obsolete or absent term are not represented.",
+      "description": "The anatomical subtype hierarchy from Uberon, a multi-species anatomy ontology. Each edge encodes one `is_a` assertion linking a subtype term to a more general term. The relationship carries no source-specific annotation beyond its existence.",
+      "properties": []
+    }
+  ]
+}
