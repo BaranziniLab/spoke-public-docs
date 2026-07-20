@@ -1,7 +1,6 @@
 {
   "type": "PARTOF_ApA",
   "kind": "edge",
-  "reviewed": true,
   "endpoints": { "from": "Anatomy", "to": "Anatomy", "direction": "directed" },
   "description": "A structural containment relationship between two anatomical terms: an assertion that one Anatomy structure is a structural part of another, encoding anatomical containment from Uberon. The edge is directed from the part to the whole; a single anatomical term may be a part of several wholes. Both endpoints are Anatomy nodes. This is distinct from the subtype hierarchy (ISA_AiA): `part_of` is about physical composition, not classification.",
   "sources": ["Uberon"],

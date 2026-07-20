@@ -1,7 +1,6 @@
 {
   "type": "Anatomy",
   "kind": "node",
-  "reviewed": true,
   "description": "An anatomical structure or region — for example an organ, tissue, body part, or anatomical space. Anatomy nodes come from Uberon, a multi-species (not human-only) anatomy ontology, and each node represents one distinct anatomical term with a stable identifier, a canonical name, and, where available, a text definition. Only non-obsolete terms are included. Anatomy terms are organized into two kinds of relationships that are represented as separate edge types: a subtype hierarchy (`is_a`) and structural containment (`part_of`); a single term may have several parents in either.",
   "sources": ["Uberon"],
   "common_properties": [

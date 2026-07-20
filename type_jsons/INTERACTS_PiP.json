@@ -1,7 +1,6 @@
 {
   "type": "INTERACTS_PiP",
   "kind": "edge",
-  "reviewed": true,
   "endpoints": { "from": "Protein", "to": "Protein", "direction": "undirected" },
   "description": "A protein–protein interaction: an assertion that two proteins physically interact, or are predicted to associate. The relationship is symmetric — although the graph stores each edge with a direction, that direction is arbitrary and carries no biological meaning, so the edge should be read as undirected. At most one edge exists between any given pair of proteins. This edge type is co-owned by several interaction sources that cover different organism scopes (human–human, human–pathogen, human–virus, and all-organism); each source contributes its own set of properties and never overwrites another's, and the shared `sources` list records which sources assert a given edge. A pair asserted by more than one source carries all of their names and all of their evidence.",
   "sources": ["BioPlex (Pharos)", "BioGRID", "IntAct", "STRING Viruses", "VirHost"],
