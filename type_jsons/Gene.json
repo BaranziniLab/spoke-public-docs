@@ -1,0 +1,48 @@
+{
+  "type": "Gene",
+  "kind": "node",
+  "description": "A human gene. Gene nodes cover two distinct, non-overlapping populations of human genes, distinguished by the source that created them: protein-coding genes from NCBI Entrez Gene, and microRNA (precursor / stem-loop) genes from miRBase. Every gene is identified by its NCBI Gene identifier written as a prefixed CURIE (e.g. NCBIGene:672), and all genes are human only. Beyond the properties written by its creating source, a gene may additionally carry a ChEMBL target cross-reference contributed from the UniProt human ID-mapping data. Genes that were removed from their originating source but retained in the graph are flagged as obsolete.",
+  "sources": ["Entrez Gene", "miRBase", "UniProt Human ID Mapping"],
+  "common_properties": [
+    { "name": "sources", "type": "list of strings", "description": "The data source that created this gene — \"Entrez Gene\" for protein-coding genes or \"miRBase\" for microRNA genes. The ChEMBL cross-reference enrichment (UniProt Human ID Mapping) is not recorded in this list.", "provenance": "extracted" },
+    { "name": "last_updated", "type": "datetime", "description": "When this gene was last created or updated.", "provenance": "extracted" },
+    { "name": "obsolete", "type": "boolean", "description": "Set to true on genes that were removed from their originating source but retained in the graph.", "notes": "Property is absent entirely on active genes; present only when the gene is obsolete.", "provenance": "extracted" }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Entrez Gene",
+      "scope": "Human (Homo sapiens) protein-coding genes catalogued by NCBI Entrez Gene. Restricted to protein-coding genes; other gene types are excluded (microRNA genes are supplied separately by miRBase).",
+      "description": "Protein-coding human gene records from NCBI's Entrez Gene database. Each node is one gene identified by its NCBI Gene ID, carrying the official gene symbol, a short functional description, chromosomal location, alternate symbols, and cross-references to other gene and identifier databases.",
+      "properties": [
+        { "name": "identifier", "type": "string (CURIE)", "description": "NCBI Gene identifier as a full prefixed CURIE (e.g. NCBIGene:672).", "provenance": "extracted" },
+        { "name": "name", "type": "string", "description": "Official gene symbol (e.g. BRCA1).", "provenance": "extracted" },
+        { "name": "description", "type": "string", "description": "Short functional description of the gene.", "notes": "Omitted when the source provides no description.", "provenance": "extracted" },
+        { "name": "chromosome", "type": "string", "description": "Chromosomal location of the gene (e.g. 17, X, MT).", "notes": "Omitted when the source provides no value.", "provenance": "extracted" },
+        { "name": "synonyms", "type": "list of strings", "description": "Alternate gene symbols for this gene.", "notes": "Empty list when the source lists none.", "provenance": "extracted" },
+        { "name": "xrefs", "type": "list of strings", "description": "Cross-references to other databases (e.g. MIM, HGNC, Ensembl, AllianceGenome), stored as full prefixed identifier strings exactly as given by the source.", "notes": "Omitted when the source provides none.", "provenance": "extracted" },
+        { "name": "ensembl", "type": "string", "description": "Ensembl gene identifier for this gene, stored without a prefix (e.g. ENSG00000121410); also available in prefixed form within xrefs.", "notes": "Empty string when no Ensembl identifier is present.", "provenance": "extracted" },
+        { "name": "license", "type": "string", "description": "Data-usage license for this gene record. Always \"CC0 1.0\".", "provenance": "extracted" }
+      ]
+    },
+    {
+      "source": "miRBase",
+      "scope": "Human microRNA genes — the precursor (stem-loop) microRNAs catalogued by miRBase, identified via cross-references carried on human NCBI Entrez Gene records. This population is disjoint from the Entrez Gene protein-coding genes: microRNA genes are non-coding and are supplied only by this source. These nodes carry a minimal, purpose-specific property set (below) and none of the additional protein-coding gene properties.",
+      "description": "Human microRNA genes annotated with their miRBase precursor identity. Each node is one microRNA gene identified by its NCBI Gene ID and annotated with the accession and name of its miRBase precursor (stem-loop) entry. Mature microRNA products are out of scope.",
+      "properties": [
+        { "name": "identifier", "type": "string (CURIE)", "description": "NCBI Gene identifier as a full prefixed CURIE.", "provenance": "extracted" },
+        { "name": "name", "type": "string", "description": "Official gene symbol, from Entrez Gene.", "provenance": "extracted" },
+        { "name": "mirbase_accession", "type": "string", "description": "Accession of the gene's miRBase precursor (stem-loop) microRNA (e.g. MI0000060).", "provenance": "extracted" },
+        { "name": "mirbase_name", "type": "string", "description": "Human-readable name of the gene's miRBase precursor microRNA (e.g. hsa-let-7a-1).", "provenance": "extracted" }
+      ]
+    },
+    {
+      "source": "UniProt Human ID Mapping",
+      "scope": "Enriches existing genes with a ChEMBL target cross-reference. Applies to any gene reachable from a human UniProt accession that carries a ChEMBL mapping in the UniProt human ID-mapping data; genes with no such mapping receive no ChEMBL identifier. This source adds only the property below — it does not create genes and does not change which source a gene is attributed to.",
+      "description": "ChEMBL target cross-reference for genes, derived from the UniProt human ID-mapping data by bridging UniProt accessions to NCBI Gene IDs. This is the sole source of the ChEMBL identifier on Gene nodes.",
+      "properties": [
+        { "name": "chembl_id", "type": "string", "description": "ChEMBL target identifier associated with this gene (e.g. CHEMBL3710403).", "notes": "Absent when no ChEMBL mapping resolves to the gene. Single value: when a gene maps to more than one ChEMBL identifier, only one is stored.", "provenance": "extracted" }
+      ]
+    }
+  ]
+}
