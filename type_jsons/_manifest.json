@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "_comment": "The Explorer renders each type record purely from this manifest. Field names, ordering, and labels live HERE, not in the consumer's code — the only thing hardcoded in the Explorer is the small set of generic 'primitive' renderers referenced below (paragraph, note, chips, endpoints, property_table, sections). Change the schema by editing this file; no consumer code changes. When node types are added, this can become keyed by 'kind' (node/edge) — the layout shape stays the same.",
+  "primitives": ["paragraph", "note", "chips", "endpoints", "property_table", "sections"],
+  "layout": [
+    { "field": "description", "primitive": "paragraph" },
+    { "field": "endpoints", "primitive": "endpoints", "label": "Connects", "omit_if_empty": true },
+    { "field": "sources", "primitive": "chips", "label": "Sources", "omit_if_empty": true },
+    { "field": "common_properties", "primitive": "property_table", "label": "Common properties", "omit_if_empty": true },
+    {
+      "field": "source_contributions",
+      "primitive": "sections",
+      "label": "By source",
+      "omit_if_empty": true,
+      "item": {
+        "title_field": "source",
+        "layout": [
+          { "field": "scope", "primitive": "note", "label": "Scope", "omit_if_empty": true },
+          { "field": "description", "primitive": "paragraph" },
+          { "field": "properties", "primitive": "property_table", "omit_if_empty": true }
+        ]
+      }
+    },
+    { "field": "curator_notes", "primitive": "paragraph", "omit_if_empty": true }
+  ],
+  "property_table": {
+    "columns": [
+      { "field": "name", "label": "Property", "mono": true },
+      { "field": "type", "label": "Type" },
+      { "field": "description", "label": "Meaning" },
+      { "field": "notes", "label": "Notes", "omit_if_empty": true }
+    ]
+  }
+}

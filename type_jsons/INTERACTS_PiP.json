@@ -1,0 +1,74 @@
+{
+  "type": "INTERACTS_PiP",
+  "kind": "edge",
+  "reviewed": true,
+  "endpoints": { "from": "Protein", "to": "Protein", "direction": "undirected" },
+  "description": "A protein–protein interaction: an assertion that two proteins physically interact or are predicted to associate. The relationship is symmetric — although each edge is stored in a fixed orientation (proteins ordered by UniProt accession), that direction carries no biological meaning and the edge should be read as undirected. At most one edge exists between any pair of proteins. This edge type is co-owned by several interaction sources; each source contributes its own set of properties and never overwrites another's, and the shared `sources` list records which sources assert a given edge.",
+  "sources": ["BioPlex (Pharos)", "BioGRID", "IntAct", "STRING Viruses", "VirHost"],
+  "common_properties": [
+    { "name": "sources", "type": "list of strings", "description": "Which interaction sources assert this edge. Managed additively — a source only ever adds its own name.", "provenance": "extracted" },
+    { "name": "last_updated", "type": "datetime", "description": "When this edge was last created or updated.", "provenance": "extracted" }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "BioPlex (Pharos)",
+      "scope": "Human–human protein pairs; both proteins must already exist in SPOKE and both must be human (NCBITaxon:9606).",
+      "description": "Physically-measured human protein interactions from BioPlex (accessed via Pharos). BioPlex models each candidate interaction as three mutually-exclusive outcomes whose probabilities sum to about 1; when several BioPlex records describe the same pair, the values from the single most-confident record are kept.",
+      "properties": [
+        { "name": "p_interaction", "type": "float", "description": "Probability that the interaction is real.", "provenance": "extracted" },
+        { "name": "p_no_interaction", "type": "float", "description": "Probability that there is no interaction.", "provenance": "extracted" },
+        { "name": "p_wrong", "type": "float", "description": "Probability that the protein pairing is a technical misassignment.", "provenance": "extracted" }
+      ]
+    },
+    {
+      "source": "BioGRID",
+      "scope": "Human ↔ non-human protein pairs; both endpoints must resolve to existing SPOKE Proteins.",
+      "description": "Curated protein interactions from BioGRID. Evidence is aggregated across all supporting records for a pair into unordered sets (the link between a specific detection method and a specific publication is not preserved).",
+      "properties": [
+        { "name": "biogrid_experimental_systems", "type": "list of strings", "description": "Experimental systems (assay types) in which the interaction was detected.", "provenance": "extracted" },
+        { "name": "biogrid_throughput", "type": "list of strings", "description": "Throughput category (e.g. low- or high-throughput) of the detecting assays.", "provenance": "extracted" },
+        { "name": "biogrid_pubmed_ids", "type": "list of strings", "description": "PubMed IDs of publications reporting the interaction.", "provenance": "extracted" },
+        { "name": "biogrid_interaction_ids", "type": "list of strings", "description": "BioGRID interaction identifiers for the supporting records.", "provenance": "extracted" }
+      ]
+    },
+    {
+      "source": "IntAct",
+      "scope": "All organism pairings; both endpoints must resolve to existing, non-obsolete SPOKE Proteins. Self-interactions are skipped.",
+      "description": "Molecular interactions from IntAct. Per-evidence details are stored as several equal-length, index-aligned arrays (position i refers to the same piece of evidence across every array); fields that are multi-valued per evidence, or per-interactor, are stored as distinct sets instead. Where the evidence cleanly implies an acting protein, directedness is recorded as edge properties — never as the stored edge orientation.",
+      "properties": [
+        { "name": "intact_interaction_ids", "type": "list of strings", "description": "Primary IntAct interaction identifier for each piece of evidence.", "provenance": "extracted", "notes": "Per-evidence array (index-aligned)." },
+        { "name": "intact_miscores", "type": "list of floats", "description": "IntAct MI-score (confidence, 0–1) for each piece of evidence.", "provenance": "extracted", "notes": "Per-evidence array (index-aligned)." },
+        { "name": "intact_detection_methods", "type": "list of strings", "description": "Interaction detection method (human-readable) for each piece of evidence.", "provenance": "extracted", "notes": "Per-evidence array (index-aligned)." },
+        { "name": "intact_interaction_types", "type": "list of strings", "description": "Interaction type (human-readable) for each piece of evidence.", "provenance": "extracted", "notes": "Per-evidence array (index-aligned)." },
+        { "name": "intact_source_databases", "type": "list of strings", "description": "Originating source database (human-readable) for each piece of evidence.", "provenance": "extracted", "notes": "Per-evidence array (index-aligned)." },
+        { "name": "intact_pubmed_ids", "type": "list of strings", "description": "PubMed IDs supporting the interaction.", "provenance": "extracted", "notes": "Distinct set over the pair." },
+        { "name": "intact_biological_roles", "type": "list of strings", "description": "Biological roles observed for the interactors (excluding 'unspecified role').", "provenance": "extracted", "notes": "Distinct set over the pair." },
+        { "name": "intact_isoform_chain_accessions", "type": "list of strings", "description": "Isoform- or chain-specific UniProt forms observed for the pair (collapsed to base accession for matching).", "provenance": "extracted", "notes": "Distinct set over the pair." },
+        { "name": "intact_is_directed", "type": "boolean", "description": "True when the evidence cleanly indicates a direction of action. Absent means undirected/unknown (never stored as false).", "provenance": "extracted" },
+        { "name": "intact_directed_actor", "type": "string (CURIE)", "description": "UniProtKB identifier of the acting protein, when the interaction is directed.", "provenance": "extracted" },
+        { "name": "intact_direction_roles", "type": "list of strings", "description": "Observed 'actor role -> target role' descriptions behind the direction.", "provenance": "extracted", "notes": "Distinct set; present only when directed." }
+      ]
+    },
+    {
+      "source": "STRING Viruses",
+      "scope": "Human ↔ viral protein pairs (exactly one human and one viral partner), both present in SPOKE.",
+      "description": "Predicted virus–host protein associations from Viruses.STRING, restricted to cross-species pairs where one partner is human and the other viral. Each edge carries STRING's combined confidence score, taken as the maximum across all contributing rows for the pair.",
+      "properties": [
+        { "name": "string_combined_score", "type": "integer", "description": "STRING combined confidence score for the association (roughly 150–999; higher is more confident).", "provenance": "extracted", "notes": "Maximum over all contributing rows." }
+      ]
+    },
+    {
+      "source": "VirHost",
+      "scope": "Human ↔ non-human protein pairs; both endpoints must resolve to existing, non-obsolete SPOKE Proteins.",
+      "description": "Virus–host protein interactions from VirHostNet. Per-record evidence is stored as equal-length, index-aligned arrays (position i refers to the same VirHostNet record across every array), plus a distinct set of any isoform/chain-specific UniProt forms seen.",
+      "properties": [
+        { "name": "virhost_interaction_ids", "type": "list of strings", "description": "VirHostNet record identifier for each supporting record.", "provenance": "extracted", "notes": "Per-record array (index-aligned)." },
+        { "name": "virhost_miscores", "type": "list of floats", "description": "VirHostNet MI-score (confidence) for each supporting record.", "provenance": "extracted", "notes": "Per-record array (index-aligned)." },
+        { "name": "virhost_detection_methods", "type": "list of strings", "description": "Interaction detection method (human-readable) for each supporting record.", "provenance": "extracted", "notes": "Per-record array (index-aligned)." },
+        { "name": "virhost_pubmed_ids", "type": "list of strings", "description": "PubMed ID for each supporting record.", "provenance": "extracted", "notes": "Per-record array (index-aligned)." },
+        { "name": "virhost_isoform_chain_accessions", "type": "list of strings", "description": "Isoform- or chain-specific UniProt forms observed for the pair (collapsed to base accession for matching).", "provenance": "extracted", "notes": "Distinct set; present only when such forms were observed." }
+      ]
+    }
+  ]
+}
