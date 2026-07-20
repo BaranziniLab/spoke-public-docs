@@ -1,0 +1,24 @@
+{
+  "type": "Anatomy",
+  "kind": "node",
+  "reviewed": true,
+  "description": "An anatomical structure or region — for example an organ, tissue, body part, or anatomical space. Anatomy nodes come from Uberon, a multi-species (not human-only) anatomy ontology, and each node represents one distinct anatomical term with a stable identifier, a canonical name, and, where available, a text definition. Only non-obsolete terms are included. Anatomy terms are organized into two kinds of relationships that are represented as separate edge types: a subtype hierarchy (`is_a`) and structural containment (`part_of`); a single term may have several parents in either.",
+  "sources": ["Uberon"],
+  "common_properties": [
+    { "name": "sources", "type": "list of strings", "description": "The data sources that contribute this node. Always [\"uberon\"], since Anatomy nodes are sourced exclusively from Uberon.", "provenance": "extracted" },
+    { "name": "last_updated", "type": "datetime", "description": "When this node was last created or updated.", "provenance": "extracted" }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Uberon",
+      "scope": "Every non-obsolete anatomical term in the Uberon basic anatomy ontology (OBO release). Multi-species — anatomy across organisms, not restricted to human. Terms marked obsolete in the source are excluded entirely.",
+      "description": "Anatomical structures and regions from Uberon, a multi-species anatomy ontology. Each node is one anatomical term identified by its Uberon identifier, carrying the term's canonical name and, when the source provides one, a free-text definition.",
+      "properties": [
+        { "name": "identifier", "type": "string (CURIE)", "description": "Uberon identifier for the anatomical term, as a full prefixed CURIE (e.g. UBERON:0000002).", "provenance": "extracted" },
+        { "name": "name", "type": "string", "description": "Canonical name of the anatomical structure or region, as given by Uberon.", "provenance": "extracted" },
+        { "name": "def", "type": "string", "description": "Free-text definition of the anatomical structure.", "notes": "Present only when the source term carries a definition; omitted otherwise.", "provenance": "extracted" }
+      ]
+    }
+  ]
+}
