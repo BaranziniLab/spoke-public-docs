@@ -1,4 +1,4 @@
-# SPOKE public type documentation
+# SPOKEtest public type documentation
 
 Public, human- and machine-readable documentation for the node and edge **types**
 in the public [SPOKE](https://spoke.ucsf.edu/) biomedical knowledge graph.
