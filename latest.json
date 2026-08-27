@@ -1,0 +1,5 @@
+{
+  "version": "0.2.0",
+  "release_url": "https://github.com/BaranziniLab/spoketest-explorer/releases/latest",
+  "notes": "Identifier search, ranked results, grouped edge filters, metagraph view, and canvas undo/redo."
+}
