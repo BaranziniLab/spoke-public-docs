@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0",
+  "version": "0.3.1",
   "release_url": "https://github.com/BaranziniLab/spoketest-explorer/releases/latest",
-  "notes": "Settings panel, delete and multi-select nodes, find box moved to the canvas corner."
+  "notes": "The Settings button now describes what's inside."
 }
