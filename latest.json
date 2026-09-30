@@ -1,5 +1,5 @@
 {
-  "version": "0.3.1",
+  "version": "0.3.2",
   "release_url": "https://github.com/BaranziniLab/spoketest-explorer/releases/latest",
-  "notes": "The Settings button now describes what's inside."
+  "notes": "Undo and redo the canvas with ⌘Z and ⇧⌘Z."
 }
