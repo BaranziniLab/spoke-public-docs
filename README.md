@@ -43,7 +43,6 @@ section rather than flattening everything together:
 | --- | --- |
 | `type` | Exact type name (== filename). |
 | `kind` | `node` or `edge`. |
-| `reviewed` | Only `true` records are shown to users. Mirrors the modeling doc's `Human Approved` flag. |
 | `endpoints` | (edges) `{from, to, direction}`. |
 | `description` | Plain-English, type-level summary. Paraphrased from the modeling docs; confidence-gated (never asserts unstated domain knowledge). |
 | `sources` | The sources that co-own this type. |
