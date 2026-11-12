@@ -1,0 +1,131 @@
+{
+  "type": "Location",
+  "kind": "node",
+  "description": "Geographic entities comprising countries and territories, first-level administrative divisions outside the United States, and US states, counties, cities/places, and Zipcodes. The type property distinguishes geographic kinds.",
+  "sources": [
+    "GeoNames",
+    "UnitedStatesZipcode_database"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "string (CURIE)",
+      "description": "Geographic identifier: ISO2:<ISO2> for countries; GEONAMES.ADMIN1:<admin1_code> for GeoNames divisions; USZIP:<state_abbr>-<zip>, USPLACE:<place_geoid>, USCOUNTY:<county_geoid>, or USSTATE:<state_fips> for US geography. Outside-city-limits pseudo-city identifiers append the raw Zipcode to the place GEOID without a separator.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Geographic name; GeoNames divisions use the ASCII name. For US Zipcodes, the name is the raw five-digit Zipcode string.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "type",
+      "type": "string",
+      "description": "Geographic kind: Country, Division, Zipcode, City, County, or State.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing the location.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Date and time the location was created or last changed.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "iso3",
+      "type": "string",
+      "description": "ISO3 country code on Country locations: from GeoNames for non-US countries and territories, and USA from UnitedStatesZipcode_database for the United States. Missing GeoNames values are empty strings.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "GeoNames",
+      "homepage": "https://www.geonames.org/",
+      "scope": "Countries and territories except ISO2 US, and first-level administrative divisions except US.*. US territories with their own ISO2 codes, such as AS, GU, PR, and VI, are included.",
+      "description": "Provides countries/territories and their first-level administrative divisions.",
+      "properties": [
+        {
+          "name": "code",
+          "type": "string",
+          "description": "On Division locations, the part of the administrative division code after the dot; for example, 01 from DE.01.",
+          "provenance": "extracted"
+        }
+      ]
+    },
+    {
+      "source": "UnitedStatesZipcode_database",
+      "scope": "US Zipcodes, cities/places with Zipcode overlap, counties, states, and the United States country. Places with no entry in the Zipcode/place overlap data are excluded.",
+      "description": "Provides the US geographic hierarchy. City locations include Outside city limits pseudo-cities, which have no City-to-County containment relationship. Zipcodes may have a KWG linkout.",
+      "properties": [
+        {
+          "name": "zipcode_type",
+          "type": "string",
+          "description": "Zipcode category, such as STANDARD, PO BOX, or UNIQUE; absent if missing.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "state",
+          "type": "string",
+          "description": "Two-letter state abbreviation on Zipcode locations; absent if missing.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "latitude",
+          "type": "float",
+          "description": "Approximate latitude of a Zipcode; absent if missing or blank.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "longitude",
+          "type": "float",
+          "description": "Approximate longitude of a Zipcode; absent if missing or blank.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "Linkout",
+          "type": "string (HTML)",
+          "description": "HTML anchor linking a Zipcode to its KWG zipCodeArea resource, with state-Zipcode anchor text such as TX-79934; absent if no mapping exists.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "city_fips",
+          "type": "string",
+          "description": "Place FIPS-like code on City locations; empty string for Outside city limits pseudo-cities and otherwise absent if missing.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "state_name",
+          "type": "string",
+          "description": "State name on City and County locations; absent if missing.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "state_fips",
+          "type": "string",
+          "description": "State FIPS code on City and County locations; absent if missing.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "county_fips",
+          "type": "string",
+          "description": "County FIPS-like code on County locations; absent if missing.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "abbr",
+          "type": "string",
+          "description": "State abbreviation on State locations; absent if missing.",
+          "provenance": "extracted"
+        }
+      ]
+    }
+  ]
+}

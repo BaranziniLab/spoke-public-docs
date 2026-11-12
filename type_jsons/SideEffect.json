@@ -1,0 +1,43 @@
+{
+  "type": "SideEffect",
+  "kind": "node",
+  "description": "An adverse drug reaction reported in regulatory drug package insert labels, from SIDER. Each concept uses a MedDRA-normalized UMLS identifier rather than the raw label-extracted identifier. Coverage includes preferred terms, lowest-level terms and broad MedDRA grouping categories. These concepts are separate from Symptom nodes, with no cross-links supplied by this source.",
+  "sources": [
+    "SIDER 4.1"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "string (CURIE)",
+      "description": "UMLS Concept Unique Identifier for the MedDRA-normalized side effect, prefixed umls: (for example umls:C0000737).",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "MedDRA term name for the side effect.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing the side-effect concept.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Timestamp when the node was created or its properties changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "SIDER 4.1",
+      "scope": "Adverse drug reaction concepts in drug package insert labels. Preferred terms, lowest-level terms and broad grouping categories are included. Coverage is limited to source associations with a represented Compound and non-null compound identifier, side-effect identifier and name.",
+      "description": "SIDER (Side Effect Resource) supplies adverse drug reaction concepts and names standardized through MedDRA. Identifiers refer to the MedDRA-normalized UMLS concept, which can differ in granularity from the term originally extracted from a label.",
+      "properties": []
+    }
+  ]
+}

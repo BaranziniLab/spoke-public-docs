@@ -1,0 +1,56 @@
+{
+  "type": "Food",
+  "kind": "node",
+  "description": "A FoodOn ontology concept spanning the farm-to-fork spectrum: food products, food-source organisms and their parts, processes, qualities, packaging and contact materials, and food data specifications. The type includes active FOODON-prefixed classes without a category filter; it is not restricted to edible products. Imported classes from other ontologies and deprecated classes are excluded. The Food hierarchy represents is-a relationships between active FoodOn classes; links to external ontology parents and restriction-based relationships are not represented.",
+  "sources": [
+    "FoodOn"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "string (CURIE)",
+      "description": "FoodOn identifier as a prefixed CURIE, in the form FOODON:XXXXXXXX.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Label of the FoodOn concept, stored verbatim.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing to the node; FoodOn is represented by the value \"foodon\".",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Timestamp when the node or its properties were last changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "FoodOn",
+      "scope": "All active FOODON-prefixed ontology classes, without categorical filtering. Classes from imported ontologies and deprecated classes are excluded. A concept whose named parents are all external appears as a root in the SPOKE Food hierarchy.",
+      "description": "FoodOn supplies the concept identifier, label, text definition where available, and synonyms. Synonyms combine exact, narrow, broad, related and unqualified synonym annotations. Synonym values may be URI strings or contain several names or prose in a single value.",
+      "properties": [
+        {
+          "name": "definition",
+          "type": "string",
+          "description": "Text definition of the concept, including inline citations and original internal spacing where present.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "synonyms",
+          "type": "list of strings",
+          "description": "Alternative names or synonym annotations for the concept. Leading and trailing whitespace and empty values are excluded; case variants are represented once in lowercase, and values matching the label ignoring case are excluded. URI-valued synonyms remain literal URI strings. Semicolon-separated or multiline strings remain single list entries. The order of values carries no meaning.",
+          "provenance": "extracted"
+        }
+      ]
+    }
+  ]
+}

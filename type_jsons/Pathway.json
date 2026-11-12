@@ -1,0 +1,78 @@
+{
+  "type": "Pathway",
+  "kind": "node",
+  "description": "A named, curated biological pathway. Coverage combines human pathways from WikiPathways, Reactome and PID pathways supplied through PathwayCommons, and direct Reactome pathway hierarchies for signaling, immunity and diseases of signal transduction. Reactome pathways can be supported by both PathwayCommons and Reactome. A manually curated Reactome root groups the directly represented Reactome hierarchies.",
+  "sources": [
+    "WikiPathways",
+    "PathwayCommons",
+    "Reactome"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "string (CURIE)",
+      "description": "Pathway identifier: a WikiPathways CURIE such as wikipathways:WP100, an upstream pathway CURIE supplied by PathwayCommons, or a Reactome CURIE such as reactome:R-HSA-389357. The synthetic root is reactome:root.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Pathway name. For pathways supported directly by Reactome, this is the Reactome display name, or the bare stable identifier when a display name is absent. The manually curated root is named Reactome root.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Sources contributing the pathway: WikiPathways, PathwayCommons, Reactome, or the supported combination of PathwayCommons and Reactome.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Timestamp when the node or one of its properties was created or changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "WikiPathways",
+      "scope": "Homo sapiens pathways from the WikiPathways GMT release.",
+      "description": "Community-curated biological pathways with associated gene membership. Pathway URLs are available where provided by the source. These data are documented as CC BY 4.0.",
+      "properties": []
+    },
+    {
+      "source": "PathwayCommons",
+      "scope": "Human pathways from the Reactome and PID upstream sources only. Other PathwayCommons upstream sources are excluded.",
+      "description": "PathwayCommons aggregates pathway definitions and gene membership. Its Reactome pathways can share an identity with the direct Reactome contribution; differing PathwayCommons names can appear among the synonyms on those shared nodes. PathwayCommons contributes a CC BY 4.0 license annotation but no pathway URL.",
+      "properties": []
+    },
+    {
+      "source": "Reactome",
+      "scope": "Pathways R-HSA-162582 (Signaling Pathways, historically Signal Transduction), R-HSA-168256 (Immune System), and R-HSA-5663202 (Diseases of signal transduction by growth factor receptors and second messengers), together with all their descendant pathways in the human BioPAX export. The manually curated reactome:root is a common ancestor of these scope roots. Other parents outside these hierarchies are not represented by this contribution.",
+      "description": "Curated pathway hierarchy and directly contained biochemical reactions. The direct contribution does not include pathway summaries or literature references. A pathway shared by several represented hierarchies remains one pathway concept. Reactome data are documented as CC0; this contribution supplies no license property.",
+      "properties": [
+        {
+          "name": "reactome_id",
+          "type": "string",
+          "description": "Bare Reactome stable identifier, such as R-HSA-389357. The manually curated root has the value root.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "version",
+          "type": "integer",
+          "description": "Reactome release in which the pathway was last seen. The manually curated root instead carries a string indicating manual curation.",
+          "provenance": "extracted",
+          "notes": "Exception: `reactome:root` has `version` = the string `manual curation`."
+        },
+        {
+          "name": "synonyms",
+          "type": "list of strings",
+          "description": "Alternative Reactome names and, on pathways also supplied by PathwayCommons, differing PathwayCommons names. Values equal to the preferred name are excluded ignoring case. Multi-source pathways may retain historical alternatives.",
+          "provenance": "extracted",
+          "notes": "Omitted when empty (never stored as an empty list)"
+        }
+      ]
+    }
+  ]
+}

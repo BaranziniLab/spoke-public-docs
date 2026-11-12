@@ -1,0 +1,30 @@
+{
+  "type": "PARTICIPATES_GpPW",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Gene",
+    "to": "Pathway",
+    "direction": "directed"
+  },
+  "description": "A curated gene\u2013pathway membership relationship linking a human Gene to a human Pathway. Membership comes from WikiPathways or from the Reactome and PID collections distributed through PathwayCommons. Only memberships whose genes are represented in SPOKE are included. A gene\u2013pathway pair is represented once, even if the source repeats the gene.",
+  "sources": [
+    "WikiPathways",
+    "PathwayCommons"
+  ],
+  "common_properties": [],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "WikiPathways",
+      "scope": "Human (Homo sapiens) pathways and their gene memberships, limited to genes represented in SPOKE.",
+      "description": "Community-curated pathway membership from the Homo sapiens GMT release. Memberships are associated with NCBI Gene identifiers.",
+      "properties": []
+    },
+    {
+      "source": "PathwayCommons",
+      "scope": "Human gene memberships from the reactome and pid upstream collections only. Other upstream collections are excluded. Memberships without a corresponding SPOKE Gene are absent.",
+      "description": "Curated pathway membership from the Reactome and PID collections in the PathwayCommons meta-database. The source represents genes using HGNC symbols.",
+      "properties": []
+    }
+  ]
+}

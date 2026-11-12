@@ -1,0 +1,86 @@
+{
+  "type": "BiologicalProcess",
+  "kind": "node",
+  "description": "Gene Ontology terms in the biological_process namespace, representing biological processes.",
+  "sources": [
+    "Gene Ontology"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "string (CURIE)",
+      "description": "Primary Gene Ontology term identifier, such as GO:0008150.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Human-readable GO term label.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "definition",
+      "type": "string",
+      "description": "Formal definition of the GO term.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "license",
+      "type": "string",
+      "description": "License for the ontology structure and term definitions.",
+      "provenance": "extracted",
+      "notes": "Always \"CC BY 4.0\""
+    },
+    {
+      "name": "url",
+      "type": "string",
+      "description": "Canonical, stable, resolvable OBO URL for the GO term.",
+      "provenance": "extracted",
+      "notes": "http://purl.obolibrary.org/obo/GO_XXXXXXX"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Source of the GO term.",
+      "provenance": "extracted",
+      "notes": "Always [\"Gene Ontology\"]"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time of the most recent creation or update of the node.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Gene Ontology",
+      "scope": "Non-obsolete biological_process terms with 2\u20131000 annotated human genes, inclusive, after annotation propagation.",
+      "description": "GO supplies term labels, definitions, alternative names, identifiers, and external cross-references. Term inclusion uses human NCBI gene2go annotations and associations propagated through is_a and part_of relationships, including cross-namespace part_of relationships. Negative (NOT) annotations are excluded, and a NOT annotation removes the gene from that term even if propagation would otherwise associate it. The GO hierarchy is not exposed as graph edges.",
+      "properties": [
+        {
+          "name": "synonyms",
+          "type": "list of strings",
+          "description": "Alternative term names from all GO synonym categories: EXACT, RELATED, BROAD, and NARROW.",
+          "provenance": "extracted",
+          "notes": "Omit if empty"
+        },
+        {
+          "name": "xrefs",
+          "type": "list of strings",
+          "description": "Cross-references to external databases, such as EC, Reactome, and MetaCyc.",
+          "provenance": "extracted",
+          "notes": "Omit if empty"
+        },
+        {
+          "name": "aliases",
+          "type": "list of strings",
+          "description": "Alternative GO identifiers for the same term.",
+          "provenance": "extracted",
+          "notes": "Omit if empty"
+        }
+      ]
+    }
+  ]
+}

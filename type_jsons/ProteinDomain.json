@@ -1,0 +1,49 @@
+{
+  "type": "ProteinDomain",
+  "kind": "node",
+  "description": "A Pfam family entry identified by a PF accession. SPOKE calls these entries ProteinDomain, while Pfam calls them families; Pfam families typically define conserved domains or motifs. Entries with and without a Pfam clan assignment are represented. Clan-assigned entries have a membership relationship to a ProteinFamily node, which represents the Pfam clan.",
+  "sources": [
+    "Pfam"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "string (CURIE)",
+      "description": "Pfam family accession as a full CURIE, such as Pfam:PF00001.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Family description from Pfam, used as the primary human-readable label.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "entryName",
+      "type": "string",
+      "description": "Short family name from Pfam, such as 7tm_1.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing this entry; Pfam contributes the value Pfam.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Timestamp when the node was created or its properties changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Pfam",
+      "scope": "Pfam family entries with a PF accession in the Pfam clan-membership release, including families that have no clan assignment. This contribution describes the family/clan taxonomy, rather than protein-to-family assignments.",
+      "description": "Pfam supplies family accessions, descriptive labels and short names. Its PF family terminology corresponds to ProteinDomain in SPOKE; CL clans correspond to ProteinFamily.",
+      "properties": []
+    }
+  ]
+}

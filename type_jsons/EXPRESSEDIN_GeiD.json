@@ -1,0 +1,62 @@
+{
+  "type": "EXPRESSEDIN_GeiD",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Gene",
+    "to": "Disease",
+    "direction": "directed"
+  },
+  "description": "Cancer-specific RNA expression of a human gene in a cancer type, from the Human Protein Atlas (HPA). Coverage is restricted to genes classified as Cancer enriched, Cancer enhanced or Group enriched, with a recorded per-cancer pTPM expression value. This is not a catalog of all detected gene expression in cancer. Gene-level specificity and distribution categories are repeated across the cancer relationships for that gene.",
+  "sources": [
+    "HPA"
+  ],
+  "common_properties": [
+    {
+      "name": "group",
+      "type": "string",
+      "description": "HPA RNA cancer specificity category: Cancer enriched, Cancer enhanced or Group enriched.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "distribution",
+      "type": "string",
+      "description": "HPA RNA cancer distribution category for the gene, such as Detected in all or Detected in some. This is gene-level information repeated across its cancer relationships.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "pTPM",
+      "type": "float",
+      "description": "Recorded RNA expression value for this gene in the associated cancer type, from the HPA RNA cancer specific pTPM field.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources supporting this relationship; HPA contributes the value HPA.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Timestamp when the relationship was created or its properties or source support changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "HPA",
+      "scope": "Human genes in the HPA RNA cancer expression data with Cancer enriched, Cancer enhanced or Group enriched specificity and a non-empty per-cancer pTPM field. Only entries with corresponding Gene and Disease nodes are represented. A missing specificity score does not exclude an otherwise qualifying relationship.",
+      "description": "HPA supplies cancer-specific expression values and gene-level RNA cancer specificity, distribution and specificity score. Each relationship represents one gene and cancer type.",
+      "properties": [
+        {
+          "name": "specificity_score",
+          "type": "float",
+          "description": "HPA RNA cancer specificity score for the gene; the same gene-level value is repeated across its cancer relationships.",
+          "provenance": "extracted",
+          "notes": "Missing score means absent/null property"
+        }
+      ]
+    }
+  ]
+}

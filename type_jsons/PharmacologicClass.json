@@ -1,0 +1,63 @@
+{
+  "type": "PharmacologicClass",
+  "kind": "node",
+  "description": "A pharmacologic class from the FDA NDF-RT vocabulary as supplied by DrugCentral. Classes describe Mechanism of Action (MoA), Physiologic Effect (PE), Chemical Structure (CS), or Chemical/Ingredient. Other DrugCentral class categories are excluded. Each class is identified by its NDF-RT code and includes at least one represented Compound.",
+  "sources": [
+    "DrugCentral"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "string (NDF-RT CURIE)",
+      "description": "Stable NDF-RT identifier for the class, such as NDF-RT:N0000000161.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Human-readable pharmacologic class label supplied by DrugCentral.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "class_type",
+      "type": "string",
+      "description": "Classification category: MoA (Mechanism of Action), PE (Physiologic Effect), CS (Chemical Structure), or Chemical/Ingredient.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "license",
+      "type": "string",
+      "description": "License annotation for the class data: CC BY 4.0.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "url",
+      "type": "string",
+      "description": "BioPortal NDF-RT link for this class.",
+      "provenance": "extracted",
+      "notes": "Constructed as `http://purl.bioontology.org/ontology/NDFRT/<class_code>` where `<class_code>` is the bare code (e.g. `N0000000161`), not the full CURIE"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing this class; DrugCentral is recorded as DrugCentral.",
+      "provenance": "extracted",
+      "notes": "Never a scalar string"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Timestamp of creation or a change to the class name or classification category.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "DrugCentral",
+      "scope": "FDA NDF-RT classes in the MoA, PE, CS and Chemical/Ingredient categories, with a non-null class code and at least one associated Compound represented in SPOKE. EPC, PA, has role and EXT categories are excluded.",
+      "description": "DrugCentral supplies NDF-RT class identities, labels and classification categories, together with class membership of compounds. A class can be represented even when some of its associated compounds are absent.",
+      "properties": []
+    }
+  ]
+}

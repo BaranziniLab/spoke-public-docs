@@ -1,0 +1,101 @@
+{
+  "type": "PREVALENCE_DpL",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Disease",
+    "to": "Location",
+    "direction": "directed"
+  },
+  "description": "Disease prevalence estimates for locations, with IHME contributing country-level estimates and CDC PLACES contributing city-level age-adjusted estimates. Each disease\u2013location pair has at most one edge reflecting the most recent available source year.",
+  "sources": [
+    "IHME",
+    "PLACES"
+  ],
+  "common_properties": [
+    {
+      "name": "prevalence",
+      "type": "float",
+      "description": "Prevalence estimate: IHME values are percentages; PLACES values are the source Data_Value, with units recorded separately when available.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing to the relationship.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was created or last updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "IHME",
+      "scope": "Country-level estimates from the Institute for Health Metrics and Evaluation Global Burden of Disease. Coverage is limited to curated disease and country mappings that correspond to existing Disease and Country Location nodes; unmapped or unresolved entries are excluded.",
+      "description": "Estimates and 95% confidence interval bounds are expressed as percentages. Zero prevalence is retained. The most recent available source year is represented and stored on the edge.",
+      "properties": [
+        {
+          "name": "upper",
+          "type": "float",
+          "description": "Upper bound of the 95% confidence interval, expressed as a percentage.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "lower",
+          "type": "float",
+          "description": "Lower bound of the 95% confidence interval, expressed as a percentage.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "year",
+          "type": "integer",
+          "description": "Source year of the prevalence estimate.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "metric_name",
+          "type": "string",
+          "description": "Source metric type label.",
+          "provenance": "extracted"
+        }
+      ]
+    },
+    {
+      "source": "PLACES",
+      "scope": "CDC PLACES Place Data, limited to city-level locations and measures in the curated disease mapping. Only age-adjusted prevalence rows with numeric estimates and existing Disease and City Location nodes are included.",
+      "description": "The edge represents the most recent available source year; that year is not stored.",
+      "properties": [
+        {
+          "name": "unit",
+          "type": "string",
+          "description": "Source unit of the prevalence estimate.",
+          "provenance": "extracted",
+          "notes": "Optional"
+        },
+        {
+          "name": "total_population",
+          "type": "string",
+          "description": "Source TotalPopulation value.",
+          "provenance": "extracted",
+          "notes": "Optional"
+        },
+        {
+          "name": "data_value_type",
+          "type": "string",
+          "description": "Source value type; included values are Age-adjusted prevalence.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "short_question_text",
+          "type": "string",
+          "description": "Source measure concept label (Short_Question_Text).",
+          "provenance": "extracted"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "type": "MEMBEROF_PDmPF",
+  "kind": "edge",
+  "endpoints": {
+    "from": "ProteinDomain",
+    "to": "ProteinFamily",
+    "direction": "directed"
+  },
+  "description": "Membership of a Pfam family, represented as a ProteinDomain, in a Pfam clan, represented as a ProteinFamily.",
+  "sources": [
+    "Pfam"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing this membership relationship; includes Pfam.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Date and time when the relationship was created or last updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Pfam",
+      "scope": "Pfam family-to-clan assignments. Families without a clan assignment have no MEMBEROF_PDmPF relationship.",
+      "description": "Connects PF family entries to their assigned CL clans. This source covers the family/clan taxonomy.",
+      "properties": []
+    }
+  ]
+}

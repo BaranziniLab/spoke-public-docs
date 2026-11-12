@@ -1,0 +1,65 @@
+{
+  "type": "IMPACTS_PiD",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Protein",
+    "to": "Disease",
+    "direction": "directed"
+  },
+  "description": "Connects pathogen proteins to human diseases using PHI-base curated pathogen\u2013host experiments and disease annotations.",
+  "sources": [
+    "PHI"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Sources supporting the relationship; PHI denotes PHI-base.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time of the most recent change to the relationship.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "PHI",
+      "scope": "Human-host records (host taxonomy ID 9606) with an existing pathogen-species Organism, an existing UniProt Protein, and a resolved Disease annotation. All mutant-phenotype categories are included.",
+      "description": "Evidence from experiments supporting the same Protein\u2013Disease pair is combined into deduplicated lists. Disease annotations are matched by exact names or exact ontology synonyms, or by human-reviewed contextual mappings. Unresolved annotations contribute no relationship. Experimental tissues and cell lines describe the model, not a clinical diagnosis. Nonempty source placeholders are preserved in evidence values.",
+      "properties": [
+        {
+          "name": "mutant_phenotype",
+          "type": "list of strings",
+          "description": "Mutant phenotypes reported in the supporting experiments; all source phenotype categories are retained.",
+          "provenance": "extracted",
+          "notes": "independent value sets, not parallel per-experiment arrays"
+        },
+        {
+          "name": "tissue_type",
+          "type": "list of strings",
+          "description": "Tissues reported in the supporting experiments.",
+          "provenance": "extracted",
+          "notes": "independent value sets, not parallel per-experiment arrays; [] if all contributing values are blank"
+        },
+        {
+          "name": "experimental_evidence",
+          "type": "list of strings",
+          "description": "Experimental evidence reported by PHI-base for the supporting experiments.",
+          "provenance": "extracted",
+          "notes": "independent value sets, not parallel per-experiment arrays; [] if all contributing values are blank"
+        },
+        {
+          "name": "pathogen_ncbi_strain_id",
+          "type": "list of strings",
+          "description": "Pathogen strain taxonomy identifiers reported in the supporting experiments.",
+          "provenance": "extracted",
+          "notes": "independent value sets, not parallel per-experiment arrays; [] if all contributing values are blank"
+        }
+      ]
+    }
+  ]
+}

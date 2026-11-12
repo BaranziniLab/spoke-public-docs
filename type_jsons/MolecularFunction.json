@@ -1,0 +1,82 @@
+{
+  "type": "MolecularFunction",
+  "kind": "node",
+  "description": "Gene Ontology terms in the molecular_function namespace. Only non-obsolete terms with a final annotated-gene set of 2\u20131000 human genes, inclusive, are included. Gene associations include direct NCBI gene2go annotations and annotations propagated through GO is_a and part_of relationships; NOT annotations exclude genes from the affected term.",
+  "sources": [
+    "Gene Ontology"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "string (CURIE)",
+      "description": "Gene Ontology identifier for the term.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Human-readable GO term label.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "definition",
+      "type": "string",
+      "description": "Formal definition of the GO term.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "synonyms",
+      "type": "list of strings",
+      "description": "Alternative names, including EXACT, RELATED, BROAD, and NARROW synonyms.",
+      "provenance": "extracted",
+      "notes": "Omit if empty"
+    },
+    {
+      "name": "xrefs",
+      "type": "list of strings",
+      "description": "Cross-references to external databases, such as EC, Reactome, and MetaCyc.",
+      "provenance": "extracted",
+      "notes": "Omit if empty"
+    },
+    {
+      "name": "aliases",
+      "type": "list of strings",
+      "description": "Alternative GO identifiers for the same term.",
+      "provenance": "extracted",
+      "notes": "Omit if empty"
+    },
+    {
+      "name": "license",
+      "type": "string",
+      "description": "License for the ontology structure and term definitions: CC BY 4.0.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "url",
+      "type": "string",
+      "description": "Canonical, stable OBO URL for the GO term.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data source for the term: Gene Ontology.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Date and time the node was last created or updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Gene Ontology",
+      "scope": "Non-obsolete molecular_function terms meeting the 2\u20131000 annotated-human-gene inclusion threshold.",
+      "description": "Provides term identifiers, labels, definitions, synonyms, cross-references, and alternative identifiers. GO hierarchy relationships inform gene associations but are not exposed as ontology hierarchy edges in SPOKE.",
+      "properties": []
+    }
+  ]
+}

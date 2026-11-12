@@ -1,22 +1,70 @@
 {
   "type": "Anatomy",
   "kind": "node",
-  "description": "An anatomical structure or region — for example an organ, tissue, body part, or anatomical space. Anatomy nodes come from Uberon, a multi-species (not human-only) anatomy ontology, and each node represents one distinct anatomical term with a stable identifier, a canonical name, and, where available, a text definition. Only non-obsolete terms are included. Anatomy terms are organized into two kinds of relationships that are represented as separate edge types: a subtype hierarchy (`is_a`) and structural containment (`part_of`); a single term may have several parents in either.",
-  "sources": ["Uberon"],
+  "description": "An anatomical structure or region. Anatomy combines the multi-species Uberon anatomy ontology with the Allen Institute Human Brain Atlas ontology (HOMBA), which adds detailed human brain structures. A node may represent an Uberon term, a HOMBA structure, or corresponding concepts from both sources. Some distinct HOMBA structures share a single Uberon term and are represented together at that coarser anatomical granularity.",
+  "sources": [
+    "uberon",
+    "HOMBA"
+  ],
   "common_properties": [
-    { "name": "sources", "type": "list of strings", "description": "The data sources that contribute this node. Always [\"uberon\"], since Anatomy nodes are sourced exclusively from Uberon.", "provenance": "extracted" },
-    { "name": "last_updated", "type": "datetime", "description": "When this node was last created or updated.", "provenance": "extracted" }
+    {
+      "name": "identifier",
+      "type": "string",
+      "description": "Anatomical term identifier as a full prefixed CURIE: an Uberon identifier (for example UBERON:0000002) or a HOMBA identifier (for example HOMBA:10155 or HOMBA:AA30004).",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Canonical anatomical name from Uberon for Uberon-identified nodes, or the HOMBA structure name for HOMBA-identified nodes.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing the anatomical concept: uberon, HOMBA, or both.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "When this node was created or its documented properties were last changed.",
+      "provenance": "extracted"
+    }
   ],
   "curator_notes": null,
   "source_contributions": [
     {
-      "source": "Uberon",
-      "scope": "Every non-obsolete anatomical term in the Uberon basic anatomy ontology (OBO release). Multi-species — anatomy across organisms, not restricted to human. Terms marked obsolete in the source are excluded entirely.",
-      "description": "Anatomical structures and regions from Uberon, a multi-species anatomy ontology. Each node is one anatomical term identified by its Uberon identifier, carrying the term's canonical name and, when the source provides one, a free-text definition.",
+      "source": "uberon",
+      "scope": "Non-obsolete anatomical terms with an identifier and name from the Uberon basic anatomy ontology. Covers anatomy across species rather than human anatomy alone.",
+      "description": "Uberon provides anatomical terms, canonical names, and optional text definitions. Its relationships describe anatomical subtypes and structural containment.",
       "properties": [
-        { "name": "identifier", "type": "string (CURIE)", "description": "Uberon identifier for the anatomical term, as a full prefixed CURIE (e.g. UBERON:0000002).", "provenance": "extracted" },
-        { "name": "name", "type": "string", "description": "Canonical name of the anatomical structure or region, as given by Uberon.", "provenance": "extracted" },
-        { "name": "def", "type": "string", "description": "Free-text definition of the anatomical structure.", "notes": "Present only when the source term carries a definition; omitted otherwise.", "provenance": "extracted" }
+        {
+          "name": "def",
+          "type": "string",
+          "description": "Text definition of the anatomical structure or region supplied by Uberon.",
+          "provenance": "extracted",
+          "notes": "If absent in source, omit property"
+        }
+      ]
+    },
+    {
+      "source": "HOMBA",
+      "scope": "Human brain structures from the Allen Institute Human Brain Atlas ontology, including structures with Developing Human Brain Atlas (DHBA) identifiers and HOMBA-only structures.",
+      "description": "HOMBA supplies detailed human brain anatomy and a containment hierarchy of regions, areas, layers and nuclei. Corresponding concepts can carry both Uberon and HOMBA provenance. HOMBA and DHBA identifiers and names provide additional ways to identify and search for these structures. Several HOMBA structures can be represented by one Uberon concept.",
+      "properties": [
+        {
+          "name": "aliases",
+          "type": "list of strings",
+          "description": "Additional anatomical identifiers contributed by HOMBA. Uberon-identified nodes may carry HOMBA: and DHBA: CURIEs; HOMBA-identified nodes may carry a DHBA: CURIE.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "synonyms",
+          "type": "list of strings",
+          "description": "Alternative HOMBA and DHBA anatomical names. Names differ case-insensitively from the canonical name and other synonyms; historical names may also remain.",
+          "provenance": "extracted"
+        }
       ]
     }
   ]

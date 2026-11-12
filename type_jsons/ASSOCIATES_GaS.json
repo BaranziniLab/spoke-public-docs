@@ -1,0 +1,36 @@
+{
+  "type": "ASSOCIATES_GaS",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Gene",
+    "to": "Symptom",
+    "direction": "directed"
+  },
+  "description": "A Gene\u2013Symptom association from Human Phenotype Ontology (HPO) phenotype-to-genes annotations. The association connects a gene to a phenotype concept represented as a Symptom.",
+  "sources": [
+    "HPO"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Sources supporting the Gene\u2013Symptom association; HPO supplies this contribution.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Timestamp of association creation or a change in source support.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "HPO",
+      "scope": "Phenotype-to-genes annotations whose NCBI Gene identifier and HPO phenotype are represented by existing Gene and HPO-enriched Symptom nodes. Unresolved genes or phenotypes are excluded. A Gene\u2013Symptom association does not require a corresponding Disease association.",
+      "description": "The annotations derive from HPO disease\u2013phenotype and disease\u2013gene annotations. Different source disorders can support the same phenotype\u2013gene association. Each Gene\u2013Symptom pair is represented once, regardless of repeated source annotations. HPO supplies no additional evidence metadata on these associations.",
+      "properties": []
+    }
+  ]
+}

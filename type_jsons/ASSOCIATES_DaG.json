@@ -1,0 +1,214 @@
+{
+  "type": "ASSOCIATES_DaG",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Disease",
+    "to": "Gene",
+    "direction": "directed"
+  },
+  "description": "An association between a Disease and a Gene, supported by one or more sources. Evidence can represent curated gene–phenotype relationships with known molecular basis, DISEASES knowledge, experimental or text-mining support, genome-wide-significant variant associations assigned to genes, or HPO phenotype–gene annotations. The source contributions distinguish these different meanings and scopes.",
+  "sources": [
+    "DISEASES",
+    "omim",
+    "GWAS_catalog",
+    "HPO"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Sources supporting the Disease–Gene association. Source values are DISEASES, omim, GWAS_catalog and HPO.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Timestamp of creation or a change to the association’s evidence or source support.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "DISEASES",
+      "scope": "Human associations in the knowledge, experiments and textmining channels with standardized confidence ≥ 3.0. Only Disease Ontology-identified records represented by existing Disease and Gene nodes are included; non-DOID and unresolved records are excluded.",
+      "description": "Jensen Lab DISEASES supplies protein/gene–disease evidence from curated knowledge, experiments and text mining. Multiple qualifying rows, including different sub-sources in the same channel, remain separate evidence entries. Raw scores have different meanings across channels; the standardized confidence is the shared inclusion measure.",
+      "properties": [
+        {
+          "name": "diseases_sources",
+          "type": "List of strings",
+          "description": "Evidence channel for each supporting DISEASES row: knowledge, experiments or textmining.",
+          "provenance": "extracted",
+          "notes": "The four `diseases_*` lists are parallel: entry *i* in each list describes the same source row."
+        },
+        {
+          "name": "diseases_scores",
+          "type": "List of strings",
+          "description": "Channel-specific raw scores: CURATED for knowledge, the raw score text for experiments, and the z-score for textmining.",
+          "provenance": "extracted",
+          "notes": "The four `diseases_*` lists are parallel: entry *i* in each list describes the same source row."
+        },
+        {
+          "name": "diseases_confidences",
+          "type": "List of floats",
+          "description": "Standardized Jensen Lab confidence on a 0–5 scale. Included evidence has confidence at least 3.0.",
+          "provenance": "extracted",
+          "notes": "The four `diseases_*` lists are parallel: entry *i* in each list describes the same source row."
+        },
+        {
+          "name": "diseases_identifiers",
+          "type": "List of strings",
+          "description": "Sub-source name for knowledge and experiments, or an evidence-page URL for textmining.",
+          "provenance": "extracted",
+          "notes": "The four `diseases_*` lists are parallel: entry *i* in each list describes the same source row."
+        }
+      ]
+    },
+    {
+      "source": "omim",
+      "scope": "Human OMIM genemap2 gene–phenotype entries with mapping key 3: molecular basis known and causative mutation identified. Both endpoints must be represented in SPOKE. Where an OMIM phenotype corresponds to several Disease concepts, associations include every matching concept, including broader and narrower concepts.",
+      "description": "Curated gene–phenotype associations with known molecular basis. Distinct inheritance modes from all qualifying entries for the same Disease–Gene pair are represented together.",
+      "properties": [
+        {
+          "name": "inheritance",
+          "type": "list of strings",
+          "description": "Distinct inheritance modes across qualifying OMIM phenotype entries for this Disease–Gene pair.",
+          "provenance": "extracted",
+          "notes": "Empty list `[]` if no contributing entry supplies an inheritance mode"
+        }
+      ]
+    },
+    {
+      "source": "GWAS_catalog",
+      "scope": "Published GWAS Catalog associations with p ≤ 5×10⁻⁸, restricted to traits represented by Disease Ontology terms through EFO and to genes represented in SPOKE. Traits with no supported Disease representation are excluded; rows combining a disease and a non-disease trait can be included. Gene endpoints are genes containing the variant or the nearest gene on each side for intergenic variants; no flanking-gene distance cutoff is applied.",
+      "description": "GWAS evidence retains the authors’ trait wording, curated traits, study, publication, variant, association statistics and gene position. Author-reported genes are evidence rather than the endpoint assignment. Multiple supporting entries can describe the same Disease–Gene pair; exact duplicate source rows are collapsed. A source row may support several Disease or Gene endpoints.",
+      "properties": [
+        {
+          "name": "gwas_reported_traits",
+          "type": "list of strings",
+          "description": "Authors’ descriptive disease or trait wording.",
+          "provenance": "extracted",
+          "notes": "All `gwas_*` properties are lists of equal length. Entry *i* of every `gwas_*` list describes the same supporting entry. Always present in kept rows; if empty, `\"NA\"`"
+        },
+        {
+          "name": "gwas_mapped_traits",
+          "type": "list of strings",
+          "description": "Curated mapped trait labels, retaining the full source cell, which may contain several labels.",
+          "provenance": "extracted",
+          "notes": "All `gwas_*` properties are lists of equal length. Entry *i* of every `gwas_*` list describes the same supporting entry. Always present in kept rows; if empty, `\"NA\"`"
+        },
+        {
+          "name": "gwas_reported_genes",
+          "type": "list of strings",
+          "description": "Genes attributed to the signal by the study authors, as free text. These names do not determine the Gene endpoint.",
+          "provenance": "extracted",
+          "notes": "All `gwas_*` properties are lists of equal length. Entry *i* of every `gwas_*` list describes the same supporting entry. Empty cell, `\"NR\"` and `\"intergenic\"` (matched case-insensitively, e.g. `\"Intergenic\"`) → `\"NA\"`"
+        },
+        {
+          "name": "gwas_gene_positions",
+          "type": "list of strings",
+          "description": "Whether the variant is in the endpoint gene, or the endpoint is its upstream or downstream flanking gene.",
+          "provenance": "extracted",
+          "notes": "All `gwas_*` properties are lists of equal length. Entry *i* of every `gwas_*` list describes the same supporting entry. Always one of `\"in_gene\"`, `\"upstream\"`, `\"downstream\"`"
+        },
+        {
+          "name": "gwas_intergenic",
+          "type": "list of booleans",
+          "description": "Whether the variant is between genes.",
+          "provenance": "extracted",
+          "notes": "All `gwas_*` properties are lists of equal length. Entry *i* of every `gwas_*` list describes the same supporting entry. `INTERGENIC` (`1` → true, `0` → false)"
+        },
+        {
+          "name": "gwas_gene_distances",
+          "type": "list of doubles",
+          "description": "Variant-to-gene distance for the corresponding upstream or downstream gene.",
+          "provenance": "extracted",
+          "notes": "All `gwas_*` properties are lists of equal length. Entry *i* of every `gwas_*` list describes the same supporting entry. `\"in_gene\"` entries → `0`. Flanking entry with missing/unparseable distance → `NaN`"
+        },
+        {
+          "name": "gwas_studies",
+          "type": "list of strings",
+          "description": "GWAS Catalog study accession, such as GCST003176.",
+          "provenance": "extracted",
+          "notes": "All `gwas_*` properties are lists of equal length. Entry *i* of every `gwas_*` list describes the same supporting entry. Always present; if empty, `\"NA\"`"
+        },
+        {
+          "name": "gwas_pubmed_ids",
+          "type": "list of strings",
+          "description": "PubMed identifier of the publication, stored as a bare number string.",
+          "provenance": "extracted",
+          "notes": "All `gwas_*` properties are lists of equal length. Entry *i* of every `gwas_*` list describes the same supporting entry. Always present; if empty, `\"NA\"`"
+        },
+        {
+          "name": "gwas_snps",
+          "type": "list of strings",
+          "description": "Variant and risk allele as reported, including haplotype or interaction strings when present.",
+          "provenance": "extracted",
+          "notes": "All `gwas_*` properties are lists of equal length. Entry *i* of every `gwas_*` list describes the same supporting entry. Always present; if empty, `\"NA\"`"
+        },
+        {
+          "name": "gwas_p_values",
+          "type": "list of doubles",
+          "description": "Association p-value; included evidence satisfies p ≤ 5×10⁻⁸. Extremely small values may be stored as 0.0 or a subnormal value.",
+          "provenance": "extracted",
+          "notes": "All `gwas_*` properties are lists of equal length. Entry *i* of every `gwas_*` list describes the same supporting entry. Always present in kept rows (filter requires a parseable value). Values below double range are stored as converted (0.0 or subnormal)"
+        },
+        {
+          "name": "gwas_effect_sizes",
+          "type": "list of doubles",
+          "description": "Odds ratio or beta coefficient from the mixed effect-size column. Source beta values are unsigned; direction and units are in the confidence-interval text.",
+          "provenance": "extracted",
+          "notes": "All `gwas_*` properties are lists of equal length. Entry *i* of every `gwas_*` list describes the same supporting entry. Empty/unparseable → `NaN`"
+        },
+        {
+          "name": "gwas_effect_ci",
+          "type": "list of strings",
+          "description": "Confidence-interval text as reported; for beta coefficients this also carries direction and unit.",
+          "provenance": "extracted",
+          "notes": "All `gwas_*` properties are lists of equal length. Entry *i* of every `gwas_*` list describes the same supporting entry. Empty → `\"NA\"`"
+        },
+        {
+          "name": "gwas_effect_types",
+          "type": "list of strings",
+          "description": "Effect-size interpretation: beta when confidence-interval text contains increase or decrease, otherwise OR when an effect value is present, otherwise NA. OR is an accepted assumption when a value has no confidence-interval text.",
+          "provenance": "extracted",
+          "notes": "All `gwas_*` properties are lists of equal length. Entry *i* of every `gwas_*` list describes the same supporting entry. `\"beta\"` if the CI text contains \"increase\" or \"decrease\" (case-insensitive); else `\"OR\"` if an effect value is present; else `\"NA\"`"
+        },
+        {
+          "name": "gwas_variant_contexts",
+          "type": "list of strings",
+          "description": "Reported variant functional context, such as intron_variant.",
+          "provenance": "extracted",
+          "notes": "All `gwas_*` properties are lists of equal length. Entry *i* of every `gwas_*` list describes the same supporting entry. Empty → `\"NA\"`"
+        },
+        {
+          "name": "gwas_risk_allele_freqs",
+          "type": "list of doubles",
+          "description": "Risk allele frequency when the source value is a plain number.",
+          "provenance": "extracted",
+          "notes": "All `gwas_*` properties are lists of equal length. Entry *i* of every `gwas_*` list describes the same supporting entry. Empty, `\"NR\"`, or any value that does not parse as a plain number (e.g. `\"0.67 (EA)\"`, `\"0.21-0.27\"`) → `NaN`"
+        },
+        {
+          "name": "gwas_sample_sizes",
+          "type": "list of strings",
+          "description": "Discovery sample description as reported in INITIAL SAMPLE SIZE.",
+          "provenance": "extracted",
+          "notes": "All `gwas_*` properties are lists of equal length. Entry *i* of every `gwas_*` list describes the same supporting entry. Empty → `\"NA\"`"
+        },
+        {
+          "name": "gwas_ancestry_notes",
+          "type": "list of strings",
+          "description": "Free-text p-value qualifier, often an ancestry note.",
+          "provenance": "extracted",
+          "notes": "All `gwas_*` properties are lists of equal length. Entry *i* of every `gwas_*` list describes the same supporting entry. Empty → `\"NA\"`"
+        }
+      ]
+    },
+    {
+      "source": "HPO",
+      "scope": "HPO phenotype-to-genes annotations whose Gene and HPO-enriched Symptom are represented in SPOKE, and whose phenotype concept is also represented as a Disease through the Symptom’s MeSH identifier. Every corresponding Disease is included, including broader, narrower and parallel concepts.",
+      "description": "Associations to the phenotype concept in HPO annotations. The Disease endpoint represents that phenotype, rather than the disorder listed in the original annotation. Different source disorders can support the same phenotype–gene association. HPO supplies no additional confidence, inheritance or quantitative evidence properties.",
+      "properties": []
+    }
+  ]
+}

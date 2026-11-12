@@ -1,0 +1,87 @@
+{
+  "type": "CellularComponent",
+  "kind": "node",
+  "description": "Gene Ontology terms in the cellular_component namespace.",
+  "sources": [
+    "Gene Ontology"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "string (CURIE)",
+      "description": "Primary Gene Ontology identifier.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Human-readable GO term label.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "definition",
+      "type": "string",
+      "description": "Formal text definition of the GO term.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "license",
+      "type": "string",
+      "description": "License for the ontology structure and term definitions.",
+      "provenance": "extracted",
+      "notes": "Always \"CC BY 4.0\""
+    },
+    {
+      "name": "url",
+      "type": "string",
+      "description": "Canonical, stable, resolvable GO term URL.",
+      "provenance": "extracted",
+      "notes": "http://purl.obolibrary.org/obo/GO_XXXXXXX"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data source providing the term.",
+      "provenance": "extracted",
+      "notes": "Always [\"Gene Ontology\"]"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time of the most recent creation or update.",
+      "provenance": "extracted",
+      "notes": "Never null"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Gene Ontology",
+      "scope": "Non-obsolete cellular_component terms with between 2 and 1000 annotated human genes (inclusive), after propagation through is_a and part_of relationships and removal of genes with NOT annotations to the term.",
+      "description": "GO supplies term labels, definitions, alternative names and identifiers, and external cross-references. Gene annotations used to select terms come from NCBI gene2go and include direct and propagated annotations. Only associations to human Gene nodes present in SPOKE are retained. The GO hierarchy is not exposed as edges in SPOKE.",
+      "properties": [
+        {
+          "name": "synonyms",
+          "type": "list of strings",
+          "description": "Alternative names, including EXACT, RELATED, BROAD, and NARROW synonyms.",
+          "provenance": "extracted",
+          "notes": "Omit if empty"
+        },
+        {
+          "name": "xrefs",
+          "type": "list of strings",
+          "description": "Cross-references to external databases.",
+          "provenance": "extracted",
+          "notes": "Omit if empty"
+        },
+        {
+          "name": "aliases",
+          "type": "list of strings",
+          "description": "Alternative GO identifiers for the same term.",
+          "provenance": "extracted",
+          "notes": "Omit if empty"
+        }
+      ]
+    }
+  ]
+}

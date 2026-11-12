@@ -1,0 +1,43 @@
+{
+  "type": "PARTOF_CTpA",
+  "kind": "edge",
+  "endpoints": {
+    "from": "CellType",
+    "to": "Anatomy",
+    "direction": "directed"
+  },
+  "description": "Links a cell type to an anatomical structure of which it is a part, representing structural localization.",
+  "sources": [
+    "HPA",
+    "Cell Ontology"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Sources supporting the cell type\u2013anatomy localization relationship: HPA, Cell Ontology, or both.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Date and time of the most recent creation or update of the relationship.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "HPA",
+      "scope": "Cell type\u2013tissue pairs from Human Protein Atlas normal tissue immunohistochemistry that have curated CL and UBERON mappings and corresponding CellType and Anatomy nodes. Mapping coverage is incomplete and uneven across tissues and cell types.",
+      "description": "Captures the presence of a cell type within a tissue. Gene expression levels, staining levels, and reliability values do not qualify or filter these localization assertions. Pairs with missing tissue or cell type values are excluded.",
+      "properties": []
+    },
+    {
+      "source": "Cell Ontology",
+      "scope": "Active, non-obsolete Cell Ontology terms with part_of relationships targeting UBERON anatomical structures represented by Anatomy nodes.",
+      "description": "Contributes structural localization relationships from Cell Ontology part_of assertions. Targets outside UBERON are excluded.",
+      "properties": []
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "type": "BINDS_CbP",
+  "kind": "edge",
+  "endpoints": {
+    "to": "Protein",
+    "direction": "directed",
+    "from": "Compound"
+  },
+  "description": "Compound\u2013protein binding and drug-target bioactivity relationships, including experimentally measured affinities and curated pharmacological action types.",
+  "sources": [
+    "BindingDB",
+    "ChEMBL",
+    "DrugCentral"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing the compound\u2013protein relationship.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Date and time the relationship was created or last updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "BindingDB",
+      "scope": "Experimentally measured small-molecule affinities across all organisms, limited to compounds and proteins represented in SPOKE. Multi-chain targets are represented by relationships to their individual protein chains.",
+      "description": "Measurements for each compound\u2013protein pair are collected separately as Ki, Kd and IC50 values. Only plain numeric values are retained; qualified values such as >10000 or <1 are excluded. EC50, association and dissociation rate constants, literature identifiers and assay conditions are not included.",
+      "properties": [
+        {
+          "name": "bindingdb_kis",
+          "type": "list of floats",
+          "description": "Numeric Ki measurements in nM for the compound\u2013protein pair, sorted ascending; absent when no numeric Ki values are available.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "bindingdb_kds",
+          "type": "list of floats",
+          "description": "Numeric Kd measurements in nM for the compound\u2013protein pair, sorted ascending; absent when no numeric Kd values are available.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "bindingdb_ic50s",
+          "type": "list of floats",
+          "description": "Numeric IC50 measurements in nM for the compound\u2013protein pair, sorted ascending; absent when no numeric IC50 values are available.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "bindingdb_k",
+          "type": "float",
+          "description": "Geometric mean in nM of the available Kd measurements, or Ki if no Kd values are available, or IC50 if neither Kd nor Ki is available. Measurement types are never mixed. Absent when no numeric values of these types are available.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "bindingdb_sources",
+          "type": "list of strings",
+          "description": "Distinct upstream curation or data-source labels across measurements for the pair, preserved verbatim; absent when all labels are empty.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "bindingdb_urls",
+          "type": "list of strings",
+          "description": "Distinct BindingDB ligand\u2013target pair URLs across measurements for the pair; absent when all URLs are empty.",
+          "provenance": "extracted"
+        }
+      ]
+    },
+    {
+      "source": "ChEMBL",
+      "scope": "Curated drug mechanism-of-action records for human single-protein targets with a known action type and assigned target, at all clinical development stages. Complexes, families, selectivity groups and other multi-component target types are excluded. Coverage is limited to compounds and proteins represented in SPOKE with the required ChEMBL target annotation.",
+      "description": "Relationships describe curated mechanisms of action for drugs and clinical candidates, rather than quantitative bioactivity measurements.",
+      "properties": [
+        {
+          "name": "chembl_action_type",
+          "type": "list of strings",
+          "description": "Distinct pharmacological action types for the compound\u2013protein pair, such as INHIBITOR, AGONIST or ANTAGONIST. Contains at least one value.",
+          "provenance": "extracted"
+        }
+      ]
+    },
+    {
+      "source": "DrugCentral",
+      "scope": "Drug-target activity records without organism or mechanism-of-action filtering, limited to compounds with a ChEMBL mapping and compounds and proteins represented in SPOKE. Multi-subunit targets are represented by relationships to their individual protein subunits.",
+      "description": "Relationships describe curated drug-target bioactivity and pharmacological actions. Quantitative activity measurements are not included.",
+      "properties": [
+        {
+          "name": "drugcentral_relationship",
+          "type": "string",
+          "description": "Pharmacological action type, such as INHIBITOR, AGONIST or BLOCKER; unspecified denotes a missing action type.",
+          "provenance": "extracted"
+        }
+      ]
+    }
+  ]
+}

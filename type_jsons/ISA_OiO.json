@@ -1,0 +1,44 @@
+{
+  "type": "ISA_OiO",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Organism",
+    "to": "Organism",
+    "direction": "directed"
+  },
+  "description": "A taxonomic is-a relationship directed from a child Organism to its parent. It connects NCBI taxa to their immediate taxonomic parents and BV-BRC strain-level genome records to their NCBI taxon. Following these edges toward parents traverses the organism taxonomy. The NCBI root (taxid 1) is excluded, so top-level taxa have no outgoing ISA_OiO edge.",
+  "sources": [
+    "NCBI Taxonomy",
+    "BV-BRC"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "The source of the relationship: \"ncbitaxa\" for NCBI taxonomic lineage edges or \"BV-BRC\" for strain-to-taxon edges.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Timestamp when the edge was created.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "NCBI Taxonomy",
+      "homepage": "https://www.ncbi.nlm.nih.gov/taxonomy",
+      "scope": "Taxonomic lineages for bacteria selected from KEGG, viruses selected from PathoPhenoDB and VirHost, human-host pathogens selected from PHI-base, and their ancestors. Homo sapiens and SARS-CoV-2 are always included. Additional lineages cover taxa represented by qualifying BV-BRC strains. The artificial NCBI root is excluded.",
+      "description": "Parent-child taxonomy relationships between NCBITaxon-identified Organism nodes, spanning the represented taxonomic ranks and supplying paths from specific organisms to broader ancestral groups. KEGG, PathoPhenoDB, VirHost and PHI-base determine scope; the lineage relationships themselves come from NCBI Taxonomy.",
+      "properties": []
+    },
+    {
+      "source": "BV-BRC",
+      "scope": "Non-deprecated BV-BRC genome records with a taxon and at least one populated descriptive or AMR-availability field from the documented inclusion filter. The associated NCBI parent taxon must be represented. Unresolvable taxon identifiers are excluded.",
+      "description": "Links each represented BVBRC-identified strain-level genome record to its NCBITaxon-identified taxon. Separate genome records remain separate strain observations even when they share a parent taxon. Where NCBI has merged an old taxon identifier, the relationship uses the current taxon.",
+      "properties": []
+    }
+  ]
+}

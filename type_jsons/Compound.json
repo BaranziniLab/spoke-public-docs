@@ -1,0 +1,91 @@
+{
+  "type": "Compound",
+  "kind": "node",
+  "description": "A chemical compound or an abstract chemical ontology concept. This type includes structurally defined compounds from ChEBI, ChEMBL, DrugBank, HMDB, KEGG, PDBe, BioCyc and PubChem; ChEBI chemical roles, structural classes and groupings without molecular structures; and ChEMBL biologics and other compounds lacking an InChIKey. Optional annotations provide the highest clinical development phase across indications and a computationally standardized molecular representation.",
+  "sources": [
+    "Consolidated Compounds (ChEBI, ChEMBL, DrugBank, HMDB, KEGG, PDBe, BioCyc, PubChem)",
+    "ChEMBL"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "String",
+      "description": "Compound identifier as a prefixed CURIE. Structurally defined compounds primarily use inchikey: identifiers, with some CHEBI: identifiers. Abstract ChEBI concepts use CHEBI: identifiers, including CHEBI:root; ChEMBL entries without an InChIKey use chembl.compound: identifiers.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "String",
+      "description": "Human-readable compound or chemical-concept label. Some ChEMBL entries without an InChIKey have an empty name.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "synonyms",
+      "type": "List of strings",
+      "description": "Searchable aliases. For structurally defined compounds, these include both human-readable names and bare database accession identifiers.",
+      "provenance": "extracted",
+      "notes": "if field is empty string or null, store as empty list `[]`."
+    },
+    {
+      "name": "sources",
+      "type": "List of strings",
+      "description": "Databases contributing the consolidated compound record, using their source display names, such as ChEBI, ChEMBL, Human Metabolome Database (HMDB), and PubChem. This list does not identify the clinical-phase or computational enrichment annotations.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "DateTime",
+      "description": "Timestamp of creation or a change to the compound record or its enrichment annotations.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Consolidated Compounds (ChEBI, ChEMBL, DrugBank, HMDB, KEGG, PDBe, BioCyc, PubChem)",
+      "scope": "Structurally defined chemical compounds; abstract ChEBI roles, structural classes and groupings without molecular structures; and ChEMBL biologics, antibodies, peptide drugs and other entries without an InChIKey. Includes the ChEBI ontology root.",
+      "description": "The compound vocabulary combines these three populations. Structurally defined compounds have molecular representations and cross-references to contributing databases; the abstract ChEBI concepts and ChEMBL entries without an InChIKey lack those two properties.",
+      "properties": [
+        {
+          "name": "xrefs",
+          "type": "List of strings",
+          "description": "Cross-references as properly prefixed CURIEs from contributing compound databases. Available for the structurally defined population; absent for abstract ChEBI concepts and ChEMBL entries without an InChIKey.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "smiles",
+          "type": "String",
+          "description": "SMILES molecular representation of a structurally defined compound. Absent for abstract ChEBI concepts and ChEMBL entries without an InChIKey.",
+          "provenance": "extracted"
+        }
+      ]
+    },
+    {
+      "source": "ChEMBL",
+      "scope": "Existing compounds with a reported clinical development phase greater than zero in ChEMBL. Preclinical entries and entries with unknown clinical phase do not supply this annotation.",
+      "description": "The compound-level clinical phase is the highest phase reached across all indications, rather than a phase for a particular disease. Where multiple ChEMBL entries represent forms of the same compound, this annotation reports their highest qualifying phase.",
+      "properties": [
+        {
+          "name": "chembl_max_phase",
+          "type": "string",
+          "description": "Highest reported clinical development phase across all indications: 4 - Approved, 3 - Phase 3, 2 - Phase 2, 1 - Phase 1, or 0.5 - Early Phase 1. Absence means no reported qualifying clinical phase; it does not distinguish preclinical from unknown-phase entries.",
+          "provenance": "extracted"
+        }
+      ]
+    },
+    {
+      "source": "Computational standardization (RDKit and standardiser)",
+      "scope": "Compounds with a SMILES representation for which chemical standardization succeeds. Pure salts, multi-component mixtures and unparseable structures can lack this annotation.",
+      "description": "A computed SMILES representation after salt stripping, charge neutralization and tautomer selection. This annotation is computational rather than an external database contribution. A stored value can reflect an earlier available molecular representation.",
+      "properties": [
+        {
+          "name": "standardized_smiles",
+          "type": "String",
+          "description": "Computationally standardized SMILES representation derived from the compound’s smiles property.",
+          "provenance": "extracted",
+          "notes": "Absent on nodes where `smiles` is null or standardisation fails."
+        }
+      ]
+    }
+  ]
+}

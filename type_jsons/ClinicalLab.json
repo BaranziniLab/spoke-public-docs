@@ -1,0 +1,110 @@
+{
+  "type": "ClinicalLab",
+  "kind": "node",
+  "description": "A LOINC laboratory test, described by its names and six LOINC axes. Component-axis relationships identify what the test measures or is about; System-axis relationships identify the anatomical or cell-type specimen in which the measurement is taken.",
+  "sources": [
+    "LOINC"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "string (CURIE)",
+      "description": "LOINC test code in the form LOINC:<code>.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Fully specified long common or preferred test name.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "component",
+      "type": "string",
+      "description": "LOINC Component axis: the analyte measured or entity the test is about.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "system",
+      "type": "string",
+      "description": "LOINC System axis: the specimen in which the measurement is taken.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "loinc_property",
+      "type": "string",
+      "description": "LOINC Property axis, such as mass concentration (MCnc), number concentration (NCnc), substance concentration (SCnc), presence/threshold (PrThr), or titer (Titr).",
+      "provenance": "extracted"
+    },
+    {
+      "name": "scale",
+      "type": "string",
+      "description": "LOINC Scale axis, including quantitative (Qn), ordinal (Ord), nominal (Nom), and narrative (Nar).",
+      "provenance": "extracted"
+    },
+    {
+      "name": "time_aspect",
+      "type": "string",
+      "description": "LOINC Time axis value (TIME_ASPCT).",
+      "provenance": "extracted"
+    },
+    {
+      "name": "loinc_class",
+      "type": "list",
+      "description": "LOINC discipline class codes and decoded class labels, such as CHEM, MICRO, or ALLERGY.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "description": "LOINC release status: ACTIVE, TRIAL, or DISCOURAGED.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list",
+      "description": "Data sources contributing the test; contains LOINC.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Date and time the node was created or last changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "LOINC",
+      "scope": "Laboratory codes (CLASSTYPE = 1) with ACTIVE, TRIAL, or DISCOURAGED status, and at least one identified Component-axis analyte relationship. DEPRECATED codes are excluded. LABORDERS.ONTOLOGY order codes are included and can duplicate observation-code counterparts. LOINC parts, answer codes, and groups are not represented as ClinicalLab nodes.",
+      "description": "Native LOINC laboratory test definitions are supplemented with BioPortal UMLS identifiers. Panels are represented through their own components; panel-to-member relationships are not included. Native LOINC and BioPortal releases may differ, limiting UMLS enrichment for newer parts.",
+      "properties": [
+        {
+          "name": "consumer_name",
+          "type": "string",
+          "description": "Patient-friendly test name, when available.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "synonyms",
+          "type": "list",
+          "description": "Alternative test names from LOINC RELATEDNAMES2 or synonyms.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "method",
+          "type": "string",
+          "description": "LOINC Method axis, such as molecular genetics (Molgen), immunoassay (IA), PCR (Probe.amp.tar), or IHC (Immune stain).",
+          "provenance": "extracted"
+        },
+        {
+          "name": "cui",
+          "type": "string",
+          "description": "UMLS concept identifier supplied by the BioPortal LOINC enrichment.",
+          "provenance": "extracted"
+        }
+      ]
+    }
+  ]
+}

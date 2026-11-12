@@ -1,0 +1,82 @@
+{
+  "type": "TREATS_CtD",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Compound",
+    "to": "Disease",
+    "direction": "directed"
+  },
+  "description": "A drug–disease indication relationship from a Compound to a Disease. Evidence differs by source: ChEMBL includes indications reaching at least Phase 1, DrugCentral supplies curated indications without an approval-status filter, and CTKP supplies uses labeled approved for the condition. The edge alone therefore does not imply that every contributing source establishes an approved use. Source-specific properties describe the supporting evidence.",
+  "sources": [
+    "ChEMBL",
+    "DrugCentral",
+    "CTKP"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources supporting the indication: ChEMBL, DrugCentral, CTKP, or a combination.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Timestamp of the relationship’s creation or an update to its evidence or source support.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "ChEMBL",
+      "scope": "Curated drug indications reaching at least Phase 1, with maximum phase in {1, 2, 3, 4}. Early Phase 1 (0.5) and unknown phase (−1) are excluded. Both Compound and Disease must be represented in SPOKE. Disease annotations can differ in granularity; some indications correspond to a general disease, while others are represented by several disease concepts.",
+      "description": "ChEMBL supplies curated indications aggregated from regulatory and clinical sources, including FDA, EMA, WHO ATC, ClinicalTrials.gov, INN and USAN. Each relationship carries the highest phase among its qualifying ChEMBL indication records. Indication-reference metadata are not included.",
+      "properties": [
+        {
+          "name": "chembl_max_phase",
+          "type": "integer (1–4)",
+          "description": "Maximum clinical phase reported across qualifying ChEMBL records supporting this Compound–Disease pair. Values 1, 2 and 3 denote clinical phases; 4 denotes Approved.",
+          "provenance": "extracted",
+          "notes": "Always present on ChEMBL-owned edges (filter guarantees ≥1 value)"
+        }
+      ]
+    },
+    {
+      "source": "DrugCentral",
+      "scope": "Curated indication relationships for drug structures with a ChEMBL identifier represented by a SPOKE Compound and a disease concept represented in SPOKE. There is no drug approval-status filter. Off-label and other relationship categories are excluded from this contribution. A source disease concept can correspond to several Disease nodes.",
+      "description": "DrugCentral provides curated drug indications. Its act_sources annotation describes databases contributing bioactivity or target-binding data for the drug, rather than clinical evidence for the particular indication.",
+      "properties": [
+        {
+          "name": "act_sources",
+          "type": "list of strings",
+          "description": "Distinct databases contributing bioactivity or target-binding records for the drug. The same drug-level annotation is carried on its indication relationships; it is not a list of per-indication clinical evidence sources.",
+          "provenance": "extracted",
+          "notes": "Empty list `[]` if no matching rows exist in `act_table_full`."
+        }
+      ]
+    },
+    {
+      "source": "CTKP",
+      "homepage": "https://github.com/multiomicsKP/clinical_trials_kp",
+      "scope": "Compound–disease relationships labeled treats and approved_for_condition in CTKP, derived from AACT / ClinicalTrials.gov via CTTI. Supporting trials must include at least one purpose in {BASIC_SCIENCE, TREATMENT, PREVENTION, SCREENING, DIAGNOSTIC}. Phenotype conditions, protein interventions and cell therapies are outside scope. Both endpoints must be represented in SPOKE.",
+      "description": "Clinical Trials KP supplies approved-use relationships based on clinical-trial registry data. The annotations retain the most advanced phase and the set of qualifying trial purposes supporting the treats relationship. Supporting trial identifiers are not included. CTKP’s trial-only evidence is represented separately by IN_CLINICAL_TRIALS_FOR_CictD.",
+      "properties": [
+        {
+          "name": "ctkp_purpose",
+          "type": "list of strings",
+          "description": "Primary purposes of supporting trials, restricted to BASIC_SCIENCE, TREATMENT, PREVENTION, SCREENING and DIAGNOSTIC. Purposes are combined across the supporting treats records.",
+          "provenance": "extracted",
+          "notes": "Never empty"
+        },
+        {
+          "name": "ctkp_phase",
+          "type": "string",
+          "description": "Most advanced research phase across the supporting treats records. The ascending phase scale is pre_clinical_research_phase, clinical_trial_phase_1, clinical_trial_phase_1_to_2, clinical_trial_phase_2, clinical_trial_phase_2_to_3, clinical_trial_phase_3, clinical_trial_phase_4.",
+          "provenance": "extracted",
+          "notes": "`not_provided` only when sole value"
+        }
+      ]
+    }
+  ]
+}

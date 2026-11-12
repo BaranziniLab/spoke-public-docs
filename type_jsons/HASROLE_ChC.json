@@ -1,0 +1,36 @@
+{
+  "type": "HASROLE_ChC",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Compound",
+    "to": "Compound",
+    "direction": "directed"
+  },
+  "description": "A chemical role assignment from a specific compound to an abstract ChEBI role or class, indicating that the compound possesses that chemical role or function. Both endpoints are represented as Compound nodes.",
+  "sources": [
+    "ChEBI"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "List of strings",
+      "description": "Data sources supporting the chemical role assignment, using the source database display names.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "DateTime",
+      "description": "Timestamp when the relationship was created or its source attribution changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "ChEBI",
+      "scope": "Chemical role assignments from the ChEBI ontology, linking specific compounds to abstract role or class concepts represented as Compound nodes.",
+      "description": "ChEBI supplies has-role relationships directed from the compound toward the role it possesses. The role endpoint is an abstract ontology concept rather than a structurally defined compound.",
+      "properties": []
+    }
+  ]
+}

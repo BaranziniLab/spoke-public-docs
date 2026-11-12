@@ -1,0 +1,43 @@
+{
+  "type": "ProteinFamily",
+  "kind": "node",
+  "description": "A Pfam clan: a higher-order grouping of related Pfam families. SPOKE calls these clan concepts ProteinFamily; individual Pfam family entries are represented by ProteinDomain nodes. Membership is represented by directed MEMBEROF_PDmPF relationships from ProteinDomain to ProteinFamily.",
+  "sources": [
+    "Pfam"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "string (CURIE)",
+      "description": "Pfam clan accession as a full prefixed CURIE, such as Pfam:CL0192.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Pfam clan short name, such as GPCR_A.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing the clan concept; Pfam is the contributing source.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Timestamp when the node was created or its properties changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Pfam",
+      "scope": "Clan entries represented by a non-empty clan accession in the Pfam clan-membership data. Pfam families without a clan assignment do not contribute a ProteinFamily concept.",
+      "description": "Pfam provides clan identifiers and short names for groups of related Pfam families. This contribution covers the family/clan taxonomy rather than protein-to-family assignments.",
+      "properties": []
+    }
+  ]
+}

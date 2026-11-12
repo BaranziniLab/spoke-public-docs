@@ -1,0 +1,229 @@
+{
+  "type": "Organism",
+  "kind": "node",
+  "description": "A taxon in NCBI Taxonomy or a strain-level genome record from BV-BRC. Coverage includes selected bacteria, viruses and human-infecting pathogens, their taxonomic ancestors, Homo sapiens and SARS-CoV-2, together with BV-BRC genomes and their parent lineages. Taxa and genome-level strains share this node type and are distinguished by their identifiers and ranks. Some organisms also identify a representative strain supplying their protein data.",
+  "sources": [
+    "NCBI Taxonomy",
+    "BV-BRC",
+    "UniProt"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "string (CURIE)",
+      "description": "NCBI Taxonomy identifier (NCBITaxon:{taxid}) for taxa, or BV-BRC genome identifier (BVBRC:{genome_id}) for strain-level genome records.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Accepted scientific name from NCBI Taxonomy, or the genome name supplied by BV-BRC.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "rank",
+      "type": "string",
+      "description": "Taxonomic rank from NCBI Taxonomy, including ranks such as species, genus and no rank. BV-BRC genome records have rank strain.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Source attribution for the organism: ncbitaxa for NCBI Taxonomy taxa and BV-BRC for genome-level strains.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Timestamp of organism creation or changes to its descriptive properties. Changes to representative_strain are not reflected in this timestamp.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "NCBI Taxonomy",
+      "homepage": "https://www.ncbi.nlm.nih.gov/taxonomy",
+      "scope": "Taxa selected from bacteria in KEGG; viruses in PathoPhenoDB; viruses and Homo sapiens in VirHost; and pathogens in human-host PHI-base records. Homo sapiens and SARS-CoV-2 are included unconditionally. Taxonomic ancestors and lineages supporting qualifying BV-BRC strains are included. The NCBI root (taxid 1) is excluded. These selection resources determine coverage; taxon names, ranks and common names come from NCBI Taxonomy.",
+      "description": "Provides accepted scientific names, taxonomic ranks and optional common names. Taxa added to support BV-BRC strains outside the primary selection can retain the name, rank and common name from their initial taxonomy snapshot.",
+      "properties": [
+        {
+          "name": "common_name",
+          "type": "string",
+          "description": "Common name from NCBI Taxonomy, when available.",
+          "provenance": "extracted"
+        }
+      ]
+    },
+    {
+      "source": "BV-BRC",
+      "scope": "Non-deprecated genome assemblies with a taxon ID and at least one available annotation among antimicrobial resistance, pathovar, gram stain, cell shape, motility, sporulation, temperature range, salinity, oxygen requirement, host name or AMR phenotype availability. Taxonomically unresolvable records are excluded; qualifying genomes can be accompanied by additional NCBI parent lineages. Cell shape affects this inclusion scope but is not a node property.",
+      "description": "Each strain-level node represents a sequenced genome assembly with optional phenotypic, isolation and host metadata. BV-BRC identifiers retain the reported genome ID even if its leading taxon number is an old merged NCBI ID. AMR phenotype availability is recorded separately from resistance annotations; individual AMR tests and measurements are not included in these node properties. Empty annotations are omitted.",
+      "properties": [
+        {
+          "name": "strain",
+          "type": "string",
+          "description": "Source-reported strain designation.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "serovar",
+          "type": "string",
+          "description": "Source-reported serovar annotation.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "biovar",
+          "type": "string",
+          "description": "Source-reported biovar annotation.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "pathovar",
+          "type": "string",
+          "description": "Source-reported pathovar annotation.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "gram_stain",
+          "type": "string",
+          "description": "Gram-stain annotation, with recognized positive and negative values represented as Positive and Negative. Other nonempty annotations can retain source values.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "motility",
+          "type": "string",
+          "description": "Motility annotation, with recognized values represented as Yes or No; weak or gliding motility is represented as Yes. Other nonempty annotations can retain source values.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "sporulation",
+          "type": "string",
+          "description": "Sporulation annotation, with recognized values represented as Yes or No. Other nonempty annotations can retain source values.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "oxygen_requirement",
+          "type": "string",
+          "description": "Source-reported oxygen requirement, without normalization.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "temperature_range",
+          "type": "string",
+          "description": "Source-reported temperature-range annotation.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "salinity",
+          "type": "string",
+          "description": "Source-reported salinity annotation.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "host_name",
+          "type": "string",
+          "description": "Host name supplied by BV-BRC.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "host_gender",
+          "type": "string",
+          "description": "Host-gender annotation supplied by BV-BRC.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "host_age",
+          "type": "string",
+          "description": "Host-age annotation supplied by BV-BRC.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "host_health",
+          "type": "string",
+          "description": "Host-health annotation supplied by BV-BRC.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "disease",
+          "type": "string",
+          "description": "Free-text disease annotation supplied by BV-BRC.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "isolation_source",
+          "type": "string",
+          "description": "Source-reported isolation-source annotation.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "isolation_country",
+          "type": "string",
+          "description": "Source-reported country of isolation; a value may also contain a sub-region after a colon.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "collection_date",
+          "type": "string",
+          "description": "Collection date as a string preserving the source format.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "genome_size",
+          "type": "string",
+          "description": "Genome length supplied by BV-BRC as genome_length, stored as a string.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "usa_isolation_country",
+          "type": "string",
+          "description": "Yes when isolation_country equals usa, ignoring case; absent otherwise.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "host_is_human",
+          "type": "string",
+          "description": "Yes when host_name contains homo sapiens, homo-sapiens, human or homosapiens, ignoring case; absent otherwise.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "is_resistant",
+          "type": "string",
+          "description": "Yes for resistance annotations including Resistant, Intermediate, Non-susceptible and Susceptible-dose dependent, and for other unrecognized nonempty annotations. Absent for empty or Not defined annotations and for Susceptible alone. This flag therefore includes possible resistance rather than confirmed resistance alone.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "has_amr_phenotype",
+          "type": "string",
+          "description": "Yes when the genome has at least one entry in the BV-BRC AMR phenotype file; absent otherwise. Indicates data availability, rather than a resistance result.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "genbank_accessions",
+          "type": "list of strings",
+          "description": "GenBank accessions reported for the genome, represented as separate entries from the comma-delimited source field.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "antimicrobial_resistance",
+          "type": "list of strings",
+          "description": "Antimicrobial-resistance annotations supplied by BV-BRC, represented as separate entries from the semicolon-delimited source field.",
+          "provenance": "extracted"
+        }
+      ]
+    },
+    {
+      "source": "UniProt",
+      "scope": "Organisms whose protein data comes from a representative taxonomic subclass because they have no direct Swiss-Prot proteins.",
+      "description": "The representative_strain annotation identifies the subclass supplying the organism’s protein data. The representative is the candidate subclass containing the single longest individual protein sequence; proteins from other candidate subclasses are not represented for that organism.",
+      "properties": [
+        {
+          "name": "representative_strain",
+          "type": "CURIE string — `NCBITaxon:{subclass_taxid}`",
+          "description": "NCBI Taxonomy CURIE of the selected representative subclass. Its presence means that proteins assigned to this organism come from that subclass rather than direct Swiss-Prot data for the organism itself.",
+          "provenance": "extracted"
+        }
+      ]
+    }
+  ]
+}

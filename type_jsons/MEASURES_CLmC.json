@@ -1,0 +1,23 @@
+{
+  "type": "MEASURES_CLmC",
+  "kind": "edge",
+  "endpoints": {
+    "from": "ClinicalLab",
+    "to": "Compound",
+    "direction": "directed"
+  },
+  "description": "Links a laboratory test to the compound it measures or is about, as represented by its LOINC Component axis.",
+  "sources": [
+    "LOINC"
+  ],
+  "common_properties": [],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "LOINC",
+      "scope": "Laboratory codes with ACTIVE, TRIAL, or DISCOURAGED status; DEPRECATED codes are excluded. Challenge agents are excluded from analytes. Generic DNA and RNA compound targets are excluded; other class-level compounds are retained.",
+      "description": "Includes chemical analytes and pathogen nucleic-acid analytes: the latter refer to RNA or DNA rather than the organism. Compound links can coexist with protein links for analytes eligible for both. Some elemental analytes have accepted incorrect compound targets, including pH linked to H2 and pO2 linked to water.",
+      "properties": []
+    }
+  ]
+}

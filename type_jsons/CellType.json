@@ -1,0 +1,102 @@
+{
+  "type": "CellType",
+  "kind": "node",
+  "description": "Cell type terms from the Cell Ontology (CL), excluding obsolete terms. Selected terms also carry Human Protein Atlas tissue-context labels and annotations from the Allen HMBA basal ganglia consensus taxonomy.",
+  "sources": [
+    "Cell Ontology",
+    "HPA",
+    "Allen HMBA Basal Ganglia"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "string (CURIE, e.g. `CL:0000001`)",
+      "description": "Cell Ontology identifier.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Preferred human-readable Cell Ontology label.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Source attribution; includes \"Cell Ontology\". The HMBA annotations do not add an entry to this node property.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Date and time of the most recent creation or property change.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Cell Ontology",
+      "scope": "Active CL terms; obsolete terms and terms belonging to other ontologies are excluded.",
+      "description": "Provides cell type names, definitions, synonyms and cross-references.",
+      "properties": [
+        {
+          "name": "definition",
+          "type": "string",
+          "description": "Text definition of the cell type, when available.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "synonyms",
+          "type": "list of strings",
+          "description": "Synonym strings from the Cell Ontology, when available.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "xrefs",
+          "type": "list of strings",
+          "description": "Cross-references, when available; values retain their source representation as CURIEs or full URIs.",
+          "provenance": "extracted"
+        }
+      ]
+    },
+    {
+      "source": "HPA",
+      "scope": "Cell types with a curated Human Protein Atlas tissue-context mapping. Mapping coverage is incomplete and uneven.",
+      "description": "Adds a human-readable label combining the HPA tissue and cell type names. This contribution describes tissue context without expression-level information.",
+      "properties": [
+        {
+          "name": "hybrid_node_name",
+          "type": "string",
+          "description": "HPA tissue and cell type label in the form \"[Tissue] [Cell type]\". When multiple labels refer to the same CL term, only one label is retained, so this is not an exhaustive list of tissue contexts.",
+          "provenance": "extracted"
+        }
+      ]
+    },
+    {
+      "source": "Allen HMBA Basal Ganglia",
+      "scope": "Existing Cell Ontology terms representing Group-level cell types in the HMBA basal ganglia consensus primate taxonomy CCN20250428. Higher taxonomy levels and species-specific Clusters are excluded. Provisional Groups are represented separately as ProvCellType nodes.",
+      "description": "Adds Group symbols, curated marker-set labels and a study label from the Basal Ganglia Ontology.",
+      "properties": [
+        {
+          "name": "hmba_symbol",
+          "type": "string",
+          "description": "Group symbol from the Basal Ganglia Ontology, when available, for example \"GPe MEIS2-SOX6 GABA (Primate)\".",
+          "provenance": "extracted"
+        },
+        {
+          "name": "hmba_marker_set_labels",
+          "type": "list of strings",
+          "description": "Symbols listed in the Group’s curated marker-set label, when a marker set is available. The authors’ casing is preserved.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "hmba_study_description",
+          "type": "string",
+          "description": "Study label: \"Allen HMBA Basal Ganglia Release\".",
+          "provenance": "extracted"
+        }
+      ]
+    }
+  ]
+}

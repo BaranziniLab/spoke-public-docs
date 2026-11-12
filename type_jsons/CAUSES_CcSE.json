@@ -1,0 +1,43 @@
+{
+  "type": "CAUSES_CcSE",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Compound",
+    "to": "SideEffect",
+    "direction": "directed"
+  },
+  "description": "A compound–adverse drug reaction relationship reported in regulatory drug package insert labels and supplied by SIDER. Side effects use MedDRA-normalized UMLS concepts. Coverage includes preferred terms, lowest level terms and broad MedDRA grouping categories. Only compounds represented in SPOKE are included; each compound–side effect pair has one relationship.",
+  "sources": [
+    "SIDER 4.1"
+  ],
+  "common_properties": [
+    {
+      "name": "meddra_type",
+      "type": "string",
+      "description": "MedDRA hierarchy level for the relationship: preferred term, lowest level term, or an empty string for broad grouping categories. Where a pair has support at several levels, the value favors preferred term over lowest level term, and lowest level term over an empty string.",
+      "notes": "\"preferred term\" > \"lowest level term\" > \"\"",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing the compound–side effect relationship.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Timestamp when the relationship was created or its properties changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "SIDER 4.1",
+      "scope": "Adverse drug reactions extracted from drug package insert labels, including all documented MedDRA concept levels. Relationships without a represented Compound or a required compound identifier, normalized UMLS identifier or side effect name are excluded.",
+      "description": "SIDER provides regulatory-label compound–side effect associations. Side effect identity is the MedDRA-normalized UMLS concept rather than the raw label-extracted concept.",
+      "properties": []
+    }
+  ]
+}

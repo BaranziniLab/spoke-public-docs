@@ -1,0 +1,204 @@
+{
+  "type": "FOUNDIN_CfL",
+  "kind": "edge",
+  "endpoints": {
+    "to": "Location",
+    "direction": "(Compound)-[:FOUNDIN_CfL]->(Location)",
+    "from": "Compound"
+  },
+  "description": "Links a chemical to a ZIP-code area where it was reported as an environmental release, detected in finished drinking water, or identified as a Superfund contaminant of concern.",
+  "sources": [
+    "TRI",
+    "UCMR4",
+    "UCMR5",
+    "Superfund"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "StringArray",
+      "description": "Data sources contributing this compound–location relationship.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "LocalDateTime",
+      "description": "Date and time the relationship was last updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "TRI",
+      "scope": "Industrial chemical releases within US ZIP-code areas; limited to chemicals and ZIP codes represented in SPOKE. Unresolved mixtures and multi-compound categories are excluded.",
+      "description": "Release quantities are summed across reporting facilities within each ZIP code by environmental medium and unit for the reporting year. Source rows with zero total on-site releases are excluded. An edge can still have empty release arrays when none of the three retained media has a positive aggregated quantity.",
+      "properties": [
+        {
+          "name": "media",
+          "type": "StringArray",
+          "description": "Release medium: Air Emission, Surface Water Discharge, or Land Release; included only for positive aggregated quantities.",
+          "provenance": "extracted",
+          "notes": "media[i], value[i], and unit[i] correspond to each other."
+        },
+        {
+          "name": "value",
+          "type": "DoubleArray",
+          "description": "Aggregated release quantity for the corresponding medium and unit.",
+          "provenance": "extracted",
+          "notes": "media[i], value[i], and unit[i] correspond to each other."
+        },
+        {
+          "name": "unit",
+          "type": "StringArray",
+          "description": "Unit of the corresponding release quantity.",
+          "provenance": "extracted",
+          "notes": "If a single (compound, ZIP) group has releases in multiple units for the same media type, each unit produces a separate entry (the same media label may appear more than once)."
+        },
+        {
+          "name": "year",
+          "type": "Long",
+          "description": "TRI reporting year of the release quantities.",
+          "provenance": "extracted"
+        }
+      ]
+    },
+    {
+      "source": "UCMR4",
+      "scope": "Finished drinking-water detections of monitored contaminants. Limited to compounds and ZIP-code areas represented in SPOKE; unresolved analytes are excluded.",
+      "description": "Public water-system results are attributed to every ZIP code served by that system. Only exact, positive measurements are included; below-reporting-level and above-range results are excluded. Each compound–ZIP pair retains the maximum concentration, with the most recent collection date breaking ties.",
+      "properties": [
+        {
+          "name": "ucmr4_media",
+          "type": "StringArray",
+          "description": "Drinking Water.",
+          "provenance": "extracted",
+          "notes": "ucmr4_media[i], ucmr4_value[i], ucmr4_unit[i], ucmr4_metrics[i], and ucmr4_date[i] are co-indexed; per the retention rule each holds exactly one element (index 0)."
+        },
+        {
+          "name": "ucmr4_value",
+          "type": "DoubleArray",
+          "description": "Highest measured concentration for the contaminant and ZIP-code area; ties use the most recent sample collection date.",
+          "provenance": "extracted",
+          "notes": "ucmr4_media[i], ucmr4_value[i], ucmr4_unit[i], ucmr4_metrics[i], and ucmr4_date[i] are co-indexed; per the retention rule each holds exactly one element (index 0)."
+        },
+        {
+          "name": "ucmr4_unit",
+          "type": "StringArray",
+          "description": "Concentration unit: µg/L.",
+          "provenance": "extracted",
+          "notes": "ucmr4_media[i], ucmr4_value[i], ucmr4_unit[i], ucmr4_metrics[i], and ucmr4_date[i] are co-indexed; per the retention rule each holds exactly one element (index 0)."
+        },
+        {
+          "name": "ucmr4_metrics",
+          "type": "StringArray",
+          "description": "MaximumConcentration(MRL) when the retained result has a Minimum Reporting Level (MRL); otherwise MaximumConcentration.",
+          "provenance": "extracted",
+          "notes": "ucmr4_media[i], ucmr4_value[i], ucmr4_unit[i], ucmr4_metrics[i], and ucmr4_date[i] are co-indexed; per the retention rule each holds exactly one element (index 0)."
+        },
+        {
+          "name": "ucmr4_date",
+          "type": "StringArray",
+          "description": "Collection date of the retained sample.",
+          "provenance": "extracted",
+          "notes": "YYYY-MM-DD; ucmr4_media[i], ucmr4_value[i], ucmr4_unit[i], ucmr4_metrics[i], and ucmr4_date[i] are co-indexed; per the retention rule each holds exactly one element (index 0)."
+        },
+        {
+          "name": "ucmr4_date_type",
+          "type": "string (scalar)",
+          "description": "Collection Date.",
+          "provenance": "extracted"
+        }
+      ]
+    },
+    {
+      "source": "UCMR5",
+      "scope": "Finished drinking-water detections of PFAS and lithium. Limited to compounds and ZIP-code areas represented in SPOKE; unresolved analytes are excluded.",
+      "description": "Public water-system results are attributed to every ZIP code served by that system. Only exact, positive measurements are included; below-reporting-level and above-range results are excluded. Each compound–ZIP pair retains the maximum concentration, with the most recent collection date breaking ties.",
+      "properties": [
+        {
+          "name": "ucmr5_media",
+          "type": "StringArray",
+          "description": "Drinking Water.",
+          "provenance": "extracted",
+          "notes": "ucmr5_media[i], ucmr5_value[i], ucmr5_unit[i], ucmr5_metrics[i], and ucmr5_date[i] are co-indexed; per the retention rule each holds exactly one element (index 0)."
+        },
+        {
+          "name": "ucmr5_value",
+          "type": "DoubleArray",
+          "description": "Highest measured concentration for the contaminant and ZIP-code area; ties use the most recent sample collection date.",
+          "provenance": "extracted",
+          "notes": "ucmr5_media[i], ucmr5_value[i], ucmr5_unit[i], ucmr5_metrics[i], and ucmr5_date[i] are co-indexed; per the retention rule each holds exactly one element (index 0)."
+        },
+        {
+          "name": "ucmr5_unit",
+          "type": "StringArray",
+          "description": "Concentration unit: µg/L.",
+          "provenance": "extracted",
+          "notes": "ucmr5_media[i], ucmr5_value[i], ucmr5_unit[i], ucmr5_metrics[i], and ucmr5_date[i] are co-indexed; per the retention rule each holds exactly one element (index 0)."
+        },
+        {
+          "name": "ucmr5_metrics",
+          "type": "StringArray",
+          "description": "MaximumConcentration(MRL) when the retained result has a Minimum Reporting Level (MRL); otherwise MaximumConcentration.",
+          "provenance": "extracted",
+          "notes": "ucmr5_media[i], ucmr5_value[i], ucmr5_unit[i], ucmr5_metrics[i], and ucmr5_date[i] are co-indexed; per the retention rule each holds exactly one element (index 0)."
+        },
+        {
+          "name": "ucmr5_date",
+          "type": "StringArray",
+          "description": "Collection date of the retained sample.",
+          "provenance": "extracted",
+          "notes": "YYYY-MM-DD; ucmr5_media[i], ucmr5_value[i], ucmr5_unit[i], ucmr5_metrics[i], and ucmr5_date[i] are co-indexed; per the retention rule each holds exactly one element (index 0)."
+        },
+        {
+          "name": "ucmr5_date_type",
+          "type": "string (scalar)",
+          "description": "Collection Date.",
+          "provenance": "extracted"
+        }
+      ]
+    },
+    {
+      "source": "Superfund",
+      "scope": "Contaminants of concern at Superfund sites within US ZIP-code areas, recorded in EPA site decision documents and amendments. Limited to compounds and ZIP codes represented in SPOKE; unresolved contaminant labels are excluded. No NPL-status filtering is applied.",
+      "description": "Records contaminant presence, environmental medium, site National Priorities List (NPL) status, and decision-document completion date. No measured concentration or quantity is provided. A compound–ZIP relationship may combine multiple sites and NPL statuses. Distinct media/status/date tuples are ordered by completion date, most recent first, with secondary ordering by media.",
+      "properties": [
+        {
+          "name": "superfund_media",
+          "type": "StringArray",
+          "description": "Environmental medium in which the contaminant was identified, such as Groundwater, Soil, or Sediment.",
+          "provenance": "extracted",
+          "notes": "superfund_media[i], superfund_value[i], superfund_date[i], and superfund_metrics[i] all correspond to one another (one entry per distinct (media, NPL-status, completion-date) tuple for the pair). Parallel entry omitted if the tuple's media is null."
+        },
+        {
+          "name": "superfund_value",
+          "type": "StringArray",
+          "description": "National Priorities List status of the site.",
+          "provenance": "extracted",
+          "notes": "superfund_media[i], superfund_value[i], superfund_date[i], and superfund_metrics[i] all correspond to one another (one entry per distinct (media, NPL-status, completion-date) tuple for the pair)."
+        },
+        {
+          "name": "superfund_date",
+          "type": "StringArray",
+          "description": "Completion date of the associated site decision document.",
+          "provenance": "extracted",
+          "notes": "superfund_media[i], superfund_value[i], superfund_date[i], and superfund_metrics[i] all correspond to one another (one entry per distinct (media, NPL-status, completion-date) tuple for the pair). YYYY-MM-DD; entry's date may be empty string if source date is missing."
+        },
+        {
+          "name": "superfund_metrics",
+          "type": "StringArray",
+          "description": "NPL Status, describing the corresponding superfund_value entry.",
+          "provenance": "extracted",
+          "notes": "superfund_media[i], superfund_value[i], superfund_date[i], and superfund_metrics[i] all correspond to one another (one entry per distinct (media, NPL-status, completion-date) tuple for the pair)."
+        },
+        {
+          "name": "superfund_date_type",
+          "type": "String (scalar)",
+          "description": "Actual Completion Date.",
+          "provenance": "extracted"
+        }
+      ]
+    }
+  ]
+}

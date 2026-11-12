@@ -1,0 +1,30 @@
+{
+  "type": "MEASURES_CLmG",
+  "kind": "edge",
+  "endpoints": {
+    "from": "ClinicalLab",
+    "to": "Gene",
+    "direction": "directed"
+  },
+  "description": "Links a laboratory test to a gene its LOINC Component axis measures or is about. Variant tests can link to the underlying gene, and rearrangement, fusion, or repeat-expansion tests can link to multiple genes. Enzyme-activity tests can link to genes encoding reviewed human isoenzymes.",
+  "sources": [
+    "LOINC"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list",
+      "description": "Data sources contributing this relationship; contains LOINC.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "LOINC",
+      "scope": "Laboratory codes with CLASSTYPE = 1 and status ACTIVE, TRIAL, or DISCOURAGED; DEPRECATED codes are excluded. Challenge agents are excluded from analyte relationships. Targets must be present in SPOKE.",
+      "description": "Gene relationships include LOINC gene mappings, controlled HGNC symbol associations, gene-cluster associations, enzyme-associated genes, and curated mappings for otherwise unresolved analytes. Enzyme tests include all reviewed human isoenzymes, so a relationship can represent enzyme activity rather than a direct gene measurement. Ambiguous generic gene-family assignments are left unresolved when no reliable specific gene identity is available. SCA8 retains a source-level dual-gene ambiguity involving TWNK and ATXN8OS. Panels use their own Component parts; panel-member relationships are not included.",
+      "properties": []
+    }
+  ]
+}

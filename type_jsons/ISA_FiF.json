@@ -1,0 +1,36 @@
+{
+  "type": "ISA_FiF",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Food",
+    "to": "Food",
+    "direction": "directed"
+  },
+  "description": "An is-a relationship from a child Food concept to its parent in the FoodOn ontology. Only links between named, active FOODON classes are represented. Links to classes in other ontologies and restriction-based relationships are absent, so a Food concept whose only named parents are external can appear as a root in this hierarchy.",
+  "sources": [
+    "FoodOn"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources supporting the relationship; FoodOn contributes the value \"foodon\".",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Timestamp when the relationship was created or its source support changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "FoodOn",
+      "scope": "Named is-a links between non-obsolete FOODON classes. FoodOn covers food products, food-source organisms and their parts, food processes, packaging and contact materials, and food data specifications, with no category filter.",
+      "description": "FoodOn provides a hierarchy of Food concepts through named superclass assertions. Both the child and parent must be active FOODON classes; external, deprecated and undeclared parents are excluded.",
+      "properties": []
+    }
+  ]
+}

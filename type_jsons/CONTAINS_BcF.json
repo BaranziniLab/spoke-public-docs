@@ -1,0 +1,36 @@
+{
+  "type": "CONTAINS_BcF",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Blend",
+    "to": "Food",
+    "direction": "directed"
+  },
+  "description": "A dietary supplement blend contains a botanical food ingredient.",
+  "sources": [
+    "NHANES"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing this relationship; includes NHANES.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Date and time when the relationship was created or updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "NHANES",
+      "scope": "Botanical ingredients (DSBI component category 3) in the 1999 NHANES Dietary Supplement Ingredient File, with a valid curated FOODON mapping and corresponding Blend and Food nodes in SPOKE. Other ingredient categories are excluded.",
+      "description": "Records food ingredient composition of dietary supplement blends from NHANES DSBI, using a curated mapping of NHANES ingredient identifiers to FOODON terms. Each relationship represents a unique blend\u2013food pair.",
+      "properties": []
+    }
+  ]
+}

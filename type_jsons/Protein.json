@@ -1,0 +1,169 @@
+{
+  "type": "Protein",
+  "kind": "node",
+  "description": "A UniProt protein entry or a separately represented cleavage product of a polyprotein. Coverage includes manually reviewed Swiss-Prot proteins for represented organisms, including viruses, and computationally annotated TrEMBL proteins for non-virus organisms. Some organisms are represented by proteins from one representative subclass. Historical proteins can remain with obsolete set to true. Optional annotations describe ChEMBL targets and bacterial virulence factors.",
+  "sources": [
+    "UniProt",
+    "VFDB"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "CURIE",
+      "description": "UniProtKB identifier: UniProtKB:{primary_accession} for a regular protein, or UniProtKB:{parent_accession}-{PRO_id} for a cleavage product.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "UniProt entry name for regular proteins, such as 1433B_HUMAN; a PRO identifier string for cleavage products. It is not the human-readable protein description.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "description": "Protein names from UniProt for regular entries; the specific chain annotation text for cleavage products. Regular-entry descriptions do not contain the UniProt FUNCTION free-text block.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "gene",
+      "type": "List of all `Name=` values",
+      "description": "Gene names supplied by UniProt; ORF names, ordered locus names and gene synonyms are excluded. Cleavage products carry their parent entry\u2019s gene names.",
+      "provenance": "extracted",
+      "notes": "[] if no `Name=` fields"
+    },
+    {
+      "name": "refseq",
+      "type": "List of all accession fields",
+      "description": "RefSeq protein and nucleotide accessions, with source formatting such as trailing periods retained. Cleavage products have an empty list.",
+      "provenance": "extracted",
+      "notes": "[] if none"
+    },
+    {
+      "name": "seqids",
+      "type": "list of nucleotide and protein accession strings",
+      "description": "EMBL nucleotide and protein accession fields, with raw formatting retained. Placeholder and Genomic_DNA values are excluded. Cleavage products have an empty list.",
+      "provenance": "extracted",
+      "notes": "[] if no DR EMBL cross-references."
+    },
+    {
+      "name": "org_name",
+      "type": "string",
+      "description": "Source organism name, including parenthetical common names; period characters are absent.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "org_ncbi_id",
+      "type": "CURIE string",
+      "description": "Identifier of the represented Organism. For proteins from a representative subclass, this is the parent organism rather than the protein\u2019s original taxon.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Contributing sources, including UniProt and, where annotated, VFDB. UniProt remains listed on historical obsolete proteins. Human ID-mapping enrichment is not separately represented in this list.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Timestamp associated with creation or an update to the protein or its annotations.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "UniProt",
+      "scope": "Swiss-Prot for all represented organisms and TrEMBL for non-virus organisms. Where an accession is in both, its properties reflect TrEMBL. For organisms with direct Swiss-Prot proteins, proteins from their taxonomic subclasses are excluded. Organisms without direct Swiss-Prot proteins can instead have proteins from the candidate subclass containing the longest individual protein sequence; other candidate subclasses are excluded. Cleavage products are represented when an entry has more than one qualifying CHAIN or PEPTIDE annotation: a PRO identifier, amino-acid length greater than 10, and a note not containing N-terminally. Both the parent and qualifying products, including full-span annotations, are represented.",
+      "description": "Provides protein identity, names, gene and organism annotations, enzyme and sequence-database cross-references, and isoform information. Protein data carry the documented license annotation CC BY-NC 3.0. Human primary-accession ID mappings supplement ChEMBL cross-references; isoform-suffixed mapping rows are excluded.",
+      "properties": [
+        {
+          "name": "ec",
+          "type": "list of strings",
+          "description": "Enzyme Commission numbers, including incomplete numbers such as 3.4.24.-. This property is absent on cleavage-product nodes.",
+          "provenance": "extracted",
+          "notes": "[] if no EC annotations"
+        },
+        {
+          "name": "chembl_id",
+          "type": "string",
+          "description": "Bare ChEMBL target accession, such as CHEMBL3710403. Flat-file cross-references are supplemented by human UniProt ID mapping. Only one value is represented where several mappings exist; reviewed-protein values can be historical rather than current mappings. Cleavage products inherit the parent\u2019s flat-file cross-reference.",
+          "provenance": "extracted",
+          "notes": "Absent from node entirely if no ChEMBL mapping exists; never null or empty string"
+        },
+        {
+          "name": "isoform",
+          "type": "List of strings",
+          "description": "Isoform annotations including a name, FASTA header, source URL and canonical-status flag. The canonical isoform is the displayed sequence. Cleavage-product nodes lack this property.",
+          "provenance": "extracted",
+          "notes": "\"Name:Isoform{isoform_name}~FASTA:{fasta_header}~FASTA_Source:{url}~Is_Canonical:{true|false}\""
+        },
+        {
+          "name": "polyprotein",
+          "type": "CURIE",
+          "description": "Parent Protein identifier for a cleavage product. Absent on regular proteins.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "start",
+          "type": "Integer",
+          "description": "Amino-acid start position of a cleavage product within its parent sequence.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "end",
+          "type": "Integer",
+          "description": "Amino-acid end position of a cleavage product within its parent sequence.",
+          "provenance": "extracted"
+        }
+      ]
+    },
+    {
+      "source": "VFDB",
+      "scope": "Bacterial proteins in VFDB that are already represented as Protein nodes, including historical obsolete proteins when listed by VFDB. One virulence factor is associated with each annotated protein.",
+      "description": "Virulence factor identity, category, function and mechanism are properties of the associated factor and can therefore be shared by several proteins. These annotations supplement the protein\u2019s UniProt identity and organism information.",
+      "properties": [
+        {
+          "name": "vf_id",
+          "type": "string",
+          "description": "Virulence factor identifier, stored bare, for example VF0464.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "vf_name",
+          "type": "string",
+          "description": "Short name of the protein\u2019s virulence factor.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "vf_full_name",
+          "type": "string",
+          "description": "Full name of the protein\u2019s virulence factor.",
+          "provenance": "extracted",
+          "notes": "Always present; empty string `\"\"` when the source value is empty"
+        },
+        {
+          "name": "vf_category",
+          "type": "string",
+          "description": "Functional category of the virulence factor, such as Immune modulation or Effector delivery system.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "vf_function",
+          "type": "string",
+          "description": "Free-text description of the virulence factor\u2019s function.",
+          "provenance": "extracted",
+          "notes": "Always present; empty string `\"\"` when the source value is empty"
+        },
+        {
+          "name": "vf_mechanism",
+          "type": "string",
+          "description": "Free-text description of the virulence factor\u2019s mechanism.",
+          "provenance": "extracted",
+          "notes": "Always present; empty string `\"\"` when the source value is empty"
+        }
+      ]
+    }
+  ]
+}

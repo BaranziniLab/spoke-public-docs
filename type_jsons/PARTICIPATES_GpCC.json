@@ -1,0 +1,55 @@
+{
+  "type": "PARTICIPATES_GpCC",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Gene",
+    "to": "CellularComponent",
+    "direction": "directed"
+  },
+  "description": "Associates a human gene with a Gene Ontology cellular component through direct NCBI gene2go annotation or inference from an annotated descendant term.",
+  "sources": [
+    "NCBI gene2go"
+  ],
+  "common_properties": [
+    {
+      "name": "qualifier",
+      "type": "list of strings",
+      "description": "Annotation qualifiers from NCBI gene2go; propagated associations without direct annotation use [\"inferred\"].",
+      "notes": "The `qualifier` and `evidence` lists are positionally aligned \u2014 `qualifier[i]` corresponds to `evidence[i]`, representing one distinct annotation row from gene2go. Only unique (qualifier, evidence) pairs are stored per edge; duplicates arising from different PubMed support are collapsed.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "evidence",
+      "type": "list of strings",
+      "description": "GO evidence codes from NCBI gene2go, such as IDA, IEA, IBA, TAS, and IMP; propagated associations without direct annotation use [\"inferred\"].",
+      "provenance": "extracted"
+    },
+    {
+      "name": "unbiased",
+      "type": "Boolean",
+      "description": "Always False: GO annotations are a curated (biased) set.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data source for the association; always [\"NCBI gene2go\"].",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the association was last created or updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "NCBI gene2go",
+      "scope": "Human annotations (tax_id = 9606) for genes present in SPOKE and non-obsolete cellular component terms whose final annotated-gene sets contain 2\u20131000 genes, inclusive. All non-NOT qualifiers are included. A gene with a NOT annotation to a term is excluded from that term, including inferred associations.",
+      "description": "Includes direct annotations and associations inherited through GO is_a and part_of relationships. Direct support takes precedence when an association is also inferred: only the direct qualifier/evidence pairs are recorded, without the \"inferred\" sentinel.",
+      "properties": []
+    }
+  ]
+}

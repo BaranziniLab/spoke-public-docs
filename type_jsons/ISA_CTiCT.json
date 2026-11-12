@@ -1,0 +1,36 @@
+{
+  "type": "ISA_CTiCT",
+  "kind": "edge",
+  "endpoints": {
+    "from": "CellType",
+    "to": "CellType",
+    "direction": "child CellType \u2192 parent CellType"
+  },
+  "description": "An is_a relationship connecting a Cell Ontology cell type to its parent cell type in the ontology hierarchy.",
+  "sources": [
+    "Cell Ontology"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Sources supporting this relationship; includes \"Cell Ontology\".",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Date and time the relationship was created or last updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Cell Ontology",
+      "scope": "Relationships between active, non-obsolete Cell Ontology terms. Parents from other ontologies are excluded.",
+      "description": "The Cell Ontology is_a hierarchy supplies child-to-parent relationships between cell types.",
+      "properties": []
+    }
+  ]
+}

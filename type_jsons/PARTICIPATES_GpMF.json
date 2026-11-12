@@ -1,0 +1,55 @@
+{
+  "type": "PARTICIPATES_GpMF",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Gene",
+    "to": "MolecularFunction",
+    "direction": "directed"
+  },
+  "description": "Connects human genes to Gene Ontology molecular functions through direct NCBI gene2go annotations or annotations propagated to ancestor terms through is_a and part_of relationships.",
+  "sources": [
+    "NCBI gene2go"
+  ],
+  "common_properties": [
+    {
+      "name": "qualifier",
+      "type": "list of strings",
+      "description": "Gene2go annotation qualifiers; propagated-only associations use [\"inferred\"]. Direct annotations take precedence when direct and propagated support overlap.",
+      "notes": "The qualifier and evidence lists are positionally aligned \u2014 qualifier[i] corresponds to evidence[i], representing one distinct annotation row from gene2go. Only unique (qualifier, evidence) pairs are stored per edge; duplicates arising from different PubMed support are collapsed.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "evidence",
+      "type": "list of strings",
+      "description": "GO evidence codes from gene2go, such as IDA, IEA, IBA, TAS, and IMP; propagated-only associations use [\"inferred\"]. Direct annotations take precedence when direct and propagated support overlap.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "unbiased",
+      "type": "Boolean",
+      "description": "Always False: GO annotations are a curated (biased) set.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Annotation source, always [\"NCBI gene2go\"].",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the edge was created or last updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "NCBI gene2go",
+      "scope": "Human annotations (tax_id = 9606) for genes present in SPOKE. Obsolete GO terms are excluded. Only terms with a final annotated-gene set of 2\u20131000 genes inclusive are included. NOT annotations are excluded, and a NOT annotation also removes the gene from that term\u2019s propagated associations.",
+      "description": "Includes all non-NOT qualifiers. Direct annotations retain their qualifier and evidence pairs; associations supported only by ontology propagation carry the \"inferred\" sentinel in both properties.",
+      "properties": []
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "type": "PARTOF_CpC",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Compound",
+    "to": "Compound",
+    "direction": "directed"
+  },
+  "description": "A structural part-of relationship from a Compound representing a part to a Compound representing the whole, drawn from the ChEBI ontology.",
+  "sources": [
+    "ChEBI"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "List of strings",
+      "description": "Source database names supporting this relationship, retained as supplied by the source.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "DateTime",
+      "description": "Timestamp when the relationship was created or its source attribution changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "ChEBI",
+      "scope": "ChEBI ontology part-of relationships whose endpoints are represented as Compound nodes.",
+      "description": "ChEBI supplies structural containment relationships between compounds. These are distinct from chemical subclass and chemical-role relationships.",
+      "properties": []
+    }
+  ]
+}

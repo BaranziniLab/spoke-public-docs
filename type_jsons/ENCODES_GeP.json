@@ -1,0 +1,42 @@
+{
+  "type": "ENCODES_GeP",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Gene",
+    "to": "Protein",
+    "direction": "directed"
+  },
+  "description": "Connects a human gene to a protein it encodes, based on NCBI Gene ID cross-references in UniProt.",
+  "sources": [
+    "UniProt"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources supporting the relationship; includes UniProt.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "license",
+      "type": "string",
+      "description": "License for the relationship data: CC BY-ND 3.0.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was created or its properties changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "UniProt",
+      "scope": "Human proteins (NCBI Taxonomy ID 9606) from manually reviewed Swiss-Prot and computationally annotated TrEMBL entries. Only entries with NCBI Gene ID cross-references and corresponding Gene and Protein nodes in SPOKE are represented. Targets are regular parent proteins, excluding chain proteins (polyprotein cleavage products).",
+      "description": "Each NCBI Gene ID cross-reference links a gene to the entry\u2019s primary UniProt accession. Multiple Gene ID cross-references can link a protein to multiple genes. Proteins marked obsolete are not explicitly excluded.",
+      "properties": []
+    }
+  ]
+}

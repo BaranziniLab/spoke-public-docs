@@ -1,0 +1,94 @@
+{
+  "type": "PRESENTS_DpS",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Disease",
+    "to": "Symptom",
+    "direction": "directed"
+  },
+  "description": "A disease presents a symptom, supported by HPO phenotype annotations or long COVID symptom occurrence data from INCOV and RECOVER.",
+  "sources": [
+    "HPO",
+    "INCOV_Hadlock_lab",
+    "RECOVER_Hadlock_lab"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Sources supporting the disease\u2013symptom association.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the association was last changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "HPO",
+      "scope": "HPO phenotypes mapped to MeSH-based Symptoms, with a corresponding Disease for the source OMIM or ORPHA disorder identifier; the gene dimension is excluded.",
+      "description": "Disease\u2013symptom associations from HPO phenotype-to-genes annotations. Phenotypes without MeSH mappings are outside this contribution. Disease attribution follows MONDO explicit equivalence where available, with external cross-references and BioPortal DOID mappings as fallbacks. HPO supplies no symptom frequency properties.",
+      "properties": []
+    },
+    {
+      "source": "INCOV_Hadlock_lab",
+      "scope": "Long COVID symptoms represented in the existing MeSH-based Symptom vocabulary.",
+      "description": "INCOV long COVID study data from the Institute for Systems Biology Hadlock Lab describe symptom occurrence at three successive study time points. Values are proportions in the range 0\u20131 despite the percentage property names. Source symptom labels can disagree with the MeSH concepts represented by the associated Symptom nodes.",
+      "properties": [
+        {
+          "name": "percentage_total_diagnosed_at_time_point1",
+          "type": "float",
+          "description": "Proportion (0\u20131) of the INCOV cohort diagnosed with long COVID presenting this symptom at study time point 1.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "percentage_total_diagnosed_at_time_point2",
+          "type": "float",
+          "description": "Proportion (0\u20131) of the INCOV cohort diagnosed with long COVID presenting this symptom at study time point 2.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "percentage_total_diagnosed_at_time_point3",
+          "type": "float",
+          "description": "Proportion (0\u20131) of the INCOV cohort diagnosed with long COVID presenting this symptom at study time point 3.",
+          "provenance": "extracted"
+        }
+      ]
+    },
+    {
+      "source": "RECOVER_Hadlock_lab",
+      "scope": "Long COVID symptoms represented in the existing MeSH-based Symptom vocabulary.",
+      "description": "RECOVER long COVID study data from the Institute for Systems Biology Hadlock Lab describe symptom occurrence by patient cohort. Values are proportions in the range 0\u20131; zero is a measured proportion, not missing data. Source symptom labels can disagree with the MeSH concepts represented by the associated Symptom nodes.",
+      "properties": [
+        {
+          "name": "symptom_frequency_among_acute_omicron_recover_patients",
+          "type": "Double",
+          "description": "Proportion (0\u20131) of the acute-omicron RECOVER cohort presenting this symptom.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "symptom_frequency_among_postacute_preomicron_recover_patients",
+          "type": "Double",
+          "description": "Proportion (0\u20131) of the post-acute pre-omicron RECOVER cohort presenting this symptom.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "symptom_frequency_among_postacute_omicron_recover_patients",
+          "type": "Double",
+          "description": "Proportion (0\u20131) of the post-acute omicron RECOVER cohort presenting this symptom.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "symptom_frequency_among_overall_recover_patients",
+          "type": "Double",
+          "description": "Proportion (0\u20131) of the overall RECOVER population presenting this symptom.",
+          "provenance": "extracted"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "type": "INCLUDES_PCiC",
+  "kind": "edge",
+  "endpoints": {
+    "from": "PharmacologicClass",
+    "to": "Compound",
+    "direction": "directed"
+  },
+  "description": "A pharmacologic class includes a compound, based on FDA NDF-RT annotations distributed through DrugCentral. The class points to the compound it contains. Coverage is limited to Mechanism of Action (MoA), Physiologic Effect (PE), Chemical Structure (CS), and Chemical/Ingredient classes.",
+  "sources": [
+    "DrugCentral"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources supporting the class membership; the source value is DrugCentral.",
+      "provenance": "extracted",
+      "notes": "Always `[\"DrugCentral\"]`. Never a scalar string."
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Timestamp when this class\u2013compound relationship was created.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "license",
+      "type": "string",
+      "description": "License annotation for the relationship: CC BY 4.0.",
+      "provenance": "extracted",
+      "notes": "Always `\"CC BY 4.0\"`"
+    },
+    {
+      "name": "unbiased",
+      "type": "boolean",
+      "description": "False identifies curated, non-high-throughput data rather than unbiased data.",
+      "provenance": "extracted",
+      "notes": "Always `false`"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "DrugCentral",
+      "scope": "FDA NDF-RT memberships in the MoA, PE, CS and Chemical/Ingredient categories, with a non-null class code and a compound represented in SPOKE. Other pharmacologic class categories and memberships without a corresponding Compound are excluded.",
+      "description": "DrugCentral supplies class\u2013compound annotations from its pharmacologic classification data. The upstream vocabulary source for the included categories is FDA NDF-RT.",
+      "properties": []
+    }
+  ]
+}

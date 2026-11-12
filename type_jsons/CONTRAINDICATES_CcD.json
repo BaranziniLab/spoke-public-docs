@@ -1,0 +1,45 @@
+{
+  "type": "CONTRAINDICATES_CcD",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Compound",
+    "to": "Disease",
+    "direction": "directed"
+  },
+  "description": "A curated drug\u2013disease contraindication from DrugCentral, directed from the Compound to the Disease. Relationships are limited to compounds and disease concepts represented in SPOKE; drug approval status does not restrict coverage. A source disease concept can correspond to more than one represented Disease.",
+  "sources": [
+    "DrugCentral"
+  ],
+  "common_properties": [
+    {
+      "name": "act_sources",
+      "type": "list of strings",
+      "description": "Distinct databases contributing target-binding or bioactivity data for the compound, such as ChEMBL or PDSP. These are compound-level bioactivity sources, not clinical evidence sources for this contraindication.",
+      "notes": "Empty list `[]`",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources supporting the contraindication; DrugCentral is the current contributing source.",
+      "notes": "Never a scalar string.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Timestamp of the relationship\u2019s creation or last update.",
+      "notes": "ISO datetime of last create or update.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "DrugCentral",
+      "scope": "Curated contraindication relationships, without a drug approval-status filter. Only drug structures with a ChEMBL identifier corresponding to a represented Compound and disease concepts corresponding to represented Disease nodes are included. Unrepresented compounds or disease concepts are excluded.",
+      "description": "DrugCentral supplies drug\u2013disease contraindications. Its bioactivity-source annotation describes the compound\u2019s target-binding data and does not identify the clinical evidence supporting the individual contraindication.",
+      "properties": []
+    }
+  ]
+}

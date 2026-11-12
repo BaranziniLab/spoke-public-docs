@@ -1,0 +1,57 @@
+{
+  "type": "PARTOF_LpL",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Location",
+    "to": "Location",
+    "direction": "directed"
+  },
+  "description": "Geographic part-of relationships, directed from a location to its containing geographic unit. US Zipcode-to-City relationships represent area overlap.",
+  "sources": [
+    "GeoNames",
+    "UnitedStatesZipcode_database"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing the relationship.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was created or last changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "GeoNames",
+      "homepage": "https://www.geonames.org/",
+      "scope": "First-level administrative divisions linked to their countries or territories. Excludes the United States and its Admin1 divisions; includes US territories with their own ISO2 codes, such as AS, GU, PR, and VI.",
+      "description": "An Admin1 division belongs to the country or territory identified by its country-code prefix.",
+      "properties": []
+    },
+    {
+      "source": "UnitedStatesZipcode_database",
+      "scope": "US hierarchy: Zipcode → City/Place → County → State → Country. City/Place coverage is limited to places represented in zipcode overlap data; places without zipcode overlap are excluded.",
+      "description": "Zipcode-to-City edges include “Outside city limits” pseudo-cities, which have no City-to-County edges. Only Zipcode-to-City edges carry overlap percentages; County-to-State and State-to-Country edges describe geographic containment.",
+      "properties": [
+        {
+          "name": "percent_of_zip_area_in_place",
+          "type": "float",
+          "description": "Percentage of the zipcode area within the city or place. Present only on Zipcode-to-City edges; absent when missing from the source.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "percent_of_place_area_in_zip",
+          "type": "float",
+          "description": "Percentage of the city or place area within the zipcode. Present only on Zipcode-to-City edges; absent when missing from the source.",
+          "provenance": "extracted"
+        }
+      ]
+    }
+  ]
+}

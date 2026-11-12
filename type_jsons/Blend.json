@@ -1,0 +1,43 @@
+{
+  "type": "Blend",
+  "kind": "node",
+  "description": "A proprietary blend ingredient listed on a dietary supplement label without a full per-ingredient quantity breakdown.",
+  "sources": [
+    "NHANES"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "string (CURIE)",
+      "description": "NHANES blend ingredient identifier (DSDIID), represented with the nhanes: prefix, for example nhanes:536.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Blend ingredient name from the product label, stored in title case.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing the blend record; includes NHANES.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time when the blend record was created or updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "NHANES",
+      "scope": "Proprietary blend entries in the Dietary Supplement Database Ingredient Information file (DSII), covering dietary supplement ingredients reported by NHANES participants from 1999 onward. Discrete ingredients with known quantities are excluded.",
+      "description": "Published by the CDC\u2019s National Center for Health Statistics, DSII identifies blend ingredients by DSDIID. A blend can appear in multiple supplement products. Blend nodes do not include product-specific blend quantities or units.",
+      "properties": []
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "type": "Symptom",
+  "kind": "node",
+  "description": "A sign, symptom or phenotype represented by a MeSH descriptor. Coverage combines MeSH descriptors in the Signs and Symptoms subtree (C23.888) with HPO phenotypes mapped to MeSH, including mapped descriptors outside that subtree. Preferred names are official MeSH descriptor names; HPO phenotype names are available as synonyms.",
+  "sources": [
+    "MeSH",
+    "HPO"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "String",
+      "description": "MeSH Descriptor identifier as a prefixed CURIE, such as MESH:D010146.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "String",
+      "description": "Official preferred MeSH descriptor name.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing this symptom: MeSH, HPO, or both.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Date and time this node was created or its content changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "MeSH",
+      "scope": "Descriptors with at least one tree number beginning with C23.888 (Signs and Symptoms). Descriptors also classified in other branches are included.",
+      "description": "Standardized signs and symptoms terminology from the MeSH Descriptor file published by the U.S. National Library of Medicine, covering observable clinical findings, subjective patient-reported symptoms and objective medical signs.",
+      "properties": [
+        {
+          "name": "license",
+          "type": "String",
+          "description": "License annotation supplied for MeSH-contributed symptom data: CC0 1.0.",
+          "provenance": "extracted"
+        }
+      ]
+    },
+    {
+      "source": "HPO",
+      "scope": "The subset of phenotypes in HPO phenotype-to-genes annotations that has a MeSH mapping. HPO-contributed symptoms can lie outside MeSH subtree C23.888. New symptom entries require an official MeSH descriptor name.",
+      "description": "HPO phenotype identifiers and names supplement the MeSH-based symptom vocabulary. HPO names are synonyms of the mapped symptom rather than preferred labels. Multiple contributing HPO terms can be associated with a shared MeSH symptom. The gene dimension of the source annotations is not represented in this model.",
+      "properties": [
+        {
+          "name": "xrefs",
+          "type": "list of strings",
+          "description": "Contributing HPO phenotype identifiers as full HP CURIEs.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "synonyms",
+          "type": "list of strings",
+          "description": "HPO phenotype names associated with this MeSH-based symptom.",
+          "provenance": "extracted"
+        }
+      ]
+    }
+  ]
+}

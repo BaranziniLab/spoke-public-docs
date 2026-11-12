@@ -1,0 +1,36 @@
+{
+  "type": "ISA_CiC",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Compound",
+    "to": "Compound",
+    "direction": "directed"
+  },
+  "description": "A ChEBI is-a subclass relationship from a child Compound to a parent Compound in the chemical ontology hierarchy.",
+  "sources": [
+    "ChEBI"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "List of strings",
+      "description": "Source names supporting the relationship, retained as supplied by the source.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "DateTime",
+      "description": "Timestamp when the relationship was created or its source attribution changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "ChEBI",
+      "scope": "Compound-to-Compound subclass relationships drawn from the ChEBI ontology, with both endpoints represented as Compound nodes.",
+      "description": "ChEBI supplies the is-a hierarchy among chemical compounds and ontology classes.",
+      "properties": []
+    }
+  ]
+}

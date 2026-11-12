@@ -1,0 +1,42 @@
+{
+  "type": "INTERACTS_CiF",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Compound",
+    "to": "Food",
+    "direction": "directed"
+  },
+  "description": "A food–drug interaction described by the Food Interactions with Drugs Evidence Ontology (FIDEO), directed from the drug Compound to the Food. Each Compound–Food pair has one relationship. Individual interactions carry a FIDEO identifier but no evidence annotations, confidence scores or mechanism types.",
+  "sources": [
+    "FIDEO"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing the interaction; FIDEO is represented by the value \"FIDEO\".",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Timestamp of creation or a change to the interaction identifier.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "interaction_id",
+      "type": "string",
+      "description": "FIDEO ontology class identifier for the food–drug interaction, as a CURIE such as FIDEO:000001500.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "FIDEO",
+      "scope": "Interactions whose drug and food are represented by existing Compound and Food nodes. Food coverage is limited to FOODON-identified entities; DRON-identified herbal or botanical food entities and FIDEO-native food entities are excluded.",
+      "description": "FIDEO describes interactions between foods and drugs. Drug coverage includes ChEBI-identified drugs and DRON-identified drugs with corresponding DrugBank identifiers. The ATC classification hierarchy, DrugBank entries and FDI mechanism ontology are outside this contribution.",
+      "properties": []
+    }
+  ]
+}
