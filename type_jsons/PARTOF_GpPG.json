@@ -1,0 +1,42 @@
+{
+  "type": "PARTOF_GpPG",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Gene",
+    "to": "PwGroup",
+    "direction": "directed"
+  },
+  "description": "A gene represented by a DNA entity is physically part of a Reactome complex (PwGroup).",
+  "sources": [
+    "Reactome"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources supporting the relationship; includes Reactome.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "version",
+      "type": "integer",
+      "description": "Reactome release number in which the relationship was last seen.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time when the relationship was created or last updated in SPOKE.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Reactome",
+      "scope": "Complexes associated with Signaling Pathways (R-HSA-162582), Immune System (R-HSA-168256), and Diseases of signal transduction by growth factor receptors and second messengers (R-HSA-5663202), including their descendant pathways. Complexes include those reachable through event participants, controllers, active units, nested components and set members.",
+      "description": "Represents direct DNA components of complexes, with each compartment and modification variant of a complex kept distinct. Only DNA entities with an Ensembl gene ID matching an existing Gene are represented; RNA entities and non-complex sets are excluded. Alternative set members are never asserted to be physical components of the set. Stoichiometry is not represented.",
+      "properties": []
+    }
+  ]
+}

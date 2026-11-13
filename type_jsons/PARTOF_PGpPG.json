@@ -1,0 +1,42 @@
+{
+  "type": "PARTOF_PGpPG",
+  "kind": "edge",
+  "endpoints": {
+    "from": "PwGroup",
+    "to": "PwGroup",
+    "direction": "directed"
+  },
+  "description": "A Reactome pathway group is a physical component of a containing pathway group. The relationship represents directly curated complex composition, with components present together rather than alternative set membership.",
+  "sources": [
+    "Reactome"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources supporting the relationship; includes Reactome.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "version",
+      "type": "integer",
+      "description": "Reactome release number in which the relationship was last seen.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was created or last updated in SPOKE.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Reactome",
+      "scope": "Complexes represented in the human BioPAX export within Signaling Pathways (R-HSA-162582), Immune System (R-HSA-168256), and Diseases of signal transduction by growth factor receptors and second messengers (R-HSA-5663202), including descendant pathways. Complexes include those reached from event participants, controllers, and active units, recursively through complex components and set members.",
+      "description": "Each compartment and modification variant of a complex has its own PwGroup node. A Complex-typed set of alternative complexes can itself be a component of a containing complex, but its alternative members are never linked to the set. Stoichiometry is not represented.",
+      "properties": []
+    }
+  ]
+}

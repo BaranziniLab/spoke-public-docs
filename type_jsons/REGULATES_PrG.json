@@ -1,0 +1,50 @@
+{
+  "type": "REGULATES_PrG",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Protein",
+    "to": "Gene",
+    "direction": "directed"
+  },
+  "description": "An unsigned regulatory relationship from a transcription-factor protein to a target gene. The relationship does not distinguish activation from repression.",
+  "sources": [
+    "TFLink"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources supporting the relationship.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was last updated.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "detection_methods",
+      "type": "list of strings",
+      "description": "Methods reported for the regulatory interaction, including PSI-MI method labels. The value `inferred by curator` is retained and may be the only method; such a relationship names no experimental method.",
+      "notes": "Deduplicated; unioned across all source rows contributing to the pair. Both list properties are order-insensitive. Detection methods and PubMed IDs are not parallel lists.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "pubmed_ids",
+      "type": "list of strings",
+      "description": "PubMed identifiers of publications reporting the interaction. Values may include malformed identifiers because source tokens are retained without validation or repair.",
+      "notes": "Deduplicated; unioned across all source rows contributing to the pair. Stored as strings, verbatim and unvalidated. Detection methods and PubMed IDs are not parallel lists.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "TFLink",
+      "scope": "Human interactions from the TFLink v1.0 small-scale, literature-curated subset. Only pairs with both endpoints present in SPOKE and a single, nonmissing target gene identifier are represented. Excluding ambiguous target identifiers systematically reduces representation of histone and interferon gene families; absence of their relationships is not a biological conclusion. Transcription-factor autoregulation is included.",
+      "description": "TFLink is a curated catalogue assembled from upstream interaction databases. The selected subset retains its full evidence trail, including evidence from large-scale databases that independently support the same interaction. Detection methods and publications are independent evidence lists with no positional correspondence.",
+      "properties": []
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "type": "Reaction",
+  "kind": "node",
+  "description": "A curated Reactome biochemical reaction with inputs and outputs. A reaction directly contained in several pathways is represented by one node.",
+  "sources": [
+    "Reactome"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "string (CURIE)",
+      "description": "Reactome stable ID prefixed with reactome:, for example reactome:R-HSA-389357.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "reactome_id",
+      "type": "string",
+      "description": "Bare Reactome stable ID, for example R-HSA-389357.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Reactome display name; the bare stable ID is used when a display name is missing.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "version",
+      "type": "integer",
+      "description": "Reactome release number in which the reaction was last seen.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data source contributing the reaction: Reactome.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the reaction record was created or last changed in SPOKE.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Reactome",
+      "scope": "Biochemical reactions directly contained in the human Reactome pathway hierarchies rooted at R-HSA-162582 (Signaling Pathways, historically Signal Transduction), R-HSA-168256 (Immune System), and R-HSA-5663202 (Diseases of signal transduction by growth factor receptors and second messengers), including all descendant pathways. Degradation and template-reaction events are excluded.",
+      "description": "The source is the human BioPAX Level 3 export. Reaction membership connects a reaction to each pathway that directly contains it. Participant relationships represent inputs and outputs without distinguishing their roles; catalysts and regulators are excluded. Alternative entity sets are not expanded into their members. Summaries, literature references, cellular compartments, stoichiometry, EC numbers, catalysis and regulation relationships are not represented.",
+      "properties": [
+        {
+          "name": "synonyms",
+          "type": "list of strings",
+          "description": "Reactome alternate names, excluding names equal to the display name without regard to case. Duplicate alternate names are compared without regard to case, retaining the first spelling.",
+          "provenance": "extracted",
+          "notes": "Omitted when empty"
+        }
+      ]
+    }
+  ]
+}

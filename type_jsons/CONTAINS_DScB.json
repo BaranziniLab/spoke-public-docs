@@ -1,0 +1,57 @@
+{
+  "type": "CONTAINS_DScB",
+  "kind": "edge",
+  "endpoints": {
+    "from": "DietarySupplement",
+    "to": "Blend",
+    "direction": "directed"
+  },
+  "description": "A dietary supplement product contains an opaque proprietary blend reported in the NHANES Dietary Supplement Database.",
+  "sources": [
+    "NHANES"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing this relationship.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was created or last updated.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "quantity",
+      "type": "list of numbers",
+      "description": "Amounts of the blend contained in the product.",
+      "provenance": "extracted",
+      "notes": "One element per contributor. `quantity`, `unit`, `operator` are index-aligned (element i is the i-th contributing ingredient's amount/unit/operator)."
+    },
+    {
+      "name": "unit",
+      "type": "list of integers",
+      "description": "Raw NHANES amount-unit codes; the modeling documentation provides no label table for these codes.",
+      "provenance": "extracted",
+      "notes": "One element per contributor. `quantity`, `unit`, `operator` are index-aligned (element i is the i-th contributing ingredient's amount/unit/operator)."
+    },
+    {
+      "name": "operator",
+      "type": "list of strings",
+      "description": "Amount comparison operators (=, <, or >).",
+      "provenance": "extracted",
+      "notes": "One element per contributor. `quantity`, `unit`, `operator` are index-aligned (element i is the i-th contributing ingredient's amount/unit/operator)."
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "NHANES",
+      "scope": "Proprietary-blend ingredients reported for dietary supplement products in NHANES Ingredient Information (DSII), where a corresponding Blend is available.",
+      "description": "NHANES is published by the CDC / National Center for Health Statistics. DSII records which blends a product contains and the corresponding amounts. Ingredient category is absent for these blend relationships.",
+      "properties": []
+    }
+  ]
+}

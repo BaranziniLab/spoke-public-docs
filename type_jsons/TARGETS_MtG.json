@@ -1,0 +1,44 @@
+{
+  "type": "TARGETS_MtG",
+  "kind": "edge",
+  "endpoints": {
+    "from": "MiRNA",
+    "to": "Gene",
+    "direction": "directed"
+  },
+  "description": "A mature human microRNA is computationally predicted to target (repress) a gene. Transcript-level miRDB predictions are represented once per microRNA\u2013gene pair, with the maximum prediction score across the gene's predicted target transcripts.",
+  "sources": [
+    "miRDB"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing this relationship.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Date and time the relationship was last created or changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "miRDB",
+      "scope": "Human microRNA predictions from miRDB v6.0, with no score threshold. Only predictions whose target transcripts map to genes present in SPOKE are represented. Protein-coding and microRNA genes are eligible targets, including genes marked obsolete. Retired genes retain their mapped predictions rather than transferring them to successor genes.",
+      "description": "Predictions originate at the microRNA\u2013transcript level and are summarized at the gene level. Transcript identifiers and individual transcript scores are not stored.",
+      "properties": [
+        {
+          "name": "prediction_score",
+          "type": "float",
+          "description": "Maximum miRDB prediction score across the gene's transcripts predicted as targets of this microRNA; scores range from 50 to 100.",
+          "notes": "prediction_score is stored at the precision given in the source, without rounding.",
+          "provenance": "extracted"
+        }
+      ]
+    }
+  ]
+}

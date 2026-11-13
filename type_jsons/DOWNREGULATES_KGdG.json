@@ -1,0 +1,62 @@
+{
+  "type": "DOWNREGULATES_KGdG",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Gene",
+    "to": "Gene",
+    "direction": "directed"
+  },
+  "description": "A directed relationship from a gene silenced by shRNA or knocked out by CRISPR to another gene whose expression decreases significantly in the pooled LINCS L1000 consensus response.",
+  "sources": [
+    "CMAP/LINCS knockdown (trt_xpr,trt_sh)"
+  ],
+  "common_properties": [
+    {
+      "name": "z_score",
+      "type": "float",
+      "description": "Signed Stouffer consensus z-score for the source–target pair. Negative values indicate decreased target-gene expression.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "p_value",
+      "type": "float",
+      "description": "Bonferroni-corrected two-tailed normal p-value, corrected separately for each perturbed gene and target-gene tier; retained relationships pass significance at α = 0.05.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "tier",
+      "type": "string",
+      "description": "Target-gene evidence tier: landmark genes are directly measured; BING denotes well-inferred genes excluding landmarks.",
+      "provenance": "extracted",
+      "notes": "Controlled vocabulary: \"landmark\" or \"BING\""
+    },
+    {
+      "name": "n_signatures",
+      "type": "integer",
+      "description": "Number of pooled expression signatures combined into the perturbed gene’s consensus; an indicator of supporting evidence.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing the relationship.",
+      "provenance": "extracted",
+      "notes": "Single-element list under this source; list, never scalar"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was created or last updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "CMAP/LINCS knockdown (trt_xpr,trt_sh)",
+      "scope": "LINCS L1000 / Connectivity Map GEO series GSE92742 (Phase I) and GSE70138 (Phase II). Raw shRNA (trt_sh) and CRISPR knockout (trt_xpr) signatures are pooled by perturbed gene across both series, cell lines, doses, and times. Targets are human landmark and well-inferred non-landmark BING genes; poorly inferred non-BING genes are excluded. Only existing SPOKE Gene endpoints are represented, and source–target self-relationships are excluded. Seed-labeled trt_sh.css and precomputed trt_sh.cgs signatures are excluded.",
+      "description": "Expression signatures are combined by correlation-weighted Stouffer integration, using landmark-gene correlations for the weights. Significance is assessed separately for landmark and non-landmark BING targets within each perturbed gene. All significant landmark targets are retained; significant BING targets are limited to the top 1,000 per perturbed gene by significance. The relationship summarizes a pooled loss-of-function response across experimental contexts.",
+      "properties": []
+    }
+  ]
+}

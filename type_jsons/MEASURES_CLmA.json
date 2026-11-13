@@ -1,0 +1,30 @@
+{
+  "type": "MEASURES_CLmA",
+  "kind": "edge",
+  "endpoints": {
+    "from": "ClinicalLab",
+    "to": "Anatomy",
+    "direction": "directed"
+  },
+  "description": "Connects a laboratory test to the anatomical structure or body fluid that is itself the analyte being measured or characterized, using the LOINC Component axis. Examples include urine appearance and color, cerebrospinal-fluid appearance, and serum viscosity.",
+  "sources": [
+    "LOINC"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list",
+      "description": "Data source attribution; [\"LOINC\"] for this relationship.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "LOINC",
+      "scope": "Laboratory codes with CLASSTYPE = 1 and status ACTIVE, TRIAL, or DISCOURAGED; DEPRECATED codes are excluded. Targets are Anatomy entities represented by UBERON identifiers. Challenge agents are excluded from analyte relationships.",
+      "description": "Represents the anatomical analyte on the Component axis; the specimen in which a measurement is taken is represented separately by MEASURES_IN_CLmiA. Includes identifier-based anatomical mappings, curated LLM mappings for otherwise unresolved analytes, and manual curation for selected tests characterizing urine, cerebrospinal fluid, or serum.",
+      "properties": []
+    }
+  ]
+}

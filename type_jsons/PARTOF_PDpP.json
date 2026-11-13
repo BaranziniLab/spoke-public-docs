@@ -1,0 +1,57 @@
+{
+  "type": "PARTOF_PDpP",
+  "kind": "edge",
+  "endpoints": {
+    "from": "ProteinDomain",
+    "to": "Protein",
+    "direction": "directed"
+  },
+  "description": "A Pfam protein domain is part of a protein, as recorded by an InterPro signature match. Each domain–protein pair has one relationship containing the matched residue regions and an InterPro entry cross-reference.",
+  "sources": [
+    "InterPro"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources supporting the relationship.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Date and time the relationship was created or its properties last changed.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "interpro_id",
+      "type": "string",
+      "description": "InterPro entry into which the Pfam signature is integrated.",
+      "provenance": "extracted",
+      "notes": "Stored verbatim as the InterPro accession string, form `IPR` + digits (e.g. `IPR011527`), no CURIE prefix. Single-valued."
+    },
+    {
+      "name": "match_starts",
+      "type": "list of integers",
+      "description": "Start residue positions of the domain matches on the protein.",
+      "provenance": "extracted",
+      "notes": "Always present, ≥1 element. Index-aligned with `match_ends`."
+    },
+    {
+      "name": "match_ends",
+      "type": "list of integers",
+      "description": "End residue positions of the domain matches on the protein.",
+      "provenance": "extracted",
+      "notes": "Always present, ≥1 element. Index-aligned with `match_starts`."
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "InterPro",
+      "scope": "Pfam signatures only; both the protein and Pfam protein domain must be represented in SPOKE. Signatures from other InterPro member databases are excluded.",
+      "description": "InterPro protein2ipr matches identify the protein regions containing each domain. Multiple matched regions for the same domain–protein pair are retained in parallel lists, ordered by match start and then match end.",
+      "properties": []
+    }
+  ]
+}

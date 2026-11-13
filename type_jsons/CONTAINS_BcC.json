@@ -1,0 +1,45 @@
+{
+  "type": "CONTAINS_BcC",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Blend",
+    "to": "Compound",
+    "direction": "directed"
+  },
+  "description": "A dietary supplement blend contains an ingredient component represented by a Compound node. Compound targets may represent a specific chemical structure or a chemical class or family.",
+  "sources": [
+    "NHANES"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing this relationship.",
+      "notes": "Never null",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Date and time the relationship was created or updated.",
+      "notes": "Never null",
+      "provenance": "extracted"
+    },
+    {
+      "name": "category",
+      "type": "string (controlled vocabulary)",
+      "description": "NHANES ingredient component category: \"Vitamin\", \"Mineral\", \"Other\", or \"Amino acid\". When contributing components for the same blend\u2013compound relationship have differing categories, the value is \"Other\".",
+      "notes": "scalar; Always present",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "NHANES",
+      "scope": "Non-botanical components in the NHANES Dietary Supplement Ingredient File (DSBI): vitamins, minerals, amino acids, and the heterogeneous \"Other\" category. Botanical components are excluded. Only components mapped to existing Compound nodes are represented.",
+      "description": "DSBI lists ingredient components of dietary supplement blends. Compound assignments use curated, human-reviewed mappings produced through an LLM curation pass. Components without a resolved Compound target are not represented. Each relationship represents a unique blend\u2013compound pair.",
+      "properties": []
+    }
+  ]
+}

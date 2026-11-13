@@ -1,0 +1,63 @@
+{
+  "type": "CONTAINS_DScEC",
+  "kind": "edge",
+  "endpoints": {
+    "from": "DietarySupplement",
+    "to": "EC",
+    "direction": "directed"
+  },
+  "description": "Connects a dietary supplement product to an enzyme activity class representing an ingredient it contains.",
+  "sources": [
+    "NHANES"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing this relationship; includes NHANES.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time this relationship was last created or updated.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "quantity",
+      "type": "list of numbers",
+      "description": "Amounts of the contributing ingredients in the supplement product.",
+      "provenance": "extracted",
+      "notes": "One element per contributor; quantity, unit, operator are index-aligned."
+    },
+    {
+      "name": "unit",
+      "type": "list of integers",
+      "description": "Raw NHANES amount-unit codes; no unit label table is available in the source documentation.",
+      "provenance": "extracted",
+      "notes": "One element per contributor; quantity, unit, operator are index-aligned."
+    },
+    {
+      "name": "operator",
+      "type": "list of strings",
+      "description": "Amount comparison operators: =, <, or >.",
+      "provenance": "extracted",
+      "notes": "One element per contributor; quantity, unit, operator are index-aligned."
+    },
+    {
+      "name": "category",
+      "type": "string (controlled vocab)",
+      "description": "Ingredient category: Vitamin, Mineral, Botanical, Other, or Amino acid. When contributing ingredients have different categories, the value is Other.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "NHANES",
+      "scope": "Dietary supplement products reported by NHANES participants, with discrete enzyme ingredients represented by EC classes. Ingredients without an identified EC target are not represented by this relationship.",
+      "description": "The NHANES Dietary Supplement Database Ingredient Information (DSII), published by CDC / National Center for Health Statistics, records product ingredients and their amounts. Different ingredients in a product can refer to the same EC class; their amounts, units, and operators remain separate entries in aligned lists. In the common single-ingredient case, each list has length 1.",
+      "properties": []
+    }
+  ]
+}

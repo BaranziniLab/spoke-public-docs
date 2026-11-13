@@ -1,0 +1,42 @@
+{
+  "type": "ISA_PWiPW",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Pathway",
+    "to": "Pathway",
+    "direction": "child \u2192 parent"
+  },
+  "description": "Connects a child pathway to its parent in the Reactome pathway hierarchy. The selected hierarchy roots also connect to a synthetic Reactome root.",
+  "sources": [
+    "Reactome"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources providing this relationship; Reactome.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "version",
+      "type": "integer",
+      "description": "Reactome release number in which this relationship was last seen.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time this relationship was created or last updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Reactome",
+      "scope": "Human BioPAX pathways within Signaling Pathways (R-HSA-162582; historically Signal Transduction), Immune System (R-HSA-168256), and Diseases of signal transduction by growth factor receptors and second messengers (R-HSA-5663202), including all descendant pathways.",
+      "description": "Represents direct sub-pathway links where both child and parent are in scope. A pathway can have several parents. Links to parents outside these hierarchies are absent. The selected hierarchy roots each link to the synthetic Pathway reactome:root, which supplies a common ancestor and is not a source pathway.",
+      "properties": []
+    }
+  ]
+}

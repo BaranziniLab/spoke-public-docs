@@ -1,0 +1,61 @@
+{
+  "type": "EXPRESSEDIN_GeiA",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Gene",
+    "to": "Anatomy",
+    "direction": "directed"
+  },
+  "description": "A gene is detected as expressed in an anatomical structure by a strict majority of Bgee detection calls across at least three admissible sequencing libraries. An absent edge is not a negative assertion of expression.",
+  "sources": [
+    "Bgee"
+  ],
+  "common_properties": [
+    {
+      "name": "fraction_present",
+      "type": "Float",
+      "description": "Fraction of admissible libraries for the gene–anatomy pair that Bgee called present. Library counts are not stored, so the denominator cannot be recovered from this edge.",
+      "provenance": "extracted",
+      "notes": "Always > 0.5 by the majority rule"
+    },
+    {
+      "name": "mean_log2_tpm",
+      "type": "Float",
+      "description": "Mean log2(TPM + 1) across all admissible libraries for the pair, including both present and absent calls. Zero-TPM observations are retained as zero.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "mean_rank",
+      "type": "Float",
+      "description": "Mean within-library rank across the pair’s admissible libraries.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "min_p_value",
+      "type": "Float",
+      "description": "Smallest detection p-value among the pair’s admissible libraries.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing this relationship.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was created or updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Bgee",
+      "scope": "Processed human RNA-Seq measurements from adult developmental stages, including post-juvenile stages, for Uberon anatomical structures. Non-call-eligible measurements, fetal/child/teen stages, life-cycle or unrecognized stages, and Cell Ontology entities are excluded. Sex, strain and library type are neither filtered nor stored.",
+      "description": "Expression is based on Bgee’s present/absent calls, with no TPM threshold used in the vote. Present calls must strictly outnumber absent calls; ties and absent majorities produce no edge. Expression and up-/down-regulation relationships are independent, so either may occur without the other. Per-library and per-experiment identities are not stored.",
+      "properties": []
+    }
+  ]
+}

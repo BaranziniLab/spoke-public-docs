@@ -1,0 +1,37 @@
+{
+  "type": "BINDS_CbPD",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Compound",
+    "to": "ProteinDomain",
+    "direction": "Compound \u2192 ProteinDomain"
+  },
+  "description": "A binding relationship between a small-molecule compound and a Pfam protein-domain family, supported by contact observed in Protein Data Bank crystal structures.",
+  "sources": [
+    "ProtCID"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Sources supporting the relationship; includes \"ProtCID\".",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time when the relationship was created or last updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "ProtCID",
+      "homepage": "https://dunbrack2.fccc.edu/ProtCiD/",
+      "scope": "Ligand\u2013Pfam domain-family contacts observed in PDB structures, limited to compounds and protein domains represented in SPOKE. Ligand coverage is partial.",
+      "description": "ProtCID (Protein Common Interface Database; Dunbrack lab) summarizes structurally observed ligand\u2013domain contacts. Each relationship records the existence of contact for a compound\u2013domain-family pair; source statistics such as the number of PDB entries are not included.",
+      "properties": []
+    }
+  ]
+}

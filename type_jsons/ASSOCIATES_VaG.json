@@ -1,0 +1,276 @@
+{
+  "type": "ASSOCIATES_VaG",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Variant",
+    "to": "Gene",
+    "direction": "directed"
+  },
+  "description": "Associations between human genetic variants and genes supported by molecular QTL signals, Locus-to-Gene predictions or ClinVar gene attributions. Gene-specific predicted consequences, amino-acid changes, distances, SIFT assessments and AlphaMissense assessments annotate these associations. Evidence retains allele specificity even when several alleles share a Variant node.",
+  "sources": [
+    "OpenTargets_QTL",
+    "OpenTargets_L2G",
+    "OpenTargets_ClinVar"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Evidence contributions supporting the association.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the association or its properties were last changed.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "ot_qtl_n_studies",
+      "type": "integer",
+      "description": "Number of distinct supporting QTL study identifiers.",
+      "provenance": "extracted",
+      "notes": "0 when the source does not support the edge."
+    },
+    {
+      "name": "ot_l2g_n_studies",
+      "type": "integer",
+      "description": "Number of distinct supporting L2G study identifiers.",
+      "provenance": "extracted",
+      "notes": "0 when the source does not support the edge."
+    },
+    {
+      "name": "ot_clinvar_n_assertions",
+      "type": "integer",
+      "description": "Number of distinct supporting ClinVar RCV identifiers.",
+      "provenance": "extracted",
+      "notes": "0 when the source does not support the edge."
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "OpenTargets_QTL",
+      "scope": "Lead variants of expression, splicing, transcript usage, single-cell expression and protein QTL credible sets; no threshold. Genes must be represented in SPOKE.",
+      "description": "One evidence entry represents one credible set. Biosample names and expanded QTL type labels describe the molecular context.",
+      "properties": [
+        {
+          "name": "ot_qtl_study_locus_ids",
+          "type": "list of strings",
+          "description": "Open Targets credible-set identifiers.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_qtl_study_ids",
+          "type": "list of strings",
+          "description": "Identifiers of the supporting QTL studies.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_qtl_projects",
+          "type": "list of strings",
+          "description": "Study project names, such as GTEx-v10.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_qtl_types",
+          "type": "list of strings",
+          "description": "QTL type: expression QTL, splicing QTL, transcript usage QTL, single-cell expression QTL or protein QTL.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_qtl_biosample_ids",
+          "type": "list of strings",
+          "description": "Biosample identifiers as CURIEs.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_qtl_biosample_names",
+          "type": "list of strings",
+          "description": "Biosample names.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_qtl_variant_ids",
+          "type": "list of strings",
+          "description": "Lead variant allele identifiers.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_qtl_p_values",
+          "type": "list of doubles",
+          "description": "QTL association p-values.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_qtl_betas",
+          "type": "list of doubles",
+          "description": "QTL association beta values.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_qtl_standard_errors",
+          "type": "list of doubles",
+          "description": "Standard errors of the QTL association estimates.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_qtl_lead_pips",
+          "type": "list of doubles",
+          "description": "Posterior probabilities of the lead variants in their credible sets.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_qtl_log10_bfs",
+          "type": "list of doubles",
+          "description": "Credible-set log10 Bayes factors.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_qtl_finemapping_methods",
+          "type": "list of strings",
+          "description": "Fine-mapping methods.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_qtl_is_trans",
+          "type": "list of booleans",
+          "description": "Whether the QTL is trans.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry. [assumption] missing → false."
+        }
+      ]
+    },
+    {
+      "source": "OpenTargets_L2G",
+      "scope": "GWAS credible-set lead variants with L2G score ≥ 0.5. Variants must also have a disease association, QTL gene association or pharmacogenomic compound association.",
+      "description": "One evidence entry represents one credible-set–gene prediction. Trait identifiers retain the original study diseases or traits.",
+      "properties": [
+        {
+          "name": "ot_l2g_study_ids",
+          "type": "list of strings",
+          "description": "GWAS study identifiers for the credible sets.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_l2g_variant_ids",
+          "type": "list of strings",
+          "description": "Lead variant allele identifiers.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_l2g_scores",
+          "type": "list of doubles",
+          "description": "Locus-to-Gene prediction scores; only scores ≥ 0.5 are included.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_l2g_trait_ids",
+          "type": "list of strings (|)",
+          "description": "Study disease or trait identifiers as CURIEs, including measurement traits.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry. Fields that are themselves multi-valued within one entry are stored as one string with values joined by \"|\"."
+        },
+        {
+          "name": "ot_l2g_mean_score",
+          "type": "double",
+          "description": "Mean of the L2G prediction scores.",
+          "provenance": "extracted"
+        }
+      ]
+    },
+    {
+      "source": "OpenTargets_ClinVar",
+      "scope": "Germline and somatic ClinVar assertions for variants with a disease or pharmacogenomic compound association. Only “not provided” clinical significance values are excluded; no review-status filter.",
+      "description": "One evidence entry represents one ClinVar assertion attributing the variant to the gene. The assertion’s disease need not be represented in SPOKE.",
+      "properties": [
+        {
+          "name": "ot_clinvar_rcv_ids",
+          "type": "list of strings",
+          "description": "ClinVar RCV assertion identifiers.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_clinvar_clinical_significances",
+          "type": "list of strings (|)",
+          "description": "Clinical significance values, excluding “not provided”.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry. Fields that are themselves multi-valued within one entry are stored as one string with values joined by \"|\"."
+        },
+        {
+          "name": "ot_clinvar_directions_on_target",
+          "type": "list of strings",
+          "description": "Reported direction on the gene, such as LoF.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        }
+      ]
+    },
+    {
+      "source": "OpenTargets",
+      "scope": "Annotations on associations supported by QTL, L2G or ClinVar; they do not independently establish associations. Open Targets transcript consequences can cover genes within 500 kb of a variant.",
+      "description": "One annotation entry represents an allele with a predicted consequence on the associated gene. SIFT and AlphaMissense assessments refer to that gene. These annotations carry no additional sources tag.",
+      "properties": [
+        {
+          "name": "ot_vep_variant_ids",
+          "type": "list of strings",
+          "description": "Variant allele identifiers for the gene-specific consequence annotations.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_vep_consequences",
+          "type": "list of strings (|)",
+          "description": "Sequence Ontology labels for predicted functional consequences on this gene.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry. Fields that are themselves multi-valued within one entry are stored as one string with values joined by \"|\"."
+        },
+        {
+          "name": "ot_vep_amino_acid_changes",
+          "type": "list of strings",
+          "description": "Predicted amino-acid changes.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_vep_distances",
+          "type": "list of doubles",
+          "description": "Distance from the gene footprint; 0 means the variant lies within the gene.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_sift_assessments",
+          "type": "list of strings",
+          "description": "SIFT assessments for the variant allele on this gene.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_alphamissense_assessments",
+          "type": "list of strings",
+          "description": "AlphaMissense assessments for the variant allele on this gene.",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        }
+      ]
+    }
+  ]
+}

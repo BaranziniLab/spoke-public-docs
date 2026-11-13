@@ -1,0 +1,110 @@
+{
+  "type": "Complex",
+  "kind": "node",
+  "description": "Protein complexes from CORUM and IntAct Complex Portal, represented by their set of base UniProt protein members. Records sharing the same protein set describe one complex, including records that differ in stoichiometry, assembly, isoform or mature-chain specificity. Stoichiometry is not stored. Complexes with a single protein member are included; every protein member must be represented in SPOKE. Protein members are linked to their complex by PARTOF_PpCP.",
+  "sources": [
+    "CORUM",
+    "IntAct"
+  ],
+  "curator_notes": null,
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "string (CURIE)",
+      "description": "Composition-based identifier derived from the set of base UniProt accessions of protein members.",
+      "provenance": "extracted",
+      "notes": "Complex:<decimal CRC32 of sorted, hyphen-joined base accessions>"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Human-readable complex name from CORUM or IntAct Complex Portal.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "synonyms",
+      "type": "list of strings",
+      "description": "Alternative complex names from the contributing sources, including differing source names.",
+      "provenance": "extracted",
+      "notes": "Flat, deduplicated, shared across CORUM and IntAct; property omitted when no synonyms"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Sources contributing this complex.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time of the most recent creation or update.",
+      "provenance": "extracted",
+      "notes": "ISO 8601"
+    }
+  ],
+  "source_contributions": [
+    {
+      "source": "CORUM",
+      "scope": "Experimentally characterized human protein complexes. GO, drug, disease, literature, purification-method and FunCat annotations are outside this contribution.",
+      "description": "CORUM supplies complex identifiers, names, synonyms and experimental cell lines. Details from records sharing the same protein composition are retained in parallel lists.",
+      "properties": [
+        {
+          "name": "corum_ids",
+          "type": "list of strings",
+          "description": "CORUM identifiers for records describing this protein composition.",
+          "provenance": "extracted",
+          "notes": "Ordered by numeric complex_id ascending; parallel-list spine"
+        },
+        {
+          "name": "corum_names",
+          "type": "list of strings",
+          "description": "Complex names for the contributing CORUM records.",
+          "provenance": "extracted",
+          "notes": "Index-aligned to corum_ids; property omitted when a node has a single contributing record"
+        },
+        {
+          "name": "corum_cell_lines",
+          "type": "list of strings",
+          "description": "Experimental cell lines reported for the contributing CORUM records.",
+          "provenance": "extracted",
+          "notes": "Index-aligned to corum_ids; empty cell_line stored as the literal string \"none reported\""
+        }
+      ]
+    },
+    {
+      "source": "IntAct",
+      "scope": "Curated Complex Portal protein complexes across species whose NCBI taxonomy is represented by an Organism node in SPOKE. The HuMap predicted-complex file is excluded. Non-protein participants (chemicals, nested-complex references and RNA) and internal EBI identifiers are not represented in the protein composition. Records with alternative-accession groups or no protein members are excluded.",
+      "description": "IntAct Complex Portal supplies CPX accessions, biological descriptions, assembly types and evidence codes. GO annotations, cross-references, ligand, disease, agonist and antagonist annotations are outside this contribution.",
+      "properties": [
+        {
+          "name": "intact_ids",
+          "type": "list of strings",
+          "description": "Complex Portal accessions for records describing this protein composition.",
+          "provenance": "extracted",
+          "notes": "CPX accessions; ordered by numeric CPX ID ascending; parallel-list spine"
+        },
+        {
+          "name": "intact_evidence_codes",
+          "type": "list of strings",
+          "description": "Bare ECO evidence codes for the contributing records. ECO:0000353: physical interaction evidence used in manual assertion; ECO:0005543: biological system reconstruction evidence by experimental evidence from mixed species used in manual assertion; ECO:0005544: biological system reconstruction evidence based on orthology evidence used in manual assertion; ECO:0005546: biological system reconstruction evidence based on paralogy evidence used in manual assertion; ECO:0005547: biological system reconstruction evidence based on inference from background scientific knowledge used in manual assertion; ECO:0005610: biological system reconstruction evidence based on homology evidence used in manual assertion.",
+          "provenance": "extracted",
+          "notes": "Index-aligned to intact_ids"
+        },
+        {
+          "name": "intact_assemblies",
+          "type": "list of strings",
+          "description": "Assembly types reported for the contributing records, such as Heterotrimer.",
+          "provenance": "extracted",
+          "notes": "Index-aligned to intact_ids; - stored as \"\""
+        },
+        {
+          "name": "intact_descriptions",
+          "type": "list of strings",
+          "description": "Free-text biological descriptions of the complex.",
+          "provenance": "extracted",
+          "notes": "Flat, deduplicated (NOT index-aligned); `-` omitted; property omitted if no non-`-` descriptions"
+        }
+      ]
+    }
+  ]
+}

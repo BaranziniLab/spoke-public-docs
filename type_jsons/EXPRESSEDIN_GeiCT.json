@@ -1,0 +1,143 @@
+{
+  "type": "EXPRESSEDIN_GeiCT",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Gene",
+    "to": "CellType",
+    "direction": "directed"
+  },
+  "description": "Links human genes to cell types in which they show source-specific expression enrichment or differential expression. HPA, the Allen whole-human-brain atlas and the Allen HMBA basal ganglia atlas contribute distinct assessments and measurements.",
+  "sources": [
+    "HPA",
+    "Allen Whole human brain taxonomy",
+    "Allen HMBA Basal Ganglia"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources supporting the relationship.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was last created or changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "HPA",
+      "scope": "Single-cell RNA expression in normal human tissues, limited to cell type enriched, cell type enhanced and group enriched classifications. Low cell type specificity and not detected classifications are excluded.",
+      "description": "Reports HPA gene specificity and breadth of detection for Cell Ontology cell types. A specificity score is supplied only for cell type enriched and group enriched genes. Ambiguous cell type names can resolve to a more general cell type, an accepted limitation of the source mapping.",
+      "properties": [
+        {
+          "name": "group",
+          "type": "string",
+          "description": "HPA specificity classification: cell type enriched, cell type enhanced or group enriched.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "distribution",
+          "type": "string",
+          "description": "Breadth of detection: detected in all, detected in many, detected in some or detected in single.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "specificity_score",
+          "type": "integer",
+          "description": "HPA single-cell-type specificity score, present only for the enriched classifications.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "specific_ncpm",
+          "type": "string",
+          "description": "Original HPA cell type name and expression value, including its separator, retained verbatim.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "nCPM",
+          "type": "float",
+          "description": "Numeric expression value from the HPA cell-type-specific nCPM field.",
+          "provenance": "extracted"
+        }
+      ]
+    },
+    {
+      "source": "Allen Whole human brain taxonomy",
+      "scope": "Adult human brain expression from Siletti et al. 2023, restricted to the provisional cell types associated with that study and their qualifying Cell Ontology ancestors.",
+      "description": "Cell Ontology relationships summarize enrichment in all underlying leaf clusters. Leaf calls require enrichment > 30, with no mean-expression cutoff. A parent qualifies only when every child qualifies; expression can be inherited downward through the cell type hierarchy, so absence of a direct edge does not imply absence of enrichment. Values pool the underlying leaf clusters against all other atlas clusters. Pooled enrichment may be ≤ 30 without invalidating the relationship.",
+      "properties": [
+        {
+          "name": "allen_group",
+          "type": "string (controlled vocabulary)",
+          "description": "For these Cell Ontology relationships, \"Allen enriched in all subtypes, pooled\".",
+          "provenance": "extracted"
+        },
+        {
+          "name": "allen_enrichment",
+          "type": "float",
+          "description": "Pooled enrichment of the underlying clusters against all other atlas clusters, using both the fraction of cells with non-zero expression and mean expression.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "allen_mean_expression",
+          "type": "float",
+          "description": "Cell-count-weighted mean expression across the underlying leaf clusters.",
+          "provenance": "extracted"
+        }
+      ]
+    },
+    {
+      "source": "Allen HMBA Basal Ganglia",
+      "scope": "Cell Ontology Group-level types in HMBA basal ganglia consensus taxonomy CCN20250428, using human cells only. Macaque and marmoset cells are excluded; Groups without human clusters have no expression relationships.",
+      "description": "Identifies genes up-regulated in a Group relative to all other human basal ganglia clusters. Allen differential-expression criteria use a two-sided Welch t-test with Holm–Bonferroni correction (p < 0.01), penetrance > 0.5, relative penetrance difference > 0.7 and log2 fold change > 1. When fewer than 30 genes fully pass, approximate penetrance admits nearby candidates satisfying p < 0.01, penetrance > 0.1, relative penetrance difference > 0.1 and log2 fold change > 0.8. This evidence concerns the basal ganglia, rather than whole-brain specificity. Absence of an edge does not mean lack of expression. Relationships apply directly to Groups and are not inherited by their ontology parents.",
+      "properties": [
+        {
+          "name": "hmba_group",
+          "type": "string (controlled vocabulary)",
+          "description": "\"HMBA Group differentially expressed\": the gene satisfies the Allen differential-expression criteria for this Group in human cells.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "hmba_log2_fold_change",
+          "type": "float",
+          "description": "Group mean minus background mean in log2(CPM+1) units; > 0.8, and > 1 except for near-miss genes.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "hmba_mean_expression",
+          "type": "float",
+          "description": "Mean expression across the Group’s human cells, in log2(CPM+1).",
+          "provenance": "extracted"
+        },
+        {
+          "name": "hmba_mean_expression_other",
+          "type": "float",
+          "description": "Mean expression across all other human basal ganglia clusters, in log2(CPM+1).",
+          "provenance": "extracted"
+        },
+        {
+          "name": "hmba_fraction_expressing",
+          "type": "float",
+          "description": "Fraction of the Group’s human cells with expression ≥ 1 CPM (log2(CPM+1) ≥ 1).",
+          "provenance": "extracted"
+        },
+        {
+          "name": "hmba_fraction_expressing_other",
+          "type": "float",
+          "description": "Fraction of cells expressing the gene at ≥ 1 CPM among all other human basal ganglia clusters.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "hmba_p_value",
+          "type": "float",
+          "description": "Two-sided Welch t-test p-value, Holm–Bonferroni-corrected across genes. Probabilities are clipped and never zero; very small values around 1e-12 and below indicate at least that significance, rather than an exact probability.",
+          "provenance": "extracted"
+        }
+      ]
+    }
+  ]
+}

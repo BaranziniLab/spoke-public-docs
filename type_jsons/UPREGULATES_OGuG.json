@@ -1,0 +1,62 @@
+{
+  "type": "UPREGULATES_OGuG",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Gene",
+    "to": "Gene",
+    "direction": "directed"
+  },
+  "description": "An increase in a responding human gene’s expression associated with experimental wild-type overexpression of the source gene, supported by a statistically significant positive consensus expression change. The edge points from the overexpressed gene to the responding gene.",
+  "sources": [
+    "CMAP/LINCS overexpression (trt_oe)"
+  ],
+  "common_properties": [
+    {
+      "name": "z_score",
+      "type": "float",
+      "description": "Signed Stouffer consensus z-score for the overexpressed gene and responding gene; positive for this edge type.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "p_value",
+      "type": "float",
+      "description": "Bonferroni-corrected two-tailed normal p-value, corrected separately for each overexpressed gene and target-gene tier; retained edges pass α = 0.05.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "tier",
+      "type": "string",
+      "description": "Target-gene evidence tier: landmark genes are directly measured; BING genes are well-inferred non-landmark genes.",
+      "provenance": "extracted",
+      "notes": "Controlled vocabulary: \"landmark\" or \"BING\""
+    },
+    {
+      "name": "n_signatures",
+      "type": "integer",
+      "description": "Number of pooled expression signatures supporting the overexpressed gene’s consensus profile.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data-source attribution for the edge.",
+      "provenance": "extracted",
+      "notes": "Single-element list under this source; list, never scalar"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the edge was last created or updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "CMAP/LINCS overexpression (trt_oe)",
+      "scope": "Wild-type gene overexpression in LINCS L1000 / Connectivity Map GEO series GSE92742 (Phase I) and GSE70138 (Phase II). Mutation and fusion constructs are excluded. Targets include directly measured landmark genes and well-inferred BING non-landmark genes; poorly inferred non-BING genes are excluded. Both endpoint genes must be represented in SPOKE.",
+      "description": "Signatures across cell lines, doses, times, and wild-type constructs of the same gene are pooled across both series into one consensus profile using correlation-weighted Stouffer integration. Significance is assessed separately for landmark and BING non-landmark targets with Bonferroni correction at α = 0.05. Landmark targets are uncapped; significant BING non-landmark targets are limited to the top 1,000 per overexpressed gene by significance. Self-edges are retained and treated as autoregulation in this model.",
+      "properties": []
+    }
+  ]
+}

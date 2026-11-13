@@ -1,0 +1,23 @@
+{
+  "type": "MEASURES_CLmP",
+  "kind": "edge",
+  "endpoints": {
+    "from": "ClinicalLab",
+    "to": "Protein",
+    "direction": "directed"
+  },
+  "description": "Links a LOINC laboratory test to the protein its Component-axis measurement measures or is about. Antibody tests can link to the target antigen protein; enzyme-activity tests can link to all reviewed human isoenzymes associated with that activity.",
+  "sources": [
+    "LOINC"
+  ],
+  "common_properties": [],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "LOINC",
+      "scope": "Laboratory codes with CLASSTYPE = 1 and status ACTIVE, TRIAL, or DISCOURAGED; DEPRECATED codes are excluded. Laboratory order codes are included and may duplicate observation codes. Only existing Protein targets are represented.",
+      "description": "Includes gene-associated protein measurements, immunohistochemistry measurements of protein products, and antibody/antigen tests. Enzyme-activity measurements include reviewed SwissProt human proteins and exclude unreviewed TrEMBL proteins. Generic enzyme names spanning multiple activities and multi-subunit protein complexes have incomplete coverage. Curated part-to-protein mappings and a curated cystatin C mapping for the cystatin C-based glomerular filtration rate test supplement identifier-based coverage. Provocation agents are excluded from analyte relationships.",
+      "properties": []
+    }
+  ]
+}

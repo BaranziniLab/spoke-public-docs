@@ -1,0 +1,42 @@
+{
+  "type": "PARTICIPATES_GpR",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Gene",
+    "to": "Reaction",
+    "direction": "directed"
+  },
+  "description": "A gene takes part as a DNA entity in a Reactome biochemical reaction, as an input, an output, or both. Participation does not distinguish these roles and does not represent catalysis or regulation.",
+  "sources": [
+    "Reactome"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing this relationship.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "version",
+      "type": "integer",
+      "description": "Reactome release number in which the relationship was last present.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was created or last updated in SPOKE.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Reactome",
+      "scope": "Biochemical reactions in the human BioPAX export within Signaling Pathways (R-HSA-162582), Immune System (R-HSA-168256), and Diseases of signal transduction by growth factor receptors and second messengers (R-HSA-5663202), including their descendant pathways.",
+      "description": "Only directly stated DNA inputs and outputs are represented. DNA entities correspond to existing Gene nodes carrying the same Ensembl gene identifier; if several Gene nodes share that identifier, each is linked. DNA without a matching Ensembl gene identifier, RNA entities, and alternative-member sets are excluded. Catalysts, regulators and active units do not establish participation. Input, output and both roles share one relationship per gene\u2013reaction pair; role and stoichiometry are not recorded.",
+      "properties": []
+    }
+  ]
+}

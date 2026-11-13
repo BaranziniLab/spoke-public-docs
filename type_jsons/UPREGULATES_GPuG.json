@@ -1,0 +1,64 @@
+{
+  "type": "UPREGULATES_GPuG",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Gene",
+    "to": "Gene",
+    "direction": "directed"
+  },
+  "description": "An applied biological ligand or protein is associated with a statistically significant increase in expression of the target gene in LINCS L1000 / Connectivity Map. The source Gene encodes the administered ligand, and the target Gene is the responding gene.",
+  "sources": [
+    "CMAP/LINCS ligand (trt_lig)"
+  ],
+  "common_properties": [
+    {
+      "name": "z_score",
+      "type": "float",
+      "description": "Signed Stouffer consensus z-score for the ligand–target pair; positive values indicate up-regulation.",
+      "provenance": "extracted",
+      "notes": "Carries magnitude; sign is consistent with the edge's up/down type"
+    },
+    {
+      "name": "p_value",
+      "type": "float",
+      "description": "Bonferroni-corrected two-tailed normal p-value, corrected separately for each ligand and target-gene tier; retained pairs pass significance at α = 0.05.",
+      "provenance": "extracted",
+      "notes": "Group-corrected (per source entity, per tier)"
+    },
+    {
+      "name": "tier",
+      "type": "string",
+      "description": "Target-gene evidence tier: landmark genes are directly measured, while BING denotes well-inferred non-landmark genes.",
+      "provenance": "extracted",
+      "notes": "Controlled vocabulary: \"landmark\" or \"BING\""
+    },
+    {
+      "name": "n_signatures",
+      "type": "integer",
+      "description": "Number of pooled expression signatures combined into the ligand consensus; an indicator of supporting evidence.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Source attribution for the ligand perturbation evidence.",
+      "provenance": "extracted",
+      "notes": "Single-element list under this source; list, never scalar"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time when the edge was created or last updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "CMAP/LINCS ligand (trt_lig)",
+      "scope": "Biological ligand/protein treatments (trt_lig), using human target genes that are directly measured landmarks or well-inferred non-landmark BING genes. Poorly inferred non-BING genes are excluded. Both endpoint genes must be represented in SPOKE. Self-edges are retained as autoregulation; no touchstone restriction is applied.",
+      "description": "Evidence comes from GEO series GSE92742 and GSE70138. All preparations and expression signatures for a ligand are pooled across cell lines, doses, times, and both series into one consensus profile using correlation-weighted Stouffer integration. Significance is assessed separately for landmark and non-landmark BING target genes. All significant landmark targets are retained; significant BING targets are limited to the top 1,000 per ligand by corrected p-value.",
+      "properties": []
+    }
+  ]
+}

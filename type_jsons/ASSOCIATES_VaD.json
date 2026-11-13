@@ -1,0 +1,267 @@
+{
+  "type": "ASSOCIATES_VaD",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Variant",
+    "to": "Disease",
+    "direction": "directed"
+  },
+  "description": "Human variant\u2013disease relationships supported by ClinVar clinical assertions and/or GWAS lead-variant associations from the Open Targets Platform. Allele-specific supporting evidence is retained in separate parallel lists for each source.",
+  "sources": [
+    "OpenTargets_ClinVar",
+    "OpenTargets_GWAS"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Evidence sources supporting the relationship: OpenTargets_ClinVar and/or OpenTargets_GWAS.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was created or its properties last changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "OpenTargets_ClinVar",
+      "scope": "Germline and somatic ClinVar assertions with at least one clinical significance other than \"not provided\"; no review-status filter. Only assertions linked to a Disease represented in SPOKE are included.",
+      "description": "Clinical assertions connecting human variants to diseases, including benign, uncertain and conflicting classifications. Each evidence entry represents one assertion row for a resolved Disease.",
+      "properties": [
+        {
+          "name": "ot_clinvar_rcv_ids",
+          "type": "list of strings",
+          "provenance": "extracted",
+          "description": "ClinVar RCV assertion identifiers.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_clinvar_variant_ids",
+          "type": "list of strings",
+          "provenance": "extracted",
+          "description": "The specific variant allele for each supporting entry.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry. \"NA\" for rows without variantId (resolved by rsID)"
+        },
+        {
+          "name": "ot_clinvar_clinical_significances",
+          "type": "list of strings (|)",
+          "provenance": "extracted",
+          "description": "Clinical significance classifications, excluding \"not provided\".",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry. Fields that are themselves multi-valued within one entry are stored as one string with values joined by \"|\", in source order."
+        },
+        {
+          "name": "ot_clinvar_review_status",
+          "type": "list of strings",
+          "provenance": "extracted",
+          "description": "ClinVar assertion review status.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry. \"NA\""
+        },
+        {
+          "name": "ot_clinvar_allele_origins",
+          "type": "list of strings (|)",
+          "provenance": "extracted",
+          "description": "Allele origins reported for the assertion.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry. Fields that are themselves multi-valued within one entry are stored as one string with values joined by \"|\", in source order. \"NA\""
+        },
+        {
+          "name": "ot_clinvar_datasets",
+          "type": "list of strings",
+          "provenance": "extracted",
+          "description": "ClinVar dataset: germline or somatic.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_clinvar_ot_disease_ids",
+          "type": "list of strings",
+          "provenance": "extracted",
+          "description": "Open Targets disease identifier for each supporting entry, expressed as a CURIE.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_clinvar_disease_mappings",
+          "type": "list of strings",
+          "provenance": "extracted",
+          "description": "Disease correspondence category: direct_mondo, direct_doid, via_OMIM, via_Orphanet, via_MESH, or via_UMLS.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_clinvar_scores",
+          "type": "list of doubles",
+          "provenance": "extracted",
+          "description": "Open Targets ClinVar evidence scores.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry. NaN"
+        },
+        {
+          "name": "ot_clinvar_directions_on_trait",
+          "type": "list of strings",
+          "provenance": "extracted",
+          "description": "Direction on the trait: risk or protect.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry. \"NA\""
+        },
+        {
+          "name": "ot_clinvar_allelic_requirements",
+          "type": "list of strings (|)",
+          "provenance": "extracted",
+          "description": "Allelic requirements reported for the assertion.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry. Fields that are themselves multi-valued within one entry are stored as one string with values joined by \"|\", in source order. \"NA\""
+        },
+        {
+          "name": "ot_clinvar_pubmed_ids",
+          "type": "list of strings (|)",
+          "provenance": "extracted",
+          "description": "Supporting PubMed identifiers.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry. Fields that are themselves multi-valued within one entry are stored as one string with values joined by \"|\", in source order. \"NA\""
+        },
+        {
+          "name": "ot_clinvar_n_assertions",
+          "type": "integer",
+          "provenance": "extracted",
+          "description": "Number of distinct ClinVar RCV assertion identifiers.",
+          "notes": "0 when ClinVar does not support the edge"
+        },
+        {
+          "name": "ot_clinvar_mean_score",
+          "type": "double",
+          "provenance": "extracted",
+          "description": "Mean Open Targets ClinVar evidence score, ignoring NaN.",
+          "notes": "Omitted when ClinVar does not support the edge or all scores are NaN"
+        }
+      ]
+    },
+    {
+      "source": "OpenTargets_GWAS",
+      "scope": "Only lead variants of Open Targets GWAS credible sets; no p-value threshold. Non-lead credible-set members are excluded. Only associations linked to a Disease represented in SPOKE are included.",
+      "description": "GWAS lead-variant associations with diseases. Each evidence entry represents one credible set and one Open Targets disease identifier for the resolved Disease.",
+      "properties": [
+        {
+          "name": "ot_gwas_study_locus_ids",
+          "type": "list of strings",
+          "provenance": "extracted",
+          "description": "GWAS credible-set study-locus identifiers.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_gwas_study_ids",
+          "type": "list of strings",
+          "provenance": "extracted",
+          "description": "GWAS study identifiers.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_gwas_projects",
+          "type": "list of strings",
+          "provenance": "extracted",
+          "description": "Projects contributing the GWAS studies.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry. \"NA\""
+        },
+        {
+          "name": "ot_gwas_variant_ids",
+          "type": "list of strings",
+          "provenance": "extracted",
+          "description": "The specific variant allele for each supporting entry.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_gwas_p_values",
+          "type": "list of doubles",
+          "provenance": "extracted",
+          "description": "GWAS p-values, calculated as pValueMantissa \u00d7 10^pValueExponent.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_gwas_betas",
+          "type": "list of doubles",
+          "provenance": "extracted",
+          "description": "GWAS beta values, stored with the sign provided by the source.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry. NaN"
+        },
+        {
+          "name": "ot_gwas_standard_errors",
+          "type": "list of doubles",
+          "provenance": "extracted",
+          "description": "GWAS standard errors.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry. NaN"
+        },
+        {
+          "name": "ot_gwas_effect_allele_freqs",
+          "type": "list of doubles",
+          "provenance": "extracted",
+          "description": "Effect allele frequencies from the source.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry. NaN"
+        },
+        {
+          "name": "ot_gwas_lead_pips",
+          "type": "list of doubles",
+          "provenance": "extracted",
+          "description": "Posterior probability of the lead variant within the credible set's locus.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry. NaN"
+        },
+        {
+          "name": "ot_gwas_finemapping_methods",
+          "type": "list of strings",
+          "provenance": "extracted",
+          "description": "Fine-mapping methods reported for the credible sets.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry. \"NA\""
+        },
+        {
+          "name": "ot_gwas_credible_set_confidence",
+          "type": "list of strings",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry. \"NA\""
+        },
+        {
+          "name": "ot_gwas_log10_bfs",
+          "type": "list of doubles",
+          "provenance": "extracted",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry. NaN"
+        },
+        {
+          "name": "ot_gwas_sample_sizes",
+          "type": "list of doubles",
+          "provenance": "extracted",
+          "description": "Study sample sizes.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry. NaN"
+        },
+        {
+          "name": "ot_gwas_ancestries",
+          "type": "list of strings (|)",
+          "provenance": "extracted",
+          "description": "Ancestries of the study discovery samples.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry. Fields that are themselves multi-valued within one entry are stored as one string with values joined by \"|\", in source order. \"NA\""
+        },
+        {
+          "name": "ot_gwas_pubmed_ids",
+          "type": "list of strings",
+          "provenance": "extracted",
+          "description": "Supporting PubMed identifiers.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry. \"NA\""
+        },
+        {
+          "name": "ot_gwas_ot_disease_ids",
+          "type": "list of strings",
+          "provenance": "extracted",
+          "description": "Open Targets disease identifier for each supporting entry, expressed as a CURIE.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_gwas_disease_mappings",
+          "type": "list of strings",
+          "provenance": "extracted",
+          "description": "Disease correspondence category: direct_mondo, direct_doid, via_OMIM, via_Orphanet, via_MESH, or via_UMLS.",
+          "notes": "All lists of one source have the same length and index *i* refers to the same entry."
+        },
+        {
+          "name": "ot_gwas_n_studies",
+          "type": "integer",
+          "provenance": "extracted",
+          "description": "Number of distinct GWAS study identifiers.",
+          "notes": "0 when GWAS does not support the edge"
+        }
+      ]
+    }
+  ]
+}

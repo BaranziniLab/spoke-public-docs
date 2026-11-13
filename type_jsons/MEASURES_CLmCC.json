@@ -1,0 +1,30 @@
+{
+  "type": "MEASURES_CLmCC",
+  "kind": "edge",
+  "endpoints": {
+    "from": "ClinicalLab",
+    "to": "CellularComponent",
+    "direction": "directed"
+  },
+  "description": "Links a clinical laboratory test to the cellular component its analyte represents, such as a macromolecular complex or subcellular structure. Curated links also cover antibody tests whose antigen is a cellular component. The relationship describes the LOINC Component axis, rather than the specimen in which a measurement is taken.",
+  "sources": [
+    "LOINC"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list",
+      "description": "Data sources contributing this relationship; contains LOINC.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "LOINC",
+      "scope": "Laboratory tests with native CLASSTYPE = 1 and status ACTIVE, TRIAL, or DISCOURAGED; DEPRECATED codes are excluded. Cellular-component coverage is limited to components represented in SPOKE, a subset of the GO cellular-component branch. Provocation agents are excluded from analyte relationships.",
+      "description": "LOINC (Logical Observation Identifiers Names and Codes) supplies the laboratory-test definitions. Cellular-component analytes are identified through UMLS Cell Component (T026) annotations and identifier equivalence, with additional curated LLM-assisted mappings for unresolved parts. Antibody-to-cellular-component antigen relationships rely exclusively on those curated mappings.",
+      "properties": []
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "type": "MEASURES_CLmCT",
+  "kind": "edge",
+  "endpoints": {
+    "from": "ClinicalLab",
+    "to": "CellType",
+    "direction": "directed"
+  },
+  "description": "Connects a laboratory test to the cell type that is its analyte, as represented by the LOINC Component axis. Examples include cell-count analytes such as erythrocytes and cell morphology findings such as neutrophil toxic granulation.",
+  "sources": [
+    "LOINC"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list",
+      "description": "Data sources contributing this relationship; contains LOINC.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "LOINC",
+      "scope": "Laboratory codes (CLASSTYPE = 1) with ACTIVE, TRIAL, or DISCOURAGED status; DEPRECATED codes are excluded. Targets are CellType entities represented in SPOKE.",
+      "description": "Describes the cell type being measured or characterized, rather than the specimen in which a measurement is taken. Includes curated relationships for erythrocyte mean cell volume and hypochromia, and neutrophil toxic granulation. Provocation agents are excluded from analyte relationships.",
+      "properties": []
+    }
+  ]
+}

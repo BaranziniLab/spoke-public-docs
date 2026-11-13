@@ -1,0 +1,50 @@
+{
+  "type": "PARTICIPATES_PpR",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Protein",
+    "to": "Reaction",
+    "direction": "directed"
+  },
+  "description": "A protein takes part in a curated Reactome biochemical reaction as an input, an output, or both. The edge does not distinguish these roles; catalysts, regulators and active units are excluded.",
+  "sources": [
+    "Reactome"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources supporting the relationship; Reactome for this type.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "version",
+      "type": "integer",
+      "description": "Reactome release number in which this relationship was last seen.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was last created or updated in SPOKE.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Reactome",
+      "scope": "Biochemical reactions in the human BioPAX export within Signaling Pathways (R-HSA-162582), Immune System (R-HSA-168256), and Diseases of signal transduction by growth factor receptors and second messengers (R-HSA-5663202), including their descendant pathways. Only proteins with a UniProt reference matching an existing SPOKE Protein are represented. Protein sets are not expanded into member participation.",
+      "description": "Protein participation is represented at the base UniProt accession: isoforms, modification states and cellular compartments share the same Protein endpoint. A protein appearing on both reaction sides has a single participation relationship. Isoform accessions are retained when supplied by Reactome.",
+      "properties": [
+        {
+          "name": "reactome_isoform_accessions",
+          "type": "list of strings",
+          "description": "UniProt isoform accessions of the protein instances participating in this reaction.",
+          "notes": "`UniProtKB:`-prefixed, de-duplicated, e.g. `[\"UniProtKB:P15692-4\"]`; union across all slots resolving to the edge (both reaction sides, multiple components). Omitted when every contributing instance referenced a base accession.",
+          "provenance": "extracted"
+        }
+      ]
+    }
+  ]
+}

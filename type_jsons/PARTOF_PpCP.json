@@ -1,0 +1,60 @@
+{
+  "type": "PARTOF_PpCP",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Protein",
+    "to": "Complex",
+    "direction": "directed"
+  },
+  "description": "Links a protein subunit to the complex of which it is a member. Protein endpoints represent base UniProt accessions; source-specific isoform or mature-chain accessions are retained in edge properties. Complexes with the same set of base protein members share a Complex node, including stoichiometric or assembly variants.",
+  "sources": [
+    "CORUM",
+    "IntAct"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Sources supporting the protein\u2013complex membership.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the edge was created or last changed.",
+      "provenance": "extracted",
+      "notes": "ISO 8601"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "CORUM",
+      "scope": "Experimentally characterized human protein complexes, including single-subunit complexes. Only complexes whose base protein members are all represented in SPOKE are included.",
+      "description": "Provides membership relationships from the CORUM catalog of mammalian protein complexes.",
+      "properties": [
+        {
+          "name": "corum_subunit_accessions",
+          "type": "list of strings",
+          "description": "Original isoform or mature-chain accessions identifying this subunit in CORUM; absent when the source gives a plain base accession.",
+          "provenance": "extracted",
+          "notes": "UniProtKB:-prefixed; de-duplicated."
+        }
+      ]
+    },
+    {
+      "source": "IntAct",
+      "scope": "Curated Complex Portal complexes across species represented by Organism nodes in SPOKE; the ML-predicted complexes file is excluded. Membership represents protein participants only, excluding chemical, nested-complex, RNAcentral, and IntAct-internal identifiers. Complexes containing alternative-accession groups, no protein members, or any protein member absent from SPOKE are excluded.",
+      "description": "Provides protein membership from IntAct Complex Portal. Stoichiometry is not stored.",
+      "properties": [
+        {
+          "name": "intact_subunit_accessions",
+          "type": "list of strings",
+          "description": "Original isoform or mature-chain accessions identifying this subunit in IntAct, with stoichiometry removed; absent when the source gives a plain base accession.",
+          "provenance": "extracted",
+          "notes": "UniProtKB:-prefixed; de-duplicated."
+        }
+      ]
+    }
+  ]
+}

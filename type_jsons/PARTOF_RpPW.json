@@ -1,0 +1,42 @@
+{
+  "type": "PARTOF_RpPW",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Reaction",
+    "to": "Pathway",
+    "direction": "(Reaction)-[:PARTOF_RpPW]->(Pathway)"
+  },
+  "description": "A biochemical reaction is a directly listed component of a Reactome pathway. Membership is recorded for each pathway that directly contains the reaction; ancestor pathway memberships are not asserted.",
+  "sources": [
+    "Reactome"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing this relationship; Reactome.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "version",
+      "type": "integer",
+      "description": "Reactome release number in which this relationship was last seen.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time this relationship was created or last updated in SPOKE.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Reactome",
+      "scope": "Biochemical reactions directly contained in pathways within the human Reactome BioPAX hierarchies rooted at R-HSA-162582 (Signaling Pathways, historically Signal Transduction), R-HSA-168256 (Immune System), and R-HSA-5663202 (Diseases of signal transduction by growth factor receptors and second messengers), including their descendant pathways. Memberships in out-of-scope pathways are excluded.",
+      "description": "Direct reaction membership follows Reactome pathway components. Degradation and TemplateReaction events are excluded.",
+      "properties": []
+    }
+  ]
+}

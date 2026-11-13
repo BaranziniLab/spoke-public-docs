@@ -1,0 +1,63 @@
+{
+  "type": "CONTAINS_DScC",
+  "kind": "edge",
+  "endpoints": {
+    "from": "DietarySupplement",
+    "to": "Compound",
+    "direction": "directed"
+  },
+  "description": "Links a dietary supplement product reported by NHANES participants to a compound ingredient it contains, with the reported ingredient amounts.",
+  "sources": [
+    "NHANES"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing this relationship.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was last created or updated.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "quantity",
+      "type": "list of numbers",
+      "description": "Reported amount for each contributing ingredient.",
+      "provenance": "extracted",
+      "notes": "One element per contributor"
+    },
+    {
+      "name": "unit",
+      "type": "list of integers",
+      "description": "Raw NHANES amount-unit code for each contributing ingredient; the source documentation provides no label table.",
+      "provenance": "extracted",
+      "notes": "One element per contributor"
+    },
+    {
+      "name": "operator",
+      "type": "list of strings",
+      "description": "Amount comparison operator (=, <, or >) for each contributing ingredient.",
+      "provenance": "extracted",
+      "notes": "One element per contributor"
+    },
+    {
+      "name": "category",
+      "type": "string (controlled vocab)",
+      "description": "Ingredient category: Vitamin, Mineral, Botanical, Other, or Amino acid. When contributing ingredients have different categories, the value is Other.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "NHANES",
+      "scope": "Dietary supplement products and discrete compound ingredients in the NHANES Dietary Supplement Database. Only ingredients mapped to an existing Compound are represented; unresolved ingredients are absent.",
+      "description": "The CDC / National Center for Health Statistics publishes the Product Information (DSPI) and Ingredient Information (DSII) data. Compound assignments use a curated, human-reviewed mapping of ingredient names. Mineral salts and chelates map to the mineral rather than the ligand; class, family, and plural ingredient labels map to the class node. A relationship can represent different named ingredients in the same product that map to the same compound. The quantity, unit, and operator lists are index-aligned: element i refers to the same contributing ingredient in each list. Each list has length 1 when a single ingredient contributes.",
+      "properties": []
+    }
+  ]
+}

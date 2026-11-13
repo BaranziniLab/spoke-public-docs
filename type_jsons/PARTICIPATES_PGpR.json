@@ -1,0 +1,42 @@
+{
+  "type": "PARTICIPATES_PGpR",
+  "kind": "edge",
+  "endpoints": {
+    "from": "PwGroup",
+    "to": "Reaction",
+    "direction": "directed"
+  },
+  "description": "A Reactome pathway group takes part in a biochemical reaction as an input, an output, or both. The edge does not distinguish these roles. Catalysts, regulators and active units do not contribute participation edges.",
+  "sources": [
+    "Reactome"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing this relationship; contains Reactome.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "version",
+      "type": "integer",
+      "description": "Reactome release number in which the relationship was last seen; indicates current as of that release.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was created or last updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Reactome",
+      "scope": "Biochemical reactions in the Signaling Pathways (R-HSA-162582), Immune System (R-HSA-168256), and Diseases of signal transduction by growth factor receptors and second messengers (R-HSA-5663202) hierarchies, including their descendant pathways, from the human BioPAX export. Degradation and template-reaction events are excluded.",
+      "description": "Pathway groups represent Reactome complexes, with separate groups for each cellular compartment and modification state, and Complex-typed sets of alternative complexes. A set participates as a single group; participation is not asserted for its individual members. Each group\u2013reaction pair has one participation edge, including when the group occurs on both sides of the reaction. No stoichiometry is recorded.",
+      "properties": []
+    }
+  ]
+}

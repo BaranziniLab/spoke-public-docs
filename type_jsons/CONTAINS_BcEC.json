@@ -1,0 +1,45 @@
+{
+  "type": "CONTAINS_BcEC",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Blend",
+    "to": "EC",
+    "direction": "directed"
+  },
+  "description": "Connects a dietary supplement blend to an enzyme activity class represented among its non-botanical ingredient components. The target describes enzyme activity rather than a specific protein.",
+  "sources": [
+    "NHANES"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing this relationship.",
+      "notes": "Never null",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Date and time the relationship was created or last updated.",
+      "notes": "Never null",
+      "provenance": "extracted"
+    },
+    {
+      "name": "category",
+      "type": "string (controlled vocabulary)",
+      "description": "NHANES ingredient category: Vitamin, Mineral, Other, or Amino acid. When contributing components of differing categories refer to the same blend and enzyme activity class, the category is Other.",
+      "notes": "scalar; exactly one of \"Vitamin\", \"Mineral\", \"Other\", \"Amino acid\"; Always present",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "NHANES",
+      "scope": "Non-botanical components in the NHANES Dietary Supplement Ingredient File (DSBI): Vitamin, Mineral, Other, and Amino acid categories. Botanical components are excluded. Coverage is limited to components resolved to existing EC nodes and blends present in SPOKE.",
+      "description": "Records containment of enzyme activity classes listed as supplement-blend components, with one relationship per blend and EC pair. Unresolved components are absent from these relationships.",
+      "properties": []
+    }
+  ]
+}

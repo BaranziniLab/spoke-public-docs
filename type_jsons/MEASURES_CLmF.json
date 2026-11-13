@@ -1,0 +1,30 @@
+{
+  "type": "MEASURES_CLmF",
+  "kind": "edge",
+  "endpoints": {
+    "from": "ClinicalLab",
+    "to": "Food",
+    "direction": "directed"
+  },
+  "description": "Connects a LOINC laboratory test to the food its Component axis measures or is about.",
+  "sources": [
+    "LOINC"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list",
+      "description": "Data sources contributing this relationship; contains LOINC.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "LOINC",
+      "scope": "Laboratory tests with CLASSTYPE = 1 and status ACTIVE, TRIAL, or DISCOURAGED; deprecated tests are excluded. Food relationships concern Component-axis analytes and exclude challenge agents, Diet (UMLS C0012155), and bare category generics.",
+      "description": "Food targets use FoodOn identifiers. Coverage depends on BioPortal mappings to foods present in SPOKE, with additional curated LLM-assisted mappings for otherwise unresolved parts.",
+      "properties": []
+    }
+  ]
+}

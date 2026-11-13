@@ -1,0 +1,87 @@
+{
+  "type": "ProvCellType",
+  "kind": "node",
+  "description": "Provisional cell types from brain cell taxonomies, including transcriptomically defined human brain clusters and superclusters from the Siletti et al. atlas and non-neuronal Group-level terms from the HMBA basal ganglia consensus taxonomy.",
+  "sources": [
+    "Allen HMBA Basal Ganglia",
+    "Provisional Cell Ontology"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "string (CURIE)",
+      "description": "Provisional ontology identifier in PCL:NNNNNNN form.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Cell type name supplied by the source ontology.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "definition",
+      "type": "string",
+      "description": "Source ontology definition of the cell type.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "synonyms",
+      "type": "list of strings",
+      "description": "Exact synonyms supplied by the source ontology.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "symbol",
+      "type": "string",
+      "description": "Cell type symbol supplied by the source ontology.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "marker_set_labels",
+      "type": "list of strings",
+      "description": "Marker gene labels supplied by the source ontology.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "study_description",
+      "type": "string",
+      "description": "Description of the study or atlas release associated with the cell type.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing the cell type.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time of the most recent creation or update of the node.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Allen HMBA Basal Ganglia",
+      "scope": "Provisional, non-neuronal Group-level terms of the HMBA Basal Ganglia Consensus Taxonomy CCN20250428, as represented in the Basal Ganglia Ontology. Higher taxonomy levels and species-specific Clusters are excluded.",
+      "description": "Includes glial, immune and vascular cell groups linked to established Cell Ontology parents. These provisional terms are distinct from the Siletti atlas terms. Marker labels retain the published symbol casing. The study description is \"Allen HMBA Basal Ganglia Release\".",
+      "properties": []
+    },
+    {
+      "source": "Provisional Cell Ontology",
+      "scope": "Fine-grained, transcriptomically defined human brain cell types from Siletti et al. 2023, Science, A transcriptomic atlas of the human brain (10.1126/science.add7046), including leaf clusters and superclusters.",
+      "description": "Provisional cell types are linked to established Cell Ontology parents and provisional parent superclusters. Marker labels retain PCL values verbatim, such as \"SRGN (Hsap)\"; supercluster terms have no marker set or direct expression data.",
+      "properties": [
+        {
+          "name": "study_doi",
+          "type": "string",
+          "description": "DOI of the study cited in the cell type definition, stored without the DOI: prefix.",
+          "provenance": "extracted"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "type": "HAS_PhEC",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Protein",
+    "to": "EC",
+    "direction": "directed"
+  },
+  "description": "Connects a protein to the Enzyme Commission (EC) classification associated with its UniProt annotation. Partial EC annotations can link to a class, subclass, or sub-subclass rather than a full four-part enzyme entry.",
+  "sources": [
+    "UniProt"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Source attribution for the protein EC annotation: UniProt.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the edge was created or updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "UniProt",
+      "scope": "Proteins with non-empty EC annotations, without organism or reviewed/Swiss-Prot restrictions, whose EC classification is represented by an EC node. Links may include obsolete EC entries.",
+      "description": "The EC annotations originate from UniProt. Fully specified annotations identify full enzyme entries; partial annotations identify the corresponding broader EC classification.",
+      "properties": []
+    }
+  ]
+}

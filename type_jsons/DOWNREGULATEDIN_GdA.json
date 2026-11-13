@@ -1,0 +1,67 @@
+{
+  "type": "DOWNREGULATEDIN_GdA",
+  "kind": "edge",
+  "endpoints": {
+    "to": "Anatomy",
+    "direction": "directed",
+    "from": "Gene"
+  },
+  "description": "A gene has lower mean expression in an anatomical structure than in its own pooled cross-anatomy baseline, based on adult human RNA-Seq measurements from Bgee. The difference of means on the log2(TPM + 1) scale is less than −1 and passes a two-sided Welch's t-test with Benjamini–Hochberg adjusted p-value ≤ 0.01 within that anatomy. These are computed regulation relationships; Bgee supplies no differential-expression call. A DOWNREGULATEDIN_GdA edge does not imply the presence or absence of an EXPRESSEDIN_GeiA edge.",
+  "sources": [
+    "Bgee"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources supporting the relationship.",
+      "provenance": "extracted",
+      "notes": "Never null"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was created or updated.",
+      "provenance": "extracted",
+      "notes": "Never null"
+    },
+    {
+      "name": "log2_fold_change",
+      "type": "Float",
+      "description": "Signed difference between the anatomy mean and the same gene’s pooled cross-anatomy mean of per-library log2(TPM + 1). The pooled baseline includes the anatomy being tested; this quantity is a difference of log-scale means, not a ratio of raw TPM means.",
+      "provenance": "extracted",
+      "notes": "Never null; always < −1"
+    },
+    {
+      "name": "t_statistic",
+      "type": "Float",
+      "description": "Welch’s t-statistic comparing the anatomy group with the same gene’s pooled baseline group.",
+      "provenance": "extracted",
+      "notes": "Never null"
+    },
+    {
+      "name": "p_value",
+      "type": "Float",
+      "description": "Raw two-sided Welch’s t-test p-value for the anatomy group versus the pooled baseline group.",
+      "provenance": "extracted",
+      "notes": "Never null"
+    },
+    {
+      "name": "fdr",
+      "type": "Float",
+      "description": "Benjamini–Hochberg adjusted p-value, corrected among genes tested within the same anatomy.",
+      "provenance": "extracted",
+      "notes": "Never null; always ≤ 0.01"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Bgee",
+      "homepage": "https://bgee.org/",
+      "scope": "Human RNA-Seq measurements annotated as call-eligible and to included adult developmental stages, including post-juvenile. Non-adult and life-cycle stages and Cell Ontology entities are excluded from both anatomy groups and pooled baselines. Targets are Uberon anatomical structures. Sex, strain and library type are not filtered.",
+      "description": "Each observation is per-library log2(TPM + 1), retaining zero-TPM observations as zero. The reference pools the same gene’s measurements across all admissibly measured anatomies, including the anatomy being tested. Both the anatomy group and pooled baseline require at least 3 libraries; genes with uniformly zero pooled baselines are excluded. Only pairs passing the magnitude threshold are tested, and multiple-testing correction is within anatomy. Group means, dispersions, sizes and library or experiment identifiers are not stored, so the statistics cannot be independently recomputed from the graph alone.",
+      "properties": []
+    }
+  ]
+}

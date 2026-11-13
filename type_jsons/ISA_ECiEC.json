@@ -1,0 +1,36 @@
+{
+  "type": "ISA_ECiEC",
+  "kind": "edge",
+  "endpoints": {
+    "from": "EC",
+    "to": "EC",
+    "direction": "child \u2192 parent"
+  },
+  "description": "A child EC enzyme classification is a more specific classification within its immediate, more general parent EC classification.",
+  "sources": [
+    "ExplorEnz"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources supporting the hierarchy relationship.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was last created or updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "ExplorEnz",
+      "scope": "The IUBMB Enzyme Commission hierarchy: enzyme entries point to sub-subclasses, sub-subclasses to subclasses, and subclasses to classes. Class-level EC nodes have no parent. A relationship is present only where the immediate parent EC node exists; entries with missing sub-subclass headings lack a parent relationship.",
+      "description": "ExplorEnz supplies the parent\u2013child relationships of the EC classification.",
+      "properties": []
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "type": "EXPRESSEDIN_PeiCT",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Protein",
+    "to": "CellType",
+    "direction": "Protein -> CellType"
+  },
+  "description": "Connects human proteins to cell types with protein expression evidence from normal-tissue antibody staining or normal physiological cell-marker assertions.",
+  "sources": [
+    "HPA",
+    "Cell Taxonomy"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Sources contributing evidence to the relationship.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was last created or updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "HPA",
+      "scope": "Protein staining in normal human tissues, restricted to High, Medium, or Low staining. Negative observations are not represented. Coverage requires mapped proteins and Cell Ontology cell types.",
+      "description": "Human Protein Atlas immunohistochemistry provides the strongest staining observed for a protein and cell type, with antibody reliability and tissue context. The strongest level is retained rather than a consensus; ties use reliability ranked Enhanced > Supported > Approved > Uncertain. Reliability is exposed without filtering. Distinct source cell types can share one Cell Ontology term, so a stronger observation can represent the combined term. A gene-level staining observation can be attributed to multiple distinct protein products and does not distinguish which product was stained. When several genes share one protein accession, reliability describes the selected gene\u2019s antibody.",
+      "properties": [
+        {
+          "name": "level",
+          "type": "string",
+          "description": "Strongest staining observed for the protein and cell type: High > Medium > Low.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "reliability",
+          "type": "string",
+          "description": "Antibody validation tier from the same selected observation as level.",
+          "provenance": "extracted",
+          "notes": "One of: `Enhanced`, `Supported`, `Approved`, `Uncertain`."
+        },
+        {
+          "name": "tissue",
+          "type": "list of strings",
+          "description": "Normalized tissue labels for all observations tied after selection by staining level and reliability.",
+          "provenance": "extracted",
+          "notes": "Never null, never empty."
+        }
+      ]
+    },
+    {
+      "source": "Cell Taxonomy",
+      "scope": "Human marker assertions with Condition exactly Physiology, limited to proteins and Cell Ontology cell types represented in SPOKE. Disease, non-physiological, and unannotated conditions are excluded.",
+      "description": "Cell Taxonomy contributes protein cell-marker evidence. Tissue, condition, marker, cell label, and gene identifier are parallel arrays: values at the same position describe one assertion and must be interpreted together.",
+      "properties": [
+        {
+          "name": "celltaxonomy_tissue",
+          "type": "list of strings",
+          "description": "Tissue context of the Cell Taxonomy marker assertion.",
+          "provenance": "extracted",
+          "notes": "Each index across the arrays represents one de-duplicated assertion tuple: (tissue, condition, marker, cell, gene_id); Use NA in the tuple position if the tissue field is missing"
+        },
+        {
+          "name": "condition",
+          "type": "list of strings",
+          "description": "Physiological condition of the assertion; always Physiology.",
+          "provenance": "extracted",
+          "notes": "Each index across the arrays represents one de-duplicated assertion tuple: (tissue, condition, marker, cell, gene_id)"
+        },
+        {
+          "name": "marker",
+          "type": "list of strings",
+          "description": "Cell Taxonomy marker label for the protein.",
+          "provenance": "extracted",
+          "notes": "Each index across the arrays represents one de-duplicated assertion tuple: (tissue, condition, marker, cell, gene_id)"
+        },
+        {
+          "name": "cell",
+          "type": "list of strings",
+          "description": "Cell Taxonomy cell label.",
+          "provenance": "extracted",
+          "notes": "Each index across the arrays represents one de-duplicated assertion tuple: (tissue, condition, marker, cell, gene_id); Use NA in the tuple position if the label is missing"
+        },
+        {
+          "name": "gene_id",
+          "type": "list of strings",
+          "description": "Gene_ENTREZID associated with the marker assertion, rather than an endpoint.",
+          "provenance": "extracted",
+          "notes": "Each index across the arrays represents one de-duplicated assertion tuple: (tissue, condition, marker, cell, gene_id); Use NA in the tuple position when Gene_ENTREZID is missing"
+        },
+        {
+          "name": "protein_is_a_cellMarker",
+          "type": "boolean",
+          "description": "Indicates that the protein is a cell marker according to Cell Taxonomy; always true for this contribution.",
+          "provenance": "extracted"
+        }
+      ]
+    }
+  ]
+}

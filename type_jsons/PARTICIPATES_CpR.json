@@ -1,0 +1,42 @@
+{
+  "type": "PARTICIPATES_CpR",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Compound",
+    "to": "Reaction",
+    "direction": "directed"
+  },
+  "description": "A compound takes part in a Reactome biochemical reaction as an input, output, or both. The edge does not distinguish these roles; catalysts, regulators and active units do not produce participation edges.",
+  "sources": [
+    "Reactome"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Sources contributing this relationship; includes Reactome.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "version",
+      "type": "integer",
+      "description": "Reactome release number in which the relationship was last seen.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was created or last changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Reactome",
+      "scope": "Biochemical reactions in the human BioPAX export belonging to Signaling Pathways (R-HSA-162582), Immune System (R-HSA-168256), or Diseases of signal transduction by growth factor receptors and second messengers (R-HSA-5663202), including descendant pathways. Degradation and template reactions are excluded.",
+      "description": "Small-molecule inputs and outputs are represented by existing parent-normalised Compound nodes using ChEBI or PubChem Compound identifiers. Unresolved molecules and molecules referenced only by Guide to Pharmacology identifiers are excluded. Sets of alternative small molecules are not expanded and produce no participation edges. Multiple inputs or outputs resolving to the same compound and reaction share one relationship. Input/output role and stoichiometry are not stored.",
+      "properties": []
+    }
+  ]
+}

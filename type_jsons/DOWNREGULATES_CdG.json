@@ -1,0 +1,62 @@
+{
+  "type": "DOWNREGULATES_CdG",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Compound",
+    "to": "Gene",
+    "direction": "directed"
+  },
+  "description": "A small-molecule compound decreases a human gene’s expression in a statistically significant consensus differential-expression profile from LINCS L1000 / Connectivity Map experiments. The edge points from the applied compound to the responding gene.",
+  "sources": [
+    "CMAP/LINCS compound (trt_cp)"
+  ],
+  "common_properties": [
+    {
+      "name": "z_score",
+      "type": "float",
+      "description": "Signed Stouffer consensus z-score for the compound–gene pair; negative values indicate decreased expression.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "p_value",
+      "type": "float",
+      "description": "Bonferroni-corrected two-tailed normal p-value, corrected separately for each compound and target-gene tier; retained pairs pass α = 0.05.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "tier",
+      "type": "string",
+      "description": "Target-gene evidence tier: landmark genes are directly measured; BING genes here are well-inferred, non-landmark genes.",
+      "provenance": "extracted",
+      "notes": "Controlled vocabulary: \"landmark\" or \"BING\""
+    },
+    {
+      "name": "n_signatures",
+      "type": "integer",
+      "description": "Number of pooled expression signatures combined into the compound’s consensus profile; indicates supporting evidence.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Source attribution for the compound perturbation evidence.",
+      "provenance": "extracted",
+      "notes": "Single-element list under this source; list, never scalar"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the edge was last created or updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "CMAP/LINCS compound (trt_cp)",
+      "scope": "Small-molecule treatments (trt_cp) from GEO series GSE92742 (Phase I) and GSE70138 (Phase II), covering directly measured landmark genes and well-inferred non-landmark BING genes. Poorly inferred non-BING genes are excluded. Only compounds and target genes represented in SPOKE are included; compounds lacking chemical identifiers and GSE70138-only compounds are excluded. No touchstone restriction is applied.",
+      "description": "Signatures across cell lines, doses, times, and compound preparations are pooled into one compound consensus profile across both GEO series using correlation-weighted Stouffer integration. Significance is evaluated separately for landmark and non-landmark BING targets. All significant landmark targets are retained; non-landmark BING targets are limited to the top 1,000 per compound by significance. Down-regulation edges have negative consensus z-scores.",
+      "properties": []
+    }
+  ]
+}

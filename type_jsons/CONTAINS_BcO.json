@@ -1,0 +1,43 @@
+{
+  "type": "CONTAINS_BcO",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Blend",
+    "to": "Organism",
+    "direction": "directed"
+  },
+  "description": "Connects a dietary supplement blend to an organism represented by one of its non-botanical ingredient components, including probiotic organisms.",
+  "sources": [
+    "NHANES"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing the relationship; includes NHANES.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Date and time the relationship was created or last updated.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "category",
+      "type": "string (controlled vocabulary)",
+      "description": "NHANES ingredient category: \"Vitamin\", \"Mineral\", \"Other\", or \"Amino acid\". If contributing components have differing categories, the value is \"Other\".",
+      "notes": "scalar",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "NHANES",
+      "scope": "Non-botanical components in the NHANES Dietary Supplement Ingredient File (DSBI), restricted to category codes 1 (Vitamin), 2 (Mineral), 4 (Other), and 5 (Amino acid), that map to an existing Organism node. Botanical components are excluded.",
+      "description": "Organism assignments come from human-reviewed mappings of ingredient names. Components without a resolved organism are absent. Each relationship represents a unique blend\u2013organism pair.",
+      "properties": []
+    }
+  ]
+}

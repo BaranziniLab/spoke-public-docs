@@ -1,0 +1,177 @@
+{
+  "type": "Variant",
+  "kind": "node",
+  "description": "Human genetic variants from Open Targets. A node can represent multiple alleles sharing an rsID; allele-specific values are aligned with ot_variant_ids, and association evidence identifies its specific allele. Variants without an rsID use GRCh38 position and alleles as their identifier.",
+  "sources": [
+    "OpenTargets"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "string (CURIE)",
+      "description": "dbSNP rsID, using the numerically lowest rsID when several are present; otherwise GRCh38:<CHR>_<POS>_<REF>_<ALT>.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "rsID without the dbSNP prefix, or the Open Targets variant ID when no rsID is available.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "ot_variant_ids",
+      "type": "list of strings",
+      "description": "Open Targets allele identifiers for all variant records sharing this node\u2019s identifier.",
+      "provenance": "extracted",
+      "notes": "variantId of every record sharing the key, sorted"
+    },
+    {
+      "name": "chromosome",
+      "type": "string",
+      "description": "Chromosome of the variant.",
+      "provenance": "extracted",
+      "notes": "[assumption] identical for all alleles of a node"
+    },
+    {
+      "name": "position",
+      "type": "integer",
+      "description": "Genomic position on GRCh38.",
+      "provenance": "extracted",
+      "notes": "[assumption] identical for all alleles of a node"
+    },
+    {
+      "name": "ref_alleles",
+      "type": "list of strings",
+      "description": "Reference alleles.",
+      "provenance": "extracted",
+      "notes": "parallel to ot_variant_ids"
+    },
+    {
+      "name": "alt_alleles",
+      "type": "list of strings",
+      "description": "Alternate alleles.",
+      "provenance": "extracted",
+      "notes": "parallel to ot_variant_ids"
+    },
+    {
+      "name": "hgvs",
+      "type": "list of strings",
+      "description": "HGVS notation for each allele.",
+      "provenance": "extracted",
+      "notes": "parallel to ot_variant_ids; \"NA\" for an allele without value"
+    },
+    {
+      "name": "most_severe_consequence",
+      "type": "list of strings",
+      "description": "Sequence Ontology label for the most severe predicted consequence of each allele.",
+      "provenance": "extracted",
+      "notes": "parallel to ot_variant_ids; \"NA\" for an allele without value"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing to the node; Open Targets uses OpenTargets.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the node was created or its properties last changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "OpenTargets",
+      "scope": "Variants linked to a SPOKE Disease through ClinVar assertions or GWAS lead variants, to a SPOKE Gene through molecular QTL lead variants, or to a SPOKE Compound through genotype-level pharmacogenomic annotations. Only evidence with a corresponding endpoint in SPOKE supports inclusion; there are no isolated Variant nodes. Haplotype-only pharmacogenomic records are excluded.",
+      "description": "Open Targets supplies genomic coordinates, alleles, HGVS notation, predicted consequences, gnomAD population allele frequencies and cross-references. Multiple allele records sharing the node identifier contribute their allele-specific annotations. GWAS and QTL evidence uses lead variants only, without a p-value threshold.",
+      "properties": [
+        {
+          "name": "gnomad_af_EUR_NFE",
+          "type": "list of doubles",
+          "description": "gnomAD allele frequencies for non-Finnish Europeans (nfe_adj).",
+          "provenance": "extracted",
+          "notes": "parallel to ot_variant_ids; NaN for an allele without value; property omitted if no allele of the node has frequencies"
+        },
+        {
+          "name": "gnomad_af_EUR_FIN",
+          "type": "list of doubles",
+          "description": "gnomAD allele frequencies for Finnish Europeans (fin_adj).",
+          "provenance": "extracted",
+          "notes": "parallel to ot_variant_ids; NaN for an allele without value; property omitted if no allele of the node has frequencies"
+        },
+        {
+          "name": "gnomad_af_AFR",
+          "type": "list of doubles",
+          "description": "gnomAD allele frequencies for population afr_adj.",
+          "provenance": "extracted",
+          "notes": "parallel to ot_variant_ids; NaN for an allele without value; property omitted if no allele of the node has frequencies"
+        },
+        {
+          "name": "gnomad_af_AMR",
+          "type": "list of doubles",
+          "description": "gnomAD allele frequencies for population amr_adj.",
+          "provenance": "extracted",
+          "notes": "parallel to ot_variant_ids; NaN for an allele without value; property omitted if no allele of the node has frequencies"
+        },
+        {
+          "name": "gnomad_af_ASJ",
+          "type": "list of doubles",
+          "description": "gnomAD allele frequencies for population asj_adj.",
+          "provenance": "extracted",
+          "notes": "parallel to ot_variant_ids; NaN for an allele without value; property omitted if no allele of the node has frequencies"
+        },
+        {
+          "name": "gnomad_af_EAS",
+          "type": "list of doubles",
+          "description": "gnomAD allele frequencies for population eas_adj.",
+          "provenance": "extracted",
+          "notes": "parallel to ot_variant_ids; NaN for an allele without value; property omitted if no allele of the node has frequencies"
+        },
+        {
+          "name": "gnomad_af_MID",
+          "type": "list of doubles",
+          "description": "gnomAD allele frequencies for population mid_adj.",
+          "provenance": "extracted",
+          "notes": "parallel to ot_variant_ids; NaN for an allele without value; property omitted if no allele of the node has frequencies"
+        },
+        {
+          "name": "gnomad_af_SAS",
+          "type": "list of doubles",
+          "description": "gnomAD allele frequencies for population sas_adj.",
+          "provenance": "extracted",
+          "notes": "parallel to ot_variant_ids; NaN for an allele without value; property omitted if no allele of the node has frequencies"
+        },
+        {
+          "name": "gnomad_af_AMI",
+          "type": "list of doubles",
+          "description": "gnomAD allele frequencies for population ami_adj.",
+          "provenance": "extracted",
+          "notes": "parallel to ot_variant_ids; NaN for an allele without value; property omitted if no allele of the node has frequencies"
+        },
+        {
+          "name": "gnomad_af_REMAINING",
+          "type": "list of doubles",
+          "description": "gnomAD allele frequencies for population remaining_adj.",
+          "provenance": "extracted",
+          "notes": "parallel to ot_variant_ids; NaN for an allele without value; property omitted if no allele of the node has frequencies"
+        },
+        {
+          "name": "aliases",
+          "type": "list of strings",
+          "description": "Other rsIDs associated with the node\u2019s allele records, in dbSNP:rs<N> form.",
+          "provenance": "extracted",
+          "notes": "sorted, distinct; property omitted if none"
+        },
+        {
+          "name": "xrefs",
+          "type": "list of strings",
+          "description": "Cross-references to gnomAD, ClinVar VCV records and OMIM variants. Ensembl Variation and ProtVar references are excluded.",
+          "provenance": "extracted",
+          "notes": "sorted, distinct; property omitted if empty"
+        }
+      ]
+    }
+  ]
+}

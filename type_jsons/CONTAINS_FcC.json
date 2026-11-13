@@ -1,0 +1,84 @@
+{
+  "type": "CONTAINS_FcC",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Food",
+    "to": "Compound",
+    "direction": "directed"
+  },
+  "description": "A food contains a chemical compound. Source-specific properties describe measured amounts where available; a relationship can also indicate presence without a usable quantity.",
+  "sources": [
+    "AFCD",
+    "FooDB"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources supporting the food\u2013compound relationship.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was last created or updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "AFCD",
+      "scope": "Australian Food Composition Database Release 3 nutrient profiles, restricted to individual chemical substances measured as absolute mass per 100 g of food. Only food\u2013substance pairs represented by existing Food and Compound nodes are included. Aggregate, derived, equivalent and relative-basis nutrient columns are excluded; the per-100 mL liquids table is excluded.",
+      "description": "Amounts are reported per 100 g of food. Several source foods can correspond to the same Food node; their measurements remain separate, with each quantity aligned to its unit.",
+      "properties": [
+        {
+          "name": "afcd_quantity",
+          "type": "list of numbers",
+          "description": "Reported nutrient amounts per 100 g of food.",
+          "provenance": "extracted",
+          "notes": "afcd_quantity and afcd_unit are index-aligned"
+        },
+        {
+          "name": "afcd_unit",
+          "type": "list of strings",
+          "description": "Unit of each corresponding AFCD amount: g, mg or ug.",
+          "provenance": "extracted",
+          "notes": "afcd_quantity and afcd_unit are index-aligned"
+        }
+      ]
+    },
+    {
+      "source": "FooDB",
+      "homepage": "https://foodb.ca",
+      "scope": "Food-composition records from the 2020-04-07 release with citation types DATABASE, ARTICLE, EXPERIMENTAL or TEXTBOOK. PREDICTED and UNKNOWN records and aggregate substances are excluded. Only pairs represented by existing Food and Compound nodes are included.",
+      "description": "FooDB combines food-composition measurements from nutrient and phytochemistry databases, primary literature and laboratory work. Quantity properties summarize original reported point values in the most frequent eligible unit, without conversion. Range-only, equivalent-unit, activity-unit and unitless measurements are excluded from summaries. Unit-frequency ties use mg/100 g > umol/g > mg/L > uM, followed by lexicographic order for unlisted units. Preparation and plant-part distinctions and individual measurements are not preserved. Pairs without usable measurements indicate presence and have no FooDB quantity properties. Evidence tiers and citing databases are not recorded on individual relationships.",
+      "properties": [
+        {
+          "name": "foodb_quantity_min",
+          "type": "number",
+          "description": "Minimum of the eligible point measurements in the selected unit.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "foodb_quantity_max",
+          "type": "number",
+          "description": "Maximum of the eligible point measurements in the selected unit.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "foodb_quantity_median",
+          "type": "number",
+          "description": "Median of the eligible point measurements in the selected unit.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "foodb_unit",
+          "type": "string (single value, not a list)",
+          "description": "Most frequent eligible unit used for the FooDB quantity summary.",
+          "provenance": "extracted"
+        }
+      ]
+    }
+  ]
+}

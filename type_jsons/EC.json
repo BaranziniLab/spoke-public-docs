@@ -1,0 +1,110 @@
+{
+  "type": "EC",
+  "kind": "node",
+  "description": "Enzyme Commission (EC) classifications from the IUBMB Enzyme Nomenclature, spanning class, subclass, sub-subclass, and full four-part enzyme entries. Transferred and deleted entries remain represented with an obsolete flag.",
+  "sources": [
+    "ExplorEnz"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "string",
+      "description": "EC number in numeric-prefix form: class 1, subclass 1.1, sub-subclass 1.1.1, or full entry 1.1.1.1; without a CURIE prefix or dash padding.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "class",
+      "type": "integer",
+      "description": "Class coordinate in the EC hierarchy, present at all levels.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing the EC classification.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the EC record was created or last updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "ExplorEnz",
+      "scope": "All four EC hierarchy levels, including transferred and deleted enzyme entries. Intermediate classifications are limited to headings present in ExplorEnz; some full enzyme entries therefore lack an immediate parent classification. Literature references are not included.",
+      "description": "ExplorEnz supplies the IUBMB enzyme classification, enzyme names, reactions, descriptive text, CAS registry numbers, and hierarchy coordinates. Leaf-only properties are absent on intermediate classifications; names and reactions may also be absent on obsolete entries.",
+      "properties": [
+        {
+          "name": "name",
+          "type": "string",
+          "description": "Accepted enzyme name for a full enzyme entry, or classification heading for an intermediate level.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "sys_name",
+          "type": "string",
+          "description": "Systematic enzyme name; available only on full enzyme entries.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "synonyms",
+          "type": "list of strings",
+          "description": "Other names for the enzyme; available only on full enzyme entries.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "reaction",
+          "type": "list of strings",
+          "description": "Reactions catalyzed by the enzyme; available only on full enzyme entries.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "description": "Descriptive comments for a full enzyme entry, or a note about an intermediate classification.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "cas_num",
+          "type": "list of strings",
+          "description": "CAS registry numbers associated with the enzyme; available only on full enzyme entries.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "glossary",
+          "type": "string",
+          "description": "Glossary text associated with a full enzyme entry.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "subclass",
+          "type": "integer",
+          "description": "Subclass coordinate in the EC hierarchy; present at subclass, sub-subclass, and full-entry levels.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "subsubclass",
+          "type": "integer",
+          "description": "Sub-subclass coordinate in the EC hierarchy; present at sub-subclass and full-entry levels.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "serial",
+          "type": "integer",
+          "description": "Serial coordinate of a full four-part EC entry; absent on intermediate classifications.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "obsolete",
+          "type": "boolean",
+          "description": "True for transferred or deleted enzyme entries. Absent on active entries; does not distinguish transferred from deleted.",
+          "provenance": "extracted"
+        }
+      ]
+    }
+  ]
+}

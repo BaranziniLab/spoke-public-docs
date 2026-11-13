@@ -1,0 +1,42 @@
+{
+  "type": "PARTOF_CpPG",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Compound",
+    "to": "PwGroup",
+    "direction": "directed"
+  },
+  "description": "A compound is a physical component of a Reactome macromolecular complex represented by a PwGroup. Membership reflects directly stated complex components; alternative members of entity sets are not expanded into membership edges.",
+  "sources": [
+    "Reactome"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing this relationship; Reactome for this type.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "version",
+      "type": "integer",
+      "description": "Reactome release number in which this relationship was last seen.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time this relationship was created or last updated in SPOKE.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Reactome",
+      "scope": "Human BioPAX data within Signaling Pathways (R-HSA-162582), Immune System (R-HSA-168256), and Diseases of signal transduction by growth factor receptors and second messengers (R-HSA-5663202), including descendant pathways. Complexes include those reached from event participants, catalysts, regulators and active units, and recursively through complex components and entity sets.",
+      "description": "Small-molecule components are linked to existing SPOKE compounds using ChEBI or PubChem Compound identifiers, normalized to the parent compound. Unresolved components and ligands with only Guide to Pharmacology identifiers are absent. Distinct compartment and modification forms of complexes remain separate PwGroups. Set members are never linked to their set, and stoichiometry is not represented.",
+      "properties": []
+    }
+  ]
+}

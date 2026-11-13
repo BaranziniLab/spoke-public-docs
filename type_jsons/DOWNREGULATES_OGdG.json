@@ -1,0 +1,62 @@
+{
+  "type": "DOWNREGULATES_OGdG",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Gene",
+    "to": "Gene",
+    "direction": "directed"
+  },
+  "description": "Indicates statistically significant decreased expression of a responding human gene following wild-type overexpression of the source gene, based on a consensus of LINCS L1000 expression signatures.",
+  "sources": [
+    "CMAP/LINCS overexpression (trt_oe)"
+  ],
+  "common_properties": [
+    {
+      "name": "z_score",
+      "type": "float",
+      "description": "Signed Stouffer consensus z-score for the overexpressed gene and responding gene; negative values indicate decreased expression.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "p_value",
+      "type": "float",
+      "description": "Bonferroni-corrected two-tailed normal p-value, corrected separately for each overexpressed gene and target tier; retained relationships pass significance at α = 0.05.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "tier",
+      "type": "string",
+      "description": "Target gene evidence tier: landmark genes are directly measured; BING denotes well-inferred genes excluding landmarks.",
+      "provenance": "extracted",
+      "notes": "Controlled vocabulary: \"landmark\" or \"BING\""
+    },
+    {
+      "name": "n_signatures",
+      "type": "integer",
+      "description": "Number of pooled expression signatures supporting the overexpressed gene’s consensus profile.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources supporting the relationship.",
+      "provenance": "extracted",
+      "notes": "Single-element list under this source; list, never scalar"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was last created or updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "CMAP/LINCS overexpression (trt_oe)",
+      "scope": "LINCS L1000 / Connectivity Map GEO series GSE92742 (Phase I) and GSE70138 (Phase II). Wild-type overexpression only; mutation and fusion constructs are excluded. Target genes are directly measured landmarks or well-inferred non-landmark BING genes; poorly inferred non-BING genes are excluded. Both endpoint genes must be present in SPOKE. No touchstone restriction is applied.",
+      "description": "Signatures from both series and all wild-type constructs of the same gene are pooled across cell lines, doses, and times into one correlation-weighted Stouffer consensus. Negative consensus z-scores passing Bonferroni correction within each source gene and target tier produce these relationships. Significant landmark targets are uncapped; non-landmark BING targets are limited to the top 1,000 by significance per source gene. Self-relationships are retained and treated as autoregulation.",
+      "properties": []
+    }
+  ]
+}

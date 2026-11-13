@@ -1,0 +1,66 @@
+{
+  "type": "UPREGULATEDIN_GuA",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Gene",
+    "to": "Anatomy",
+    "direction": "directed"
+  },
+  "description": "A gene's expression in an anatomical structure is elevated relative to its own pooled cross-anatomy baseline, with a difference greater than 1 between means of log2(TPM + 1) and a per-anatomy adjusted p-value ≤ 0.01. This relationship is computed from Bgee RNA-Seq measurements; Bgee does not supply a differential-expression call. It is independent of EXPRESSEDIN_GeiA, so it does not imply that an expression edge is present.",
+  "sources": [
+    "Bgee"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing this relationship; Bgee supplies this type.",
+      "provenance": "extracted",
+      "notes": "Never null"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time of the most recent creation or update of this relationship.",
+      "provenance": "extracted",
+      "notes": "Never null"
+    },
+    {
+      "name": "log2_fold_change",
+      "type": "Float",
+      "description": "Signed difference of mean log2(TPM + 1) expression: anatomy minus the same gene’s pooled cross-anatomy baseline. Despite the name, this is a difference of log-scale means rather than a ratio of raw TPM means.",
+      "provenance": "extracted",
+      "notes": "Never null; Always > 1 on this edge type"
+    },
+    {
+      "name": "t_statistic",
+      "type": "Float",
+      "description": "Welch’s t statistic comparing the anatomy group with the gene’s pooled baseline group.",
+      "provenance": "extracted",
+      "notes": "Never null"
+    },
+    {
+      "name": "p_value",
+      "type": "Float",
+      "description": "Raw two-sided Welch’s t-test p-value for the anatomy versus pooled-baseline comparison.",
+      "provenance": "extracted",
+      "notes": "Never null"
+    },
+    {
+      "name": "fdr",
+      "type": "Float",
+      "description": "Benjamini–Hochberg adjusted p-value, corrected among genes tested within the same anatomy.",
+      "provenance": "extracted",
+      "notes": "Never null; Always ≤ 0.01 on this edge type"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Bgee",
+      "scope": "Human processed RNA-Seq expression measurements restricted to call-eligible adult anatomical samples, including the post-juvenile stage. Non-adult and unannotated life-cycle stages and Cell Ontology entities are excluded from both anatomy groups and baselines. Sex, strain and library type are not filtered. Coverage is limited to genes and Uberon anatomies represented in the graph.",
+      "description": "Expression is log2(TPM + 1) per library, retaining zero-TPM measurements as zero. Each gene’s baseline pools admissible measurements across all anatomies, including the anatomy being tested. Both the anatomy group and pooled baseline require at least 3 libraries; genes with uniformly zero pooled expression are excluded. Only pairs with an absolute difference of means greater than 1 are tested using a two-sided Welch’s t-test, with Benjamini–Hochberg correction within each anatomy and retention at adjusted p-value ≤ 0.01. This type retains the positive differences. Group sizes, means, dispersions and library or experiment identifiers are not stored, so the statistics cannot be independently recomputed from the graph alone.",
+      "properties": []
+    }
+  ]
+}

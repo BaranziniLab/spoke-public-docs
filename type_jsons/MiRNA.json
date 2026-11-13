@@ -1,0 +1,43 @@
+{
+  "type": "MiRNA",
+  "kind": "node",
+  "description": "A mature human microRNA, the approximately 22-nucleotide strand that regulates target mRNAs. Precursor microRNA genes are represented separately as Gene nodes and linked through ENCODES_GeM relationships. Mature sequences are not stored.",
+  "sources": [
+    "miRDB"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "string (CURIE)",
+      "description": "miRBase mature microRNA accession in the form mirbase.mature:MIMAT followed by seven digits, for example mirbase.mature:MIMAT0000076.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "The miRDB mature microRNA name, for example hsa-miR-21-5p.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing to the microRNA node; miRDB supplies this population.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Date and time when the node or its properties were last created or changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "miRDB",
+      "scope": "Mature human microRNAs appearing in miRDB v6.0 target predictions, with names beginning hsa- and a resolved miRBase mature accession. No prediction-score threshold is applied.",
+      "description": "MicroRNAs retain their identity even when their predicted target genes or precursor genes have no corresponding Gene node in SPOKE.",
+      "properties": []
+    }
+  ]
+}

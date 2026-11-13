@@ -1,0 +1,66 @@
+{
+  "type": "ASSOCIATES_DaO",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Disease",
+    "to": "Organism",
+    "direction": "directed"
+  },
+  "description": "Associations between human diseases and organisms, including observed microbial abundance changes from HMDAD and manually asserted disease\u2013pathogen links from PathoPhenoDB. The relationship does not assert causation; consult sources to distinguish the contributions.",
+  "sources": [
+    "HMDAD",
+    "PathoPhenoDB"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Sources contributing to the disease\u2013organism association.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the association was last created or changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "HMDAD",
+      "homepage": "http://www.cuilab.cn/hmdad",
+      "scope": "Literature-curated human disease\u2013microbe associations at any taxonomic rank, limited to mapped diseases and microbes represented in SPOKE. Associations require an abundance-change direction; pairs with conflicting Increase and Decrease evidence are excluded.",
+      "description": "HMDAD (Human Microbe-Disease Association Database, Cui Lab, Peking University) reports observational, non-causal changes in microbial abundance in disease. Multiple records for a disease\u2013microbe pair are combined, with body sites and publications represented as separate de-duplicated sets; the pairing between individual body sites and publications is not retained.",
+      "properties": [
+        {
+          "name": "hmdad_evidence",
+          "type": "string; controlled values `Increase` / `Decrease`",
+          "description": "Direction of the observed change in microbial abundance in the disease.",
+          "provenance": "extracted",
+          "notes": "Required. Never null on an HMDAD-contributed edge."
+        },
+        {
+          "name": "hmdad_body_sites",
+          "type": "list of strings (de-duplicated)",
+          "description": "Body sites where the abundance change was observed, stored as unnormalized source text.",
+          "provenance": "extracted",
+          "notes": "Optional. If no contributing row has a value, the property is null (absent) \u2014 never stored as an empty list."
+        },
+        {
+          "name": "hmdad_pubmed_ids",
+          "type": "list of strings (de-duplicated; bare numeric PMIDs)",
+          "description": "PubMed articles supporting the HMDAD observations.",
+          "provenance": "extracted",
+          "notes": "Optional. If no contributing row has a value, the property is null (absent) \u2014 never stored as an empty list."
+        }
+      ]
+    },
+    {
+      "source": "PathoPhenoDB",
+      "scope": "Manually asserted disease\u2013pathogen associations to existing Disease and NCBI Taxonomy Organism nodes, with no taxonomic-rank restriction. Automatic-only associations and associations without evidence codes are excluded. Disease\u2013phenotype, treatment and antibiotic-resistance data are outside this contribution.",
+      "description": "A PathoPhenoDB entry in sources indicates that the organism is manually asserted to be a pathogen in the disease. Qualifying records carry ECO:0000218 (manual assertion), including records that also carry ECO:0000203 (automatic assertion). Evidence codes are not stored as edge properties.",
+      "properties": []
+    }
+  ]
+}

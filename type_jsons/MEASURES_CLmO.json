@@ -1,0 +1,30 @@
+{
+  "type": "MEASURES_CLmO",
+  "kind": "edge",
+  "endpoints": {
+    "from": "ClinicalLab",
+    "to": "Organism",
+    "direction": "directed"
+  },
+  "description": "Connects a LOINC laboratory test to the organism its Component-axis measurement measures or is about.",
+  "sources": [
+    "LOINC"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list",
+      "description": "Data sources contributing the relationship; contains LOINC.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "LOINC",
+      "scope": "Laboratory codes with CLASSTYPE = 1 and status ACTIVE, TRIAL, or DISCOURAGED; DEPRECATED codes are excluded. Targets are NCBI Taxonomy organisms present in SPOKE; BV-BRC organisms and the generic Viruses (NCBITaxon:10239), Bacteria (NCBITaxon:2), and Fungi (NCBITaxon:4751) targets are excluded.",
+      "description": "The organism is the analyte-related target, rather than the specimen in which a measurement is taken. Where an analyte part has candidate taxa related by ancestry, only the most specific taxa are retained; candidates without an is-a relationship may coexist. Provocation agents are excluded from analyte relationships. Pathogen nucleic-acid tests measure RNA or DNA and are represented as Compound relationships instead.",
+      "properties": []
+    }
+  ]
+}

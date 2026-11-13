@@ -1,0 +1,51 @@
+{
+  "type": "IN_CLINICAL_TRIALS_FOR_CictD",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Compound",
+    "to": "Disease",
+    "direction": "directed"
+  },
+  "description": "Links a compound to a disease for which it is reported in clinical trials by the Clinical Trials Knowledge Provider (CTKP).",
+  "sources": [
+    "CTKP"
+  ],
+  "common_properties": [
+    {
+      "name": "ctkp_purpose",
+      "type": "list of strings",
+      "description": "Primary purposes of supporting trials, restricted to BASIC_SCIENCE, TREATMENT, PREVENTION, SCREENING and DIAGNOSTIC. Purposes are combined across the clinical-trial associations for the compound–disease pair.",
+      "notes": "sorted, de-duplicated; controlled vocab V; Never empty (empty ⇒ edge not emitted)",
+      "provenance": "extracted"
+    },
+    {
+      "name": "ctkp_phase",
+      "type": "string",
+      "description": "Most advanced research phase reported across the clinical-trial associations for the compound–disease pair.",
+      "notes": "pre_clinical_research_phase < clinical_trial_phase_1 < clinical_trial_phase_1_to_2 < clinical_trial_phase_2 < clinical_trial_phase_2_to_3 < clinical_trial_phase_3 < clinical_trial_phase_4; not_provided only when sole value",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing the relationship; CTKP is the sole current source.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was last created or updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "CTKP",
+      "homepage": "https://github.com/multiomicsKP/clinical_trials_kp",
+      "scope": "Compound–disease relationships with at least one supporting trial whose primary purpose is BASIC_SCIENCE, TREATMENT, PREVENTION, SCREENING or DIAGNOSTIC. Phenotype conditions, protein interventions and cell therapies are excluded. Only relationships linked to existing Compound and Disease nodes are represented. Compound coverage is restricted to interventions identified through CHEBI, CHEMBL.COMPOUND, PUBCHEM.COMPOUND, DRUGBANK or HMDB. Conditions outside the Disease model scope or without a matching Disease node are excluded.",
+      "description": "CTKP derives these relationships from AACT / ClinicalTrials.gov via CTTI. A compound–disease pair is represented here only when CTKP has no approved-use treats relationship that meets the trial-purpose restriction. This distinction uses CTKP evidence alone: a TREATS_CtD relationship from another source may coexist with this relationship.",
+      "properties": []
+    }
+  ]
+}

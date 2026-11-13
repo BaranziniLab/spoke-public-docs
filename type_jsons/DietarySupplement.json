@@ -1,0 +1,104 @@
+{
+  "type": "DietarySupplement",
+  "kind": "node",
+  "description": "Dietary supplement products reported by NHANES participants, with product classifications, information sources, serving sizes, and ingredient-category counts.",
+  "sources": [
+    "NHANES"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "string (CURIE)",
+      "description": "NHANES current product identifier in the form nhanes:{int(DSDPID)}.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Product name, title-cased.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "serving_quantity",
+      "type": "number",
+      "description": "Serving quantity; the serving unit is provided separately when available.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "vitamins_count",
+      "type": "integer",
+      "description": "Number of vitamin ingredients in the product; zero when none.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "minerals_count",
+      "type": "integer",
+      "description": "Number of mineral ingredients in the product; zero when none.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "amino_acids_count",
+      "type": "integer",
+      "description": "Number of amino-acid ingredients in the product; zero when none.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "botanicals_count",
+      "type": "integer",
+      "description": "Number of botanical ingredients in the product; zero when none.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "other_count",
+      "type": "integer",
+      "description": "Number of other ingredients in the product; zero when none.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing the product record; includes NHANES.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the product record was created or last changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "NHANES",
+      "scope": "Products in the cumulative NHANES Dietary Supplement Database Product Information file, including Default products.",
+      "description": "Published by the CDC / National Center for Health Statistics. Product classifications and serving units are stored as human-readable labels. Each coded property is absent when its value is missing, unmapped, or labeled Missing or Unknown; serving quantity remains available even when serving unit is absent.",
+      "properties": [
+        {
+          "name": "product_type",
+          "type": "string (label)",
+          "description": "Product type: Regular, Generic, or Default. Default products are generic/inferred entries for participant reports with insufficient detail to identify a specific labeled product.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "supplement_type",
+          "type": "string (label)",
+          "description": "Supplement type: Infant/pediatric, Prenatal, Mature, or Standard.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "information_source",
+          "type": "string (label)",
+          "description": "Source of product information: Directly from manufacturer; Directly from distributor; Inferred from supplement name; Physician's Desk Reference; Product Catalog; Internet Listing; Supplement label or carton; Supplement from same manufacturer; or Dietary Supplement Label Database.",
+          "provenance": "extracted"
+        },
+        {
+          "name": "serving_unit",
+          "type": "string (label)",
+          "description": "Unit of the serving quantity: Caplet, Capsule, Dropper, Drop, Fluid Ounce, Gel Cap, Lozenge, Milliliter, Package/Packet, Pill, Tablespoon/Powder, Softgel, Tablespoon/Liquid, Tablet, Teaspoon/Liquid, Wafer, Ounce/Powder, Spray/Squirt, Scoop/Powder, Cup/Powder, Chew, Vegicap, Can/Liquid, Capful, Gumball, Gram/Powder, Teaspoon/Powder, Cup/Liquid, Gram/Liquid, Drop/Lozenge, Strip, or Bottle/Liquid.",
+          "provenance": "extracted"
+        }
+      ]
+    }
+  ]
+}

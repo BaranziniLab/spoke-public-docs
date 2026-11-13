@@ -1,0 +1,36 @@
+{
+  "type": "CLEAVESTO_PctP",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Protein",
+    "to": "Protein",
+    "direction": "directed"
+  },
+  "description": "A precursor protein is cleaved to produce a chain protein. Precursors include polyproteins, proenzymes, and prohormones.",
+  "sources": [
+    "UniProt"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Sources contributing the relationship; UniProt is the source of these precursor\u2013chain relationships.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was created or its source attribution last changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "UniProt",
+      "scope": "Cleavage products represented by UniProt chain annotations, including polyproteins, prohormones, and two-chain proenzymes, without filtering by organism or review status. Full-span chain annotations are included. Relationships can involve obsolete proteins; coverage of pairs with both proteins obsolete is history-dependent.",
+      "description": "Each relationship connects the top-level UniProt precursor entry to a chain product. Intermediate precursor-to-product relationships are not inferred, even when a product biologically derives from an intermediate precursor. Chain positions are available on the chain Protein node rather than the relationship.",
+      "properties": []
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "type": "INTERACTS_PDiPD",
+  "kind": "edge",
+  "endpoints": {
+    "from": "ProteinDomain",
+    "to": "ProteinDomain",
+    "direction": "undirected"
+  },
+  "description": "Physical interactions between Pfam protein-domain families, evidenced by domain\u2013domain interfaces observed in Protein Data Bank crystal structures. Interactions between members of the same domain family are represented as self-loops.",
+  "sources": [
+    "ProtCID"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Sources supporting the domain-family interaction.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was last created or updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "ProtCID",
+      "homepage": "https://dunbrack2.fccc.edu/ProtCiD/",
+      "scope": "Interfaces between different asymmetric-unit chains that appear in at least one PISA-validated biological assembly (NumPisaBAs > 0), with different protein identifiers on the two sides. No symmetry-operator restriction applies. Both domain families must exist as ProteinDomain nodes in SPOKE; the specific proteins need not exist in SPOKE.",
+      "description": "ProtCID (Protein Common Interface Database; Dunbrack lab) summarizes interfaces in PDB crystal structures by Pfam domain family. Each relationship records the existence of an interaction for an unordered domain-family pair; interface statistics and individual structure identifiers are not included. Same-family interactions reflect distinct proteins carrying the same Pfam family.",
+      "properties": []
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "type": "CONTAINS_DScO",
+  "kind": "edge",
+  "endpoints": {
+    "from": "DietarySupplement",
+    "to": "Organism",
+    "direction": "directed"
+  },
+  "description": "Connects a dietary supplement product reported by NHANES participants to an organism represented among its discrete ingredients. The edge records ingredient category and amount information.",
+  "sources": [
+    "NHANES"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing this relationship.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time this relationship was last created or updated.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "quantity",
+      "type": "list of numbers",
+      "description": "Ingredient amounts reported in NHANES Ingredient Information (DSII).",
+      "provenance": "extracted",
+      "notes": "quantity, unit, operator are index-aligned (element i is the i-th contributing ingredient's amount/unit/operator). In the common single-ingredient case each list has length 1."
+    },
+    {
+      "name": "unit",
+      "type": "list of integers",
+      "description": "Raw NHANES amount-unit codes; the modeling documentation provides no code-to-label table.",
+      "provenance": "extracted",
+      "notes": "quantity, unit, operator are index-aligned (element i is the i-th contributing ingredient's amount/unit/operator). In the common single-ingredient case each list has length 1."
+    },
+    {
+      "name": "operator",
+      "type": "list of strings",
+      "description": "Amount comparison operators: =, <, or >.",
+      "provenance": "extracted",
+      "notes": "quantity, unit, operator are index-aligned (element i is the i-th contributing ingredient's amount/unit/operator). In the common single-ingredient case each list has length 1."
+    },
+    {
+      "name": "category",
+      "type": "string (controlled vocab)",
+      "description": "Ingredient category: Vitamin, Mineral, Botanical, Other, or Amino acid. When contributing ingredients have different categories, the value is Other.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "NHANES",
+      "scope": "Dietary supplement products and discrete ingredients from the NHANES Dietary Supplement Database. Only ingredients resolved to an existing Organism are represented.",
+      "description": "The CDC / National Center for Health Statistics publishes the Ingredient Information (DSII) data. Several differently named ingredients in a product can refer to the same organism; their amounts remain separate entries in the aligned lists.",
+      "properties": []
+    }
+  ]
+}

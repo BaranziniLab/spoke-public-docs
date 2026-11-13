@@ -1,0 +1,23 @@
+{
+  "type": "MEASURES_IN_CLmiA",
+  "kind": "edge",
+  "endpoints": {
+    "from": "ClinicalLab",
+    "to": "Anatomy",
+    "direction": "directed"
+  },
+  "description": "Links a clinical laboratory test to the anatomy or specimen in which its measurement is taken, as represented by the LOINC System axis.",
+  "sources": [
+    "LOINC"
+  ],
+  "common_properties": [],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "LOINC",
+      "scope": "Laboratory tests with LOINC CLASSTYPE = 1 and status ACTIVE, TRIAL, or DISCOURAGED; DEPRECATED codes are excluded. Tests must also have an identified analyte or disease association; specimen information alone is insufficient for inclusion.",
+      "description": "System-axis specimen constituents can yield separate anatomy links: for example, Ser/Plas can link to both serum and plasma. Anatomy targets use UBERON identifiers.",
+      "properties": []
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "type": "CONTAINS_DScF",
+  "kind": "edge",
+  "endpoints": {
+    "from": "DietarySupplement",
+    "to": "Food",
+    "direction": "directed"
+  },
+  "description": "A dietary supplement product contains a discrete ingredient represented by a Food entity.",
+  "sources": [
+    "NHANES"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing this relationship.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was last created or updated.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "quantity",
+      "type": "list of numbers",
+      "description": "Amount of each contributing ingredient in the supplement product.",
+      "provenance": "extracted",
+      "notes": "One element per contributor; quantity, unit, operator are index-aligned."
+    },
+    {
+      "name": "unit",
+      "type": "list of integers",
+      "description": "Raw NHANES DSDUNIT code for each contributing ingredient’s amount unit; no label table is provided.",
+      "provenance": "extracted",
+      "notes": "One element per contributor; quantity, unit, operator are index-aligned."
+    },
+    {
+      "name": "operator",
+      "type": "list of strings",
+      "description": "Amount comparison operator (=, <, or >) for each contributing ingredient.",
+      "provenance": "extracted",
+      "notes": "One element per contributor; quantity, unit, operator are index-aligned."
+    },
+    {
+      "name": "category",
+      "type": "string (controlled vocab)",
+      "description": "Ingredient category: Vitamin, Mineral, Botanical, Other, or Amino acid. When contributing ingredients differ in category, the value is Other.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "NHANES",
+      "scope": "Discrete food ingredients in dietary supplement products reported by NHANES participants, from the Dietary Supplement Database Ingredient Information (DSII). Coverage includes ingredients mapped to existing Food entities; unresolved ingredients have no relationship.",
+      "description": "Food ingredients are identified through a curated food map or a frozen, human-reviewed ingredient mapping. Different ingredients in one product can refer to the same Food entity; their quantities, units, and operators remain separate aligned list elements. In the single-ingredient case each list has length 1.",
+      "properties": []
+    }
+  ]
+}

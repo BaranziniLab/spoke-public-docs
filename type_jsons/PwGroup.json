@@ -1,0 +1,63 @@
+{
+  "type": "PwGroup",
+  "kind": "node",
+  "description": "A Reactome pathway group: a macromolecular complex or a set of alternative complexes. Cellular-compartment and modification variants are separate nodes, distinguished by their Reactome stable IDs.",
+  "sources": [
+    "Reactome"
+  ],
+  "common_properties": [
+    {
+      "name": "identifier",
+      "type": "string (CURIE)",
+      "description": "Reactome stable ID prefixed with reactome:, for example reactome:R-HSA-389357.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "reactome_id",
+      "type": "string",
+      "description": "Bare Reactome stable ID, for example R-HSA-389357.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Reactome display name; the bare stable ID is used when a display name is missing.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "version",
+      "type": "integer",
+      "description": "Reactome release number in which the node was last seen.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data sources contributing the node; Reactome for this type.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the node was created or last updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "Reactome",
+      "scope": "Complexes associated with the human BioPAX export\u2019s Signaling Pathways (R-HSA-162582), Immune System (R-HSA-168256), and Diseases of signal transduction by growth factor receptors and second messengers (R-HSA-5663202) hierarchies, including descendant pathways. Scope includes complexes used by events, their catalysts and regulators, and active units, as well as nested complexes and complexes reached through entity sets. Non-human stable IDs, including viral complexes used in human pathways, are retained.",
+      "description": "Complexes with components represent entities present together; component membership expresses physical part-of relationships. Complex-typed sets represent alternatives and have no member edges: their member complexes are separate nodes without links to the set. Non-complex entity sets are excluded and their members do not substitute for them in participation or membership relationships. Component links cover proteins, compounds, DNA-associated genes, and other pathway groups when represented in SPOKE; RNA and generic entities have no component links. Catalysis and regulation relationships are absent even when their complexes are represented. Compartment, stoichiometry, and a complex-versus-set flag are not stored as properties.",
+      "properties": [
+        {
+          "name": "synonyms",
+          "type": "list of strings",
+          "description": "Reactome alternate names, excluding values equal to the display name without regard to case.",
+          "notes": "Omitted when empty.",
+          "provenance": "extracted"
+        }
+      ]
+    }
+  ]
+}

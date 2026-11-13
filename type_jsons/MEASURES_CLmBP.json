@@ -1,0 +1,30 @@
+{
+  "type": "MEASURES_CLmBP",
+  "kind": "edge",
+  "endpoints": {
+    "from": "ClinicalLab",
+    "to": "BiologicalProcess",
+    "direction": "directed"
+  },
+  "description": "Links a laboratory test to the GO biological process its Component-axis measurement is about, such as a coagulation-ratio test measuring blood coagulation.",
+  "sources": [
+    "LOINC"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list",
+      "description": "Data source attribution; [\"LOINC\"] for this relationship.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "LOINC",
+      "scope": "Laboratory tests with LOINC status ACTIVE, TRIAL, or DISCOURAGED; DEPRECATED tests are excluded. Biological-process relationships describe the Component axis, rather than the specimen (System axis), and cover only curated mappings to BiologicalProcess nodes present in SPOKE.",
+      "description": "These relationships come exclusively from curated LLM-assisted mappings of LOINC parts. A biological-process attribution is a curation judgment rather than an identifier equivalence. For example, a dRVVT coagulation-ratio measurement is linked to blood coagulation (GO:0007596).",
+      "properties": []
+    }
+  ]
+}

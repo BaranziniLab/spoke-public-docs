@@ -1,0 +1,23 @@
+{
+  "type": "MEASURES_IN_CLmiCT",
+  "kind": "edge",
+  "endpoints": {
+    "from": "ClinicalLab",
+    "to": "CellType",
+    "direction": "directed"
+  },
+  "description": "Connects a clinical laboratory test to the cell type in which its measurement is taken, as specified by the LOINC System axis.",
+  "sources": [
+    "LOINC"
+  ],
+  "common_properties": [],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "LOINC",
+      "scope": "Laboratory tests with CLASSTYPE = 1 and status ACTIVE, TRIAL, or DISCOURAGED; DEPRECATED codes are excluded. Tests are represented only when they also have an identified Component-axis analyte relationship.",
+      "description": "The System axis identifies the specimen cell type. Cell types are represented by Cell Ontology (CL) terms. Mappings use NodeNormalizer and BioPortal; unresolved parts may also be linked through curated LLM-derived mappings.",
+      "properties": []
+    }
+  ]
+}

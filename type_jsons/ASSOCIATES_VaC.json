@@ -1,0 +1,122 @@
+{
+  "type": "ASSOCIATES_VaC",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Variant",
+    "to": "Compound",
+    "direction": "directed"
+  },
+  "description": "Connects human genetic variants to compounds through genotype-level ClinPGx/PharmGKB pharmacogenomic annotations provided by the Open Targets Platform. The association retains the annotated genotype, phenotype, evidence level and structured effects.",
+  "sources": [
+    "OpenTargets_PGx"
+  ],
+  "common_properties": [
+    {
+      "name": "ot_pgx_annotation_ids",
+      "type": "list of strings",
+      "description": "ClinPGx clinical annotation identifiers.",
+      "provenance": "extracted",
+      "notes": "All lists of one source have the same length and index i refers to the same entry."
+    },
+    {
+      "name": "ot_pgx_genotypes",
+      "type": "list of strings",
+      "description": "Genotypes described by the pharmacogenomic annotations, for example AG.",
+      "provenance": "extracted",
+      "notes": "All lists of one source have the same length and index i refers to the same entry. Missing text values \u2192 \"NA\"."
+    },
+    {
+      "name": "ot_pgx_variant_ids",
+      "type": "list of strings",
+      "description": "Open Targets allele-specific variant identifiers for the supporting annotations.",
+      "provenance": "extracted",
+      "notes": "All lists of one source have the same length and index i refers to the same entry. \"NA\" for rsID-only rows."
+    },
+    {
+      "name": "ot_pgx_evidence_levels",
+      "type": "list of strings",
+      "description": "Evidence levels reported for the annotations: 1A, 1B, 2A, 2B, 3 or 4.",
+      "provenance": "extracted",
+      "notes": "All lists of one source have the same length and index i refers to the same entry. Missing text values \u2192 \"NA\"."
+    },
+    {
+      "name": "ot_pgx_categories",
+      "type": "list of strings",
+      "description": "Pharmacogenomic categories: efficacy, toxicity, metabolism/pk, dosage, pd or other.",
+      "provenance": "extracted",
+      "notes": "All lists of one source have the same length and index i refers to the same entry. Missing text values \u2192 \"NA\"."
+    },
+    {
+      "name": "ot_pgx_phenotypes",
+      "type": "list of strings",
+      "description": "Free-text pharmacogenomic phenotypes, for example decreased response.",
+      "provenance": "extracted",
+      "notes": "All lists of one source have the same length and index i refers to the same entry. Missing text values \u2192 \"NA\"."
+    },
+    {
+      "name": "ot_pgx_directions",
+      "type": "list of strings (|)",
+      "description": "Directionality of the structured pharmacogenomic effects.",
+      "provenance": "extracted",
+      "notes": "All lists of one source have the same length and index i refers to the same entry. Fields that are themselves multi-valued within one entry are stored as one string with values joined by \"|\", in source order. The three structured properties keep the variantAnnotation items of one annotation in the same order, so position k inside the joined strings refers to the same item across ot_pgx_directions, ot_pgx_effects and ot_pgx_compared_alleles. \"NA\" when no variantAnnotation; an item without value \u2192 NA inside the joined string."
+    },
+    {
+      "name": "ot_pgx_effects",
+      "type": "list of strings (|)",
+      "description": "Structured pharmacogenomic effects, for example response to or risk of.",
+      "provenance": "extracted",
+      "notes": "All lists of one source have the same length and index i refers to the same entry. Fields that are themselves multi-valued within one entry are stored as one string with values joined by \"|\", in source order. The three structured properties keep the variantAnnotation items of one annotation in the same order, so position k inside the joined strings refers to the same item across ot_pgx_directions, ot_pgx_effects and ot_pgx_compared_alleles. \"NA\" when no variantAnnotation; an item without value \u2192 NA inside the joined string."
+    },
+    {
+      "name": "ot_pgx_compared_alleles",
+      "type": "list of strings (|)",
+      "description": "Alleles or genotypes compared by the annotation, expressed as base allele or genotype vs comparison allele or genotype, for example A vs G.",
+      "provenance": "extracted",
+      "notes": "All lists of one source have the same length and index i refers to the same entry. Fields that are themselves multi-valued within one entry are stored as one string with values joined by \"|\", in source order. The three structured properties keep the variantAnnotation items of one annotation in the same order, so position k inside the joined strings refers to the same item across ot_pgx_directions, ot_pgx_effects and ot_pgx_compared_alleles. \"NA\" when no variantAnnotation; an item without value \u2192 NA inside the joined string."
+    },
+    {
+      "name": "ot_pgx_gene_ids",
+      "type": "list of strings",
+      "description": "Gene identifiers supplied by the pharmacogenomic source as bare Ensembl IDs.",
+      "provenance": "extracted",
+      "notes": "All lists of one source have the same length and index i refers to the same entry. Missing text values \u2192 \"NA\"."
+    },
+    {
+      "name": "ot_pgx_pubmed_ids",
+      "type": "list of strings (|)",
+      "description": "PubMed identifiers for literature supporting the pharmacogenomic annotations.",
+      "provenance": "extracted",
+      "notes": "All lists of one source have the same length and index i refers to the same entry. Fields that are themselves multi-valued within one entry are stored as one string with values joined by \"|\", in source order. Missing text values \u2192 \"NA\"."
+    },
+    {
+      "name": "ot_pgx_n_annotations",
+      "type": "integer",
+      "description": "Number of distinct ClinPGx clinical annotation identifiers supporting the association.",
+      "provenance": "extracted",
+      "notes": "Always \u2265 1"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Evidence-source tags for the association; OpenTargets_PGx identifies the pharmacogenomic contribution.",
+      "provenance": "extracted",
+      "notes": "Never null"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the association was created or its properties last changed.",
+      "provenance": "extracted",
+      "notes": "Never null"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "OpenTargets_PGx",
+      "scope": "Includes annotations with a variant ID or an rsID alone, including genotype-level rows such as homozygous-reference genotypes. Haplotype-only annotations are excluded. No evidence-level filter is applied. Only drugs with a ChEMBL ID that correspond to an existing SPOKE Compound are included.",
+      "description": "Each supporting entry represents a pharmacogenomic annotation for a drug. Evidence records the specific variant allele when provided; rsID-only entries retain their genotype-level annotation.",
+      "properties": []
+    }
+  ]
+}

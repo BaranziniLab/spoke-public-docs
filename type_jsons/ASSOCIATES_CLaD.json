@@ -1,0 +1,23 @@
+{
+  "type": "ASSOCIATES_CLaD",
+  "kind": "edge",
+  "endpoints": {
+    "from": "ClinicalLab",
+    "to": "Disease",
+    "direction": "directed"
+  },
+  "description": "Links a laboratory test to a disease that its LOINC Component axis is about. Disease-association tests, such as serology tests, are about a disease rather than literally measuring it.",
+  "sources": [
+    "LOINC"
+  ],
+  "common_properties": [],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "LOINC",
+      "scope": "Laboratory tests with LOINC CLASSTYPE = 1 and status ACTIVE, TRIAL, or DISCOURAGED; deprecated codes are excluded. Disease associations use the Component axis only; disease-typed specimens on the System axis do not produce this relationship.",
+      "description": "Disease associations include identifier-based mappings and curated mappings of otherwise unresolved LOINC parts produced by an LLM-assisted curation pass. Coverage is limited to diseases present in SPOKE. Ambiguous UMLS concept mappings to multiple diseases are excluded. Challenge agents are excluded from analyte associations.",
+      "properties": []
+    }
+  ]
+}

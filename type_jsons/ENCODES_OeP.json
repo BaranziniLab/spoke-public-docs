@@ -1,0 +1,36 @@
+{
+  "type": "ENCODES_OeP",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Organism",
+    "to": "Protein",
+    "direction": "directed"
+  },
+  "description": "Links an organism to a protein it encodes.",
+  "sources": [
+    "UniProt"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Sources supporting the organism\u2013protein relationship; includes UniProt.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the relationship was created or its supporting sources changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "UniProt",
+      "scope": "Regular UniProt proteins with an organism represented in SPOKE; polyprotein cleavage products are excluded. Viral proteins link to their own organism, rather than to a host. Existing relationships may include retired UniProt proteins, whose retirement is recorded on the Protein node.",
+      "description": "Organism assignments originate from the UniProt OX NCBI Taxonomy identifier and reflect representative-strain remapping. The relationship does not record the original taxon before remapping or indicate whether remapping occurred. Each eligible protein has one supported UniProt relationship to its assigned organism.",
+      "properties": []
+    }
+  ]
+}

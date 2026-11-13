@@ -1,0 +1,36 @@
+{
+  "type": "ENCODES_GeM",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Gene",
+    "to": "MiRNA",
+    "direction": "directed"
+  },
+  "description": "Connects a precursor microRNA gene to a mature microRNA processed from it. The relationship is many-to-many: a precursor typically yields up to two mature strands, and some mature microRNAs arise from more than one precursor gene.",
+  "sources": [
+    "miRBase"
+  ],
+  "common_properties": [
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Sources contributing this relationship; includes miRBase.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Date and time the relationship or its properties were last created or changed.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "miRBase",
+      "scope": "Human mature microRNAs represented in the miRDB prediction set, with precursor genes present in SPOKE. Relationships may include precursor Gene nodes marked obsolete.",
+      "description": "The miRBase precursor catalog identifies mature products of precursor microRNA genes. Each distinct precursor gene\u2013mature microRNA pair is represented once.",
+      "properties": []
+    }
+  ]
+}

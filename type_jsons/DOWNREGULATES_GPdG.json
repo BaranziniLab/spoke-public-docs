@@ -1,0 +1,63 @@
+{
+  "type": "DOWNREGULATES_GPdG",
+  "kind": "edge",
+  "endpoints": {
+    "from": "Gene",
+    "to": "Gene",
+    "direction": "directed"
+  },
+  "description": "An applied biological ligand reduces the expression of a target human gene, based on a statistically significant negative consensus differential-expression profile from LINCS L1000 / Connectivity Map. The source Gene encodes the administered ligand; the target Gene is the responding gene.",
+  "sources": [
+    "CMAP/LINCS ligand (trt_lig)"
+  ],
+  "common_properties": [
+    {
+      "name": "z_score",
+      "type": "float",
+      "description": "Signed Stouffer consensus z-score for the ligand–target pair. Negative values indicate reduced expression; the magnitude represents the consensus expression change.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "p_value",
+      "type": "float",
+      "description": "Bonferroni-corrected two-tailed normal p-value, corrected separately for each ligand and target-gene tier; retained pairs meet significance at α = 0.05.",
+      "provenance": "extracted",
+      "notes": "Group-corrected (per source entity, per tier)"
+    },
+    {
+      "name": "tier",
+      "type": "string",
+      "description": "Target-gene confidence tier: landmark genes are directly measured; BING denotes well-inferred, non-landmark genes.",
+      "provenance": "extracted",
+      "notes": "Controlled vocabulary: \"landmark\" or \"BING\""
+    },
+    {
+      "name": "n_signatures",
+      "type": "integer",
+      "description": "Number of pooled expression signatures supporting the ligand consensus.",
+      "provenance": "extracted"
+    },
+    {
+      "name": "sources",
+      "type": "list of strings",
+      "description": "Data-source attribution for the ligand perturbation.",
+      "provenance": "extracted",
+      "notes": "Single-element list under this source; list, never scalar"
+    },
+    {
+      "name": "last_updated",
+      "type": "datetime",
+      "description": "Time the edge was last created or updated.",
+      "provenance": "extracted"
+    }
+  ],
+  "curator_notes": null,
+  "source_contributions": [
+    {
+      "source": "CMAP/LINCS ligand (trt_lig)",
+      "scope": "Applied biological ligands (trt_lig), with human target genes that are directly measured landmarks or well-inferred non-landmark BING genes. Poorly inferred non-BING genes are excluded. Both endpoint genes must be present in SPOKE. All perturbagens are eligible regardless of touchstone status.",
+      "description": "Ligand preparations and signatures from GEO series GSE92742 and GSE70138 are pooled by ligand gene across cell lines, doses, and times into a consensus profile using correlation-weighted Stouffer integration. Significance is assessed separately within the landmark and non-landmark BING tiers. Landmark results are uncapped; only the top 1,000 significant BING targets per ligand are retained. Ligand self-edges are retained and treated as autoregulation.",
+      "properties": []
+    }
+  ]
+}
